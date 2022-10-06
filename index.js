@@ -43,6 +43,15 @@ export default dados => {
         }
       }
 
+      const opcao = (inicio, comprimento, opcoes) => {
+        if (opcoes instanceof Array) {
+          const n = numero(inicio, comprimento)
+          return n && !isNaN(n) ? opcoes[n - 1] : null
+        } else {
+          return opcoes[texto(inicio, comprimento)]
+        }
+      }
+
       const tipo = Object.keys(tipos).reduce((tipo, t) => {
         if (tipo == '' && tipos[t].teste.test(linha)) {
           tipo = t
@@ -56,7 +65,7 @@ export default dados => {
       }
       Resultado.push({
         tipo: tipo,
-        ...(tipos[tipo].dados || (() => ({})))({texto, data, numero})
+        ...(tipos[tipo].dados || (() => ({})))({texto, data, numero, opcao})
       })
 
       Assinatura.push(tipo)
