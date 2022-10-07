@@ -18,9 +18,9 @@ export default dados => {
       throw 'Formato do arquivo não suportado!'
     }
 
-    const {tipos, assinatura} = retorno[formato]
+    const {tipos, assinatura, base, item} = retorno[formato]
     const Assinatura = []
-    const Resultado = []
+    const Resultado = base()
 
     Linhas.forEach((linha, seq) => {
       const texto = (inicio, comprimento) =>
@@ -28,8 +28,10 @@ export default dados => {
 
       const data = (inicio, comprimento) => {
         const d = texto(inicio, comprimento)
-        if (comprimento == 6) {
-          return '20'+d.substr(4, 2)+'-'+d.substr(2, 2)+'-'+d.substr(0, 2)
+        if (/^\d+$/.test(d) && !/^0+$/.test(d)) {
+          if (comprimento == 6) {
+            return '20'+d.substr(4, 2)+'-'+d.substr(2, 2)+'-'+d.substr(0, 2)
+          }
         }
       }
 
@@ -63,10 +65,17 @@ export default dados => {
         console.log(linha)
         throw `[${formato}] (${seq+1}): tipo da linha desconhecido!`
       }
-      Resultado.push({
-        tipo: tipo,
-        ...(tipos[tipo].dados || (() => ({})))({texto, data, numero, opcao})
-      })
+
+      try {
+        item(
+          Resultado,
+          tipo,
+          (tipos[tipo].dados || (() => ({})))({texto, data, numero, opcao}),
+          seq
+        )
+      } catch (err) {
+        throw `[${formato} ${tipo}] (${seq+1}): ${err}`
+      }
 
       Assinatura.push(tipo)
     })

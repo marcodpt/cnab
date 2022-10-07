@@ -204,13 +204,34 @@ export default {
         base[campo] = dados[campo]
       })
     } else if (tipo == 'registro') {
+      const T = ['agencia', 'conta', 'digito', 'credito']
+      T.forEach(campo => {
+        if (dados[campo] != base[campo] && dados[campo] != null) {
+          throw `Erro ${campo}: [${dados[campo]} | ${base[campo]}]`
+        }
+        delete dados[campo]
+      })
       base.registros.push(dados)
     } else if (tipo == 'trailer') {
       const n = base.registros.length
       if (dados.registros != n) {
-        throw `Erro nro registros: [${} | ${}]`
+        throw `Erro nro registros: [${dados.registros} | ${n}]`
       }
       delete dados.registros
+
+      const t = base.registros.reduce((t, r) => t + r.valor, 0).toFixed(2)
+      if (dados.total != t) {
+        throw `Erro total: [${dados.total} | ${t}]`
+      }
+      delete dados.total
+
+      if (dados.sequencia != base.sequencia) {
+        throw `Erro sequencia: [${dados.sequencia} | ${base.sequencia}]`
+      }
+      delete dados.sequencia
+      Object.keys(dados).forEach(campo => {
+        base[campo] = dados[campo]
+      })
     }
   }
 }
