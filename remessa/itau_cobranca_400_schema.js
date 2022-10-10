@@ -42,8 +42,8 @@ export default {
       "title": "Nome da empresa",
       "description": "Nome por extenso da \"empresa mãe\"",
       "type": "string",
-      "minlength": 0,
-      "maxlength": 30,
+      "minLength": 0,
+      "maxLength": 30,
       "default": "",
       "pos": 47
     },
@@ -52,7 +52,7 @@ export default {
       "description": "CNPJ ou CPF da \"empresa mãe\"",
       "type": "string",
       "pattern": "^(|\d{11}|\d{14})$",
-      "maxlength": 30,
+      "maxLength": 30,
       "format": "cnpjcpf",
       "default": "",
       "pos": 0
@@ -78,8 +78,8 @@ export default {
             "enum": Object.keys(carteiras),
             "labels": Object.values(carteiras),
             "default": "112",
-            "minlength": 3,
-            "maxlength": 3,
+            "minLength": 3,
+            "maxLength": 3,
             "pos": 84
           },
           "ocorrencia": {
@@ -88,15 +88,15 @@ export default {
             "enum": Object.keys(ocorrencias),
             "labels": Object.values(ocorrencias),
             "default": "01",
-            "minlength": 2,
-            "maxlength": 2,
+            "minLength": 2,
+            "maxLength": 2,
             "pos": 109
           },
           "documento": {
             "title": "Nº do Documento",
             "description": "Nº do documento de cobrança (dupl.,np etc.)",
             "type": "string",
-            "maxlength": 10,
+            "maxLength": 10,
             "default": "",
             "pos": 111
           },
@@ -129,8 +129,8 @@ export default {
             "enum": Object.keys(especies),
             "labels": Object.values(especies),
             "default": "01",
-            "minlength": 2,
-            "maxlength": 2,
+            "minLength": 2,
+            "maxLength": 2,
             "pos": 148
           },
           "aceite": {
@@ -139,8 +139,8 @@ export default {
             "enum": Object.keys(aceites),
             "labels": Object.values(aceites),
             "default": "N",
-            "minlength": 1,
-            "maxlength": 1,
+            "minLength": 1,
+            "maxLength": 1,
             "pos": 150
           },
           "instrucoes": {
@@ -153,8 +153,8 @@ export default {
               "enum": Object.keys(instrucoes),
               "labels": Object.values(instrucoes),
               "default": "02",
-              "minlength": 2,
-              "maxlength": 2
+              "minLength": 2,
+              "maxLength": 2
             },
             "pos": 157
           },
@@ -209,8 +209,8 @@ export default {
           "nome": {
             "title": "Nome do sacado",
             "type": "string",
-            "minlength": 0,
-            "maxlength": 30,
+            "minLength": 0,
+            "maxLength": 30,
             "default": "",
             "pos": 235
           },
@@ -219,7 +219,7 @@ export default {
             "description": "Nº de inscrição do sacado (cpf/cnpj)",
             "type": "string",
             "pattern": "^(|\d{11}|\d{14})$",
-            "maxlength": 14,
+            "maxLength": 14,
             "format": "cnpjcpf",
             "default": "",
             "pos": 221
@@ -228,8 +228,8 @@ export default {
             "title": "Logradouro",
             "description": "Rua, número e complemento do sacado",
             "type": "string",
-            "minlength": 0,
-            "maxlength": 40,
+            "minLength": 0,
+            "maxLength": 40,
             "default": "",
             "pos": 275
           },
@@ -237,8 +237,8 @@ export default {
             "title": "Bairro",
             "description": "Bairro do sacado",
             "type": "string",
-            "minlength": 0,
-            "maxlength": 12,
+            "minLength": 0,
+            "maxLength": 12,
             "default": "",
             "pos": 315
           },
@@ -247,8 +247,8 @@ export default {
             "description": "CEP do sacado",
             "type": "string",
             "pattern": "^(|\d{8})$"
-            "minlength": 0,
-            "maxlength": 8,
+            "minLength": 0,
+            "maxLength": 8,
             "default": "",
             "pos": 327
           },
@@ -256,8 +256,8 @@ export default {
             "title": "Cidade",
             "description": "Cidade do sacado",
             "type": "string",
-            "minlength": 0,
-            "maxlength": 15,
+            "minLength": 0,
+            "maxLength": 15,
             "default": "",
             "pos": 335
           },
@@ -266,16 +266,16 @@ export default {
             "description": "UF do sacado",
             "type": "string",
             "enum": uf,
-            "minlength": 2,
-            "maxlength": 2,
+            "minLength": 2,
+            "maxLength": 2,
             "default": "SP",
             "pos": 350
           },
           "avalista": {
             "title": "Nome do sacador/avalista",
             "type": "string",
-            "minlength": 0,
-            "maxlength": 30,
+            "minLength": 0,
+            "maxLength": 30,
             "default": "",
             "pos": 352
           }
