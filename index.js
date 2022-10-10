@@ -1,9 +1,9 @@
-import retorno from './retorno/index.js'
+import {old} from './retorno/index.js'
 import {hoje} from './lib.js'
 
 export default dados => {
   if (typeof dados == 'string') {
-    console.log(JSON.stringify(retorno(dados), undefined, 2))
+    console.log(JSON.stringify(old(dados), undefined, 2))
   } else if (dados && typeof dados == 'object') {
     const base = {
       banco: null,

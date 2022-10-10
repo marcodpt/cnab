@@ -24,7 +24,7 @@ export default {
           "type": "integer",
           "const": 2
         },
-        "literal_uso": {
+        "uso": {
           "title": "Literal de retorno",
           "description": "Identificação por extenso do tipo de movimento",
           "type": "string",
@@ -37,7 +37,7 @@ export default {
           "maximum": 99,
           "const": 1
         },
-        "literal_servico": {
+        "servico": {
           "title": "Literal de serviço",
           "description": "Identificação por extenso do tipo de serviço",
           "type": "string",
@@ -96,7 +96,7 @@ export default {
           "type": "integer",
           "const": 341
         },
-        "nome_banco": {
+        "banco": {
           "title": "Nome do banco",
           "description": "Nome por extenso do banco cobrador",
           "type": "string",
@@ -150,7 +150,7 @@ export default {
           "type": "integer",
           "minimum": 1,
           "maximum": 999999,
-          "default": 1
+          "const": 1
         }
       }
     },
@@ -171,13 +171,14 @@ export default {
             "description": "Identificação do tipo de inscrição/empresa",
             "type": "string",
             "enum": ['01', '02'],
-            "labels": ['CPF', 'CNPJ']
+            "labels": ['CPF', 'CNPJ'],
+            "maxLength": 2
           },
           "inscricao": {
             "title": "Número de inscrição",
             "description": "Número de inscrição da empresa (cpf/cnpj)",
             "type": "string",
-            "pattern": "^\d{14}$"
+            "pattern": "^\d{14}$",
             "default": "00000000000000",
             "minLength": 14,
             "maxLength": 14
@@ -189,7 +190,7 @@ export default {
             "minimum": 0,
             "maximum": 9999
           },
-          "zeros": {
+          "zeros1": {
             "title": "Zeros",
             "description": "Complemento de registro",
             "type": "integer",
@@ -217,11 +218,12 @@ export default {
             "description": "Complemento de registro",
             "type": "string",
             "const": "",
-            "maxLength": 10
+            "maxLength": 8 
           },
           "uso_empresa": {
             "title": "Uso da empresa",
             "description": "Identificação do título na empresa",
+            "type": "string",
             "maxLength": 25,
             "default": ""
           },
@@ -245,7 +247,8 @@ export default {
             "description": "Numero da carteira",
             "type": "string",
             "enum": Object.keys(carteiras),
-            "labels": Object.values(carteiras)
+            "labels": Object.values(carteiras),
+            "maxLength": 3
           },
           "id_banco2": {
             "title": "Nosso número",
@@ -269,21 +272,23 @@ export default {
             "description": "Complemento de registro",
             "type": "string",
             "const": "",
-            "maxLength": 13
+            "maxLength": 6
           },
           "cod_carteira": {
             "title": "Carteira",
             "description": "Código da carteira",
             "type": "string",
             "enum": ['I', 'E'],
-            "labels": ['Real', 'Dólar']
+            "labels": ['Real', 'Dólar'],
+            "maxLength": 1
           },
           "ocorrencia": {
             "title": "Código de ocorrência",
             "description": "Identificação da ocorrência",
             "type": "string",
             "enum": Object.keys(ocorrencias),
-            "labels": Object.values(ocorrencias)
+            "labels": Object.values(ocorrencias),
+            "maxLength": 2
           },
           "data": {
             "title": "Data de ocorrência",
@@ -358,7 +363,8 @@ export default {
             "description": "Espécie do título",
             "type": "string",
             "enum": Object.keys(especies),
-            "labels": Object.values(especies)
+            "labels": Object.values(especies),
+            "maxLength": 2
           },
           "tarifa": {
             "title": "Tarifa de cobrança (R$)",
@@ -369,12 +375,19 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "brancos5": {
-            "title": "Brancos",
+          "zeros2": {
+            "title": "Zeros",
             "description": "Complemento de registro",
-            "type": "string",
-            "const": "",
-            "maxLength": 26
+            "type": "integer",
+            "const": 0,
+            "maximum": 9999999999999
+          },
+          "zeros3": {
+            "title": "Zeros",
+            "description": "Complemento de registro",
+            "type": "integer",
+            "const": 0,
+            "maximum": 9999999999999
           },
           "iof": {
             "title": "Valor do IOF (R$)",
@@ -434,13 +447,14 @@ export default {
             "title": "Boleto DDA",
             "description": "Indicador de boleto DDA",
             "type": "string",
-            "enum": ["0", "1"],
+            //"enum": ["0", "1"],
             "labels": [
               "Não é boleto dda (sacado não aderiu ao dda até o momento)",
               "Boleto dda (sacado aderiu ao dda em ao menos um banco de relacionamento)"
-            ]
+            ],
+            "maxLength": 1
           },
-          "brancos6": {
+          "brancos5": {
             "title": "Brancos",
             "description": "Complemento de registro",
             "type": "string",
@@ -461,14 +475,14 @@ export default {
             "maximum": 9999,
             "default": 0
           },
-          "brancos7": {
-            "title": "Brancos",
+          "zeros4": {
+            "title": "Zeros",
             "description": "Complemento de registro",
-            "type": "string",
-            "const": "",
-            "maxLength": 6
+            "type": "integer",
+            "const": 0,
+            "maximum": 999999
           },
-          "zeros2": {
+          "zeros5": {
             "title": "Zeros",
             "description": "Complemento de registro",
             "type": "integer",
@@ -481,7 +495,7 @@ export default {
             "default": "",
             "maxLength": 30
           },
-          "brancos8": {
+          "brancos6": {
             "title": "Brancos",
             "description": "Complemento de registro",
             "type": "string",
@@ -495,7 +509,7 @@ export default {
             "default": "",
             "maxLength": 8
           },
-          "brancos9": {
+          "brancos7": {
             "title": "Brancos",
             "description": "Complemento de registro",
             "type": "string",
@@ -617,7 +631,28 @@ export default {
           "description": "Complemento de registro",
           "type": "string",
           "const": "",
-          "maxLength": 90
+          "maxLength": 50
+        },
+        "zeros1": {
+          "title": "Zeros",
+          "description": "Complemento de registro",
+          "type": "integer",
+          "const": 0,
+          "maximum": 99999999999999
+        },
+        "zeros2": {
+          "title": "Zeros",
+          "description": "Complemento de registro",
+          "type": "integer",
+          "const": 0,
+          "maximum": 99999999999999
+        },
+        "zeros3": {
+          "title": "Zeros",
+          "description": "Complemento de registro",
+          "type": "integer",
+          "const": 0,
+          "maximum": 999999999999
         },
         "escritural_qtde": {
           "title": "Quantidade direta/escritural",
@@ -687,6 +722,5 @@ export default {
         }
       }
     }
-  },
-  "required": ["header", "registros", "trailer"]
+  }
 }
