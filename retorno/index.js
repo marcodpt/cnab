@@ -25,7 +25,13 @@ const readLine = (schema, linha) => {
       throw `Não foi possível determinar o tamanho da entrada: ${k}`
     }
 
-    var d = linha.substr(pos, len).trim()
+
+    const x = linha.substr(pos, len)
+
+    var d = x.trim()
+    if (d.length) {
+      d = x.substr(0, x.indexOf(d) + d.length)
+    }
     pos += len
 
     if (P[k].enum != null) {

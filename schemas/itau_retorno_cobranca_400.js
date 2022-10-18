@@ -264,7 +264,7 @@ export default {
             "description": "DAC do nosso número",
             "type": "integer",
             "minimum": 0,
-            "maximum": 99999999,
+            "maximum": 9,
             "default": 0
           },
           "brancos3": {
@@ -272,7 +272,7 @@ export default {
             "description": "Complemento de registro",
             "type": "string",
             "const": "",
-            "maxLength": 6
+            "maxLength": 13
           },
           "cod_carteira": {
             "title": "Carteira",
@@ -638,21 +638,21 @@ export default {
           "description": "Complemento de registro",
           "type": "integer",
           "const": 0,
-          "maximum": 99999999999999
+          "maximum": 999999999999999
         },
         "zeros2": {
           "title": "Zeros",
           "description": "Complemento de registro",
           "type": "integer",
           "const": 0,
-          "maximum": 99999999999999
+          "maximum": 999999999999999
         },
-        "zeros3": {
-          "title": "Zeros",
+        "brancos4": {
+          "title": "Brancos",
           "description": "Complemento de registro",
-          "type": "integer",
-          "const": 0,
-          "maximum": 999999999999
+          "type": "string",
+          "const": "",
+          "maxLength": 10
         },
         "escritural_qtde": {
           "title": "Quantidade direta/escritural",
@@ -705,7 +705,7 @@ export default {
             (total, linha) => total + linha.valor
           , 0).toFixed(2)
         },
-        "brancos4": {
+        "brancos5": {
           "title": "Brancos",
           "description": "Complemento de registro",
           "type": "string",
