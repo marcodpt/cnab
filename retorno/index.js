@@ -4,94 +4,6 @@ import {print, getLen} from '../lib.js'
 
 const retorno = {itau_cobranca_400}
 
-const old = dados => {
-  const Linhas = dados.trim().split('\n').map(l => l.trim())
-  if (Linhas.length < 1) {
-    throw "Arquivo vazio!"
-  }
-
-  const formato = Object.keys(retorno).reduce((formato, k) => {
-    if (formato == '' && retorno[k].teste.test(Linhas[0])) {
-      formato = k 
-    }
-    return formato 
-  }, '')
-
-  if (formato == '') {
-    throw 'Formato do arquivo não suportado!'
-  }
-
-  const {tipos, assinatura, base, item} = retorno[formato]
-  const Assinatura = []
-  const Resultado = base()
-
-  Linhas.forEach((linha, seq) => {
-    const texto = (inicio, comprimento) =>
-      linha.substr(inicio - 1, comprimento).trim()
-
-    const data = (inicio, comprimento) => {
-      const d = texto(inicio, comprimento)
-      if (/^\d+$/.test(d) && !/^0+$/.test(d)) {
-        if (comprimento == 6) {
-          return '20'+d.substr(4, 2)+'-'+d.substr(2, 2)+'-'+d.substr(0, 2)
-        }
-      }
-    }
-
-    const numero = (inicio, comprimento, decimais) => {
-      var n = texto(inicio, comprimento)
-      n = parseInt(n)
-      if (n && !isNaN(n) && decimais) {
-        return n / 10 ** decimais
-      } else {
-        return n
-      }
-    }
-
-    const opcao = (inicio, comprimento, opcoes) => {
-      if (opcoes instanceof Array) {
-        const n = numero(inicio, comprimento)
-        return n && !isNaN(n) ? opcoes[n - 1] : null
-      } else {
-        return opcoes[texto(inicio, comprimento)]
-      }
-    }
-
-    const tipo = Object.keys(tipos).reduce((tipo, t) => {
-      if (tipo == '' && tipos[t].teste.test(linha)) {
-        tipo = t
-      }
-      return tipo
-    }, '')
-
-    if (tipo == '') {
-      console.log(linha)
-      throw `[${formato}] (${seq+1}): tipo da linha desconhecido!`
-    }
-
-    try {
-      item(
-        Resultado,
-        tipo,
-        (tipos[tipo].dados || (() => ({})))({texto, data, numero, opcao}),
-        seq
-      )
-    } catch (err) {
-      throw `[${formato} ${tipo}] (${seq+1}): ${err}`
-    }
-
-    Assinatura.push(tipo)
-  })
-
-  const a = Assinatura.join('\n')
-  if (!assinatura.test(a)) {
-    console.log(a)
-    throw `[${formato}]: assinatura incorreta do arquivo!`
-  }
-
-  return Resultado
-}
-
 const readLine = (schema, linha) => {
   if (schema.type != 'object') {
     print(schema)
@@ -231,4 +143,105 @@ const reader = (dados, schema) => {
   return Dados
 }
 
-export {old, reader}
+const writeLine = (schema, Dados, Global) => {
+  if (schema.type != 'object') {
+    print(Dados)
+    print(schema)
+    throw 'O JSON esquema deve ser do tipo: objeto'
+  }
+  if (schema.properties == null) {
+    print(Dados)
+    print(schema)
+    throw 'O JSON esquema deve contêr propriedades'
+  }
+
+  const P = schema.properties
+  return Object.keys(P).reduce((linha, k) => {
+    var x = null
+
+    if (typeof P[k].const == 'function') {
+      x = P[k].const(Global, Dados)
+    } else if (P[k].const != null) {
+      x = P[k].const
+    } else if (Dados[k] != null) {
+      x = Dados[k]
+    } else if (P[k].default != null) {
+      x = P[k].default
+    } else {
+      print(Dados)
+      print(schema)
+      throw `[${k}] não tem valor definido!`
+    }
+
+    if (P[k].enum instanceof Array) {
+      const L = P[k].labels instanceof Array ? P[k].labels : P[k].enum
+
+      var i = L.indexOf(x)
+      if (i < 0) {
+        i = P[k].enum.indexOf(x)
+      }
+
+      if (i < 0) {
+        print(Dados)
+        print(schema)
+        print(L)
+        throw `[${k}] ${x} não é uma opção válida!`
+      } else {
+        x = P[k].enum[i]
+      }
+    }
+
+    if (typeof x == "string" && P[k].format == "date6") {
+      x = `${x.substr(8, 2)}${x.substr(5, 2)}${x.substr(2, 2)}`
+    }
+
+    const len = getLen(P[k])
+    if (!len) {
+      print(Dados)
+      print(schema)
+      throw `Não foi possível determinar o tamanho da entrada: ${k}`
+    }
+
+    if (P[k].type == 'integer' || P[k].type == 'number') {
+      if (P[k].type == 'integer') {
+        x = String(x)
+      } else if (P[k].type == 'number') {
+        if (!P[k].multipleOf) {
+          print(Dados)
+          print(schema)
+          throw `[${k}] precisão numérica indefinida (multipleOf)!`
+        }
+        x = String(Math.round(x / P[k].multipleOf))
+      }
+      while (x.length < len) {
+        x = '0'+x
+      }
+    } else if (P[k].type == 'string'){
+      while (x.length < len) {
+        x = x+' '
+      }
+    } else {
+      throw `[${k}] tipo (${t}) não é suportado!`
+    }
+
+    return linha+x
+  }, '')
+}
+
+const writer = (Dados, schema) => {
+  const L = []
+  const P = schema.properties
+  Object.keys(P).forEach(key => {
+    if (P[key].type == "object") {
+      L.push(writeLine(P[key], Dados[key], Dados))
+    } else if (P[key].type == "array" && Dados[key] instanceof Array) {
+      Dados[key].forEach(item => {
+        L.push(writeLine(P[key].items, item, Dados))
+      })
+    }
+  })
+
+  return L.join('\n')
+}
+
+export {reader, writer} 
