@@ -17,8 +17,7 @@ export default {
       "type": "integer",
       "minimum": 0,
       "maximum": 9999,
-      "default": 0,
-      "pos": 27
+      "default": 0
     },
     "conta": {
       "title": "Conta",
@@ -26,8 +25,7 @@ export default {
       "type": "integer",
       "minimum": 0,
       "maximum": 99999,
-      "default": 0,
-      "pos": 33
+      "default": 0
     },
     "dac": {
       "title": "Dígito",
@@ -35,8 +33,7 @@ export default {
       "type": "integer",
       "minimum": 0,
       "maximum": 9,
-      "default": 0,
-      "pos": 38
+      "default": 0
     },
     "nome": {
       "title": "Nome da empresa",
@@ -44,8 +41,7 @@ export default {
       "type": "string",
       "minLength": 0,
       "maxLength": 30,
-      "default": "",
-      "pos": 47
+      "default": ""
     },
     "cnpjcpf": {
       "title": "CNPJ/CPF",
@@ -54,8 +50,7 @@ export default {
       "pattern": "^(|\d{11}|\d{14})$",
       "maxLength": 30,
       "format": "cnpjcpf",
-      "default": "",
-      "pos": 0
+      "default": ""
     },
     "sequencia": {
       "title": "Número sequencial",
@@ -63,8 +58,7 @@ export default {
       "type": "integer",
       "minimum": 1,
       "maximum": 999999,
-      "default": 1,
-      "pos": 395
+      "default": 1
     },
     "registros": {
       "type": "array",
@@ -79,8 +73,7 @@ export default {
             "labels": Object.values(carteiras),
             "default": "112",
             "minLength": 3,
-            "maxLength": 3,
-            "pos": 84
+            "maxLength": 3
           },
           "ocorrencia": {
             "title": "Ocorrência",
@@ -89,30 +82,26 @@ export default {
             "labels": Object.values(ocorrencias),
             "default": "01",
             "minLength": 2,
-            "maxLength": 2,
-            "pos": 109
+            "maxLength": 2
           },
           "documento": {
             "title": "Nº do Documento",
             "description": "Nº do documento de cobrança (dupl.,np etc.)",
             "type": "string",
             "maxLength": 10,
-            "default": "",
-            "pos": 111
+            "default": ""
           },
           "emissao": {
             "title": "Data de Emissão",
             "type": "string",
             "format": "date",
-            "default": hoje(),
-            "pos": 151
+            "default": hoje()
           },
           "vencimento": {
             "title": "Data de Vencimento",
             "type": "string",
             "format": "date",
-            "default": hoje(),
-            "pos": 121
+            "default": hoje()
           },
           "valor": {
             "title": "Valor Nominal (R$)",
@@ -120,8 +109,7 @@ export default {
             "multipleOf": 0.01,
             "minimum": 0.01,
             "maximum": 99999999999.99,
-            "default": 1,
-            "pos": 127
+            "default": 1
           },
           "especie": {
             "title": "Espécie",
@@ -130,8 +118,7 @@ export default {
             "labels": Object.values(especies),
             "default": "01",
             "minLength": 2,
-            "maxLength": 2,
-            "pos": 148
+            "maxLength": 2
           },
           "aceite": {
             "title": "Aceite",
@@ -140,8 +127,7 @@ export default {
             "labels": Object.values(aceites),
             "default": "N",
             "minLength": 1,
-            "maxLength": 1,
-            "pos": 150
+            "maxLength": 1
           },
           "instrucoes": {
             "title": "Instruções",
@@ -155,8 +141,7 @@ export default {
               "default": "02",
               "minLength": 2,
               "maxLength": 2
-            },
-            "pos": 157
+            }
           },
           "juros": {
             "title": "Juros de 1 dia (%)",
@@ -164,29 +149,25 @@ export default {
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
-            "default": 0,
-            "pos": 161
+            "default": 0
           },
           "mora": {
             "title": "Data mora",
             "type": "string",
-            "format": "date",
-            "pos": 386
+            "format": "date"
           },
           "limite": {
             "title": "Desconto até",
             "description": "Data limite para concessão de desconto",
             "type": "string",
-            "format": "date",
-            "pos": 
+            "format": "date"
           },
           "desconto": {
             "title": "Valor do desconto (R$)",
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
-            "default": 0,
-            "pos": 
+            "default": 0
           },
           "iof": {
             "title": "Valor do IOF (R$)",
@@ -194,8 +175,7 @@ export default {
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
-            "default": 0,
-            "pos": 
+            "default": 0
           },
           "abatimento": {
             "title": "Valor do abatimento (R$)",
@@ -203,16 +183,14 @@ export default {
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
-            "default": 0,
-            "pos": 206
+            "default": 0
           },
           "nome": {
             "title": "Nome do sacado",
             "type": "string",
             "minLength": 0,
             "maxLength": 30,
-            "default": "",
-            "pos": 235
+            "default": ""
           },
           "cnpjcpf": {
             "title": "CNPJ/CPF",
@@ -221,8 +199,7 @@ export default {
             "pattern": "^(|\d{11}|\d{14})$",
             "maxLength": 14,
             "format": "cnpjcpf",
-            "default": "",
-            "pos": 221
+            "default": ""
           },
           "logradouro": {
             "title": "Logradouro",
@@ -230,8 +207,7 @@ export default {
             "type": "string",
             "minLength": 0,
             "maxLength": 40,
-            "default": "",
-            "pos": 275
+            "default": ""
           },
           "bairro": {
             "title": "Bairro",
@@ -239,18 +215,16 @@ export default {
             "type": "string",
             "minLength": 0,
             "maxLength": 12,
-            "default": "",
-            "pos": 315
+            "default": ""
           },
           "cep": {
             "title": "CEP",
             "description": "CEP do sacado",
             "type": "string",
-            "pattern": "^(|\d{8})$"
+            "pattern": "^(|\d{8})$",
             "minLength": 0,
             "maxLength": 8,
-            "default": "",
-            "pos": 327
+            "default": ""
           },
           "cidade": {
             "title": "Cidade",
@@ -258,8 +232,7 @@ export default {
             "type": "string",
             "minLength": 0,
             "maxLength": 15,
-            "default": "",
-            "pos": 335
+            "default": ""
           },
           "estado": {
             "title": "Estado",
@@ -268,16 +241,14 @@ export default {
             "enum": uf,
             "minLength": 2,
             "maxLength": 2,
-            "default": "SP",
-            "pos": 350
+            "default": "SP"
           },
           "avalista": {
             "title": "Nome do sacador/avalista",
             "type": "string",
             "minLength": 0,
             "maxLength": 30,
-            "default": "",
-            "pos": 352
+            "default": ""
           }
         }
       }

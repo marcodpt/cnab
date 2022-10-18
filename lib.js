@@ -1,4 +1,4 @@
-const hoje = () => Date.now().toISOString().substr(0, 10)
+const hoje = () => new Date().toISOString().substr(0, 10)
 
 const print = obj => console.log(JSON.stringify(obj, undefined, 2))
 
