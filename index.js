@@ -104,48 +104,6 @@ const checkDynConst = (Dados, linha, schema) => {
   })
 }
 
-const reader = (dados, schema) => {
-  const Linhas = dados.trim().split('\n').map(l => l.trim())
-  if (Linhas.length < 2) {
-    throw "Todo arquivo deve contêr ao menos o header e o trailer!"
-  }
-
-  const Dados = {
-    header: null,
-    registros: [],
-    trailer: null
-  }
-  schema = Object.keys(schemas).reduce((schema, k) => {
-    if (schema == null) {
-      try {
-        Dados.header = readLine(schema.properties.header, Linhas[0])
-        schema = schemas[k]
-      } catch (err) {}
-    }
-    return schema
-  }, schema)
-
-  if (schema == null) {
-    throw 'Não foi possível reconhecer o JSON schema associado aos dados!'
-  }
-  if (Dados.header == null) {
-    Dados.header = readLine(schema.properties.header, Linhas.shift())
-  }
-
-  Dados.trailer = readLine(schema.properties.trailer, Linhas.pop())
-  Linhas.forEach(linha => {
-    Dados.registros.push(readLine(schema.properties.registros.items, linha))
-  })
-
-  checkDynConst(Dados, Dados.header, schema.properties.header)
-  checkDynConst(Dados, Dados.trailer, schema.properties.trailer)
-  Dados.registros.forEach(linha => {
-    checkDynConst(Dados, linha, schema.properties.registros.items)
-  })
-
-  return Dados
-}
-
 const writeLine = (schema, Dados, Global) => {
   if (schema.type != 'object') {
     print(Dados)
@@ -229,6 +187,50 @@ const writeLine = (schema, Dados, Global) => {
 
     return linha+x
   }, '')
+}
+
+const reader = (dados, schema) => {
+  const Linhas = dados.trim().split('\n').map(l => l.trim())
+  if (Linhas.length < 2) {
+    throw "Todo arquivo deve contêr ao menos o header e o trailer!"
+  }
+
+  const Dados = {
+    header: null,
+    registros: [],
+    trailer: null
+  }
+  schema = Object.keys(schemas).reduce((schema, k) => {
+    if (schema == null) {
+      try {
+        Dados.header = readLine(schemas[k].properties.header, Linhas[0])
+        schema = schemas[k]
+      } catch (err) {}
+    }
+    return schema
+  }, schema)
+
+  if (schema == null) {
+    throw 'Não foi possível reconhecer o JSON schema associado aos dados!'
+  }
+  if (Dados.header == null) {
+    Dados.header = readLine(schema.properties.header, Linhas.shift())
+  } else {
+    Linhas.shift()
+  }
+
+  Dados.trailer = readLine(schema.properties.trailer, Linhas.pop())
+  Linhas.forEach(linha => {
+    Dados.registros.push(readLine(schema.properties.registros.items, linha))
+  })
+
+  checkDynConst(Dados, Dados.header, schema.properties.header)
+  checkDynConst(Dados, Dados.trailer, schema.properties.trailer)
+  Dados.registros.forEach(linha => {
+    checkDynConst(Dados, linha, schema.properties.registros.items)
+  })
+
+  return Dados
 }
 
 const writer = (Dados, schema) => {

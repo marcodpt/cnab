@@ -188,7 +188,8 @@ export default {
             "description": "Agência mantedora da conta",
             "type": "integer",
             "minimum": 0,
-            "maximum": 9999
+            "maximum": 9999,
+            "default": 0
           },
           "zeros1": {
             "title": "Zeros",
@@ -447,7 +448,7 @@ export default {
             "title": "Boleto DDA",
             "description": "Indicador de boleto DDA",
             "type": "string",
-            //"enum": ["0", "1"],
+            "enum": ["", "1"],
             "labels": [
               "Não é boleto dda (sacado não aderiu ao dda até o momento)",
               "Boleto dda (sacado aderiu ao dda em ao menos um banco de relacionamento)"
