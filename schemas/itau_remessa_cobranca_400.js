@@ -3,6 +3,7 @@ import {remessa as ocorrencias} from '../itau/ocorrencias.js'
 import especies from '../itau/especies.js'
 import aceites from '../itau/aceites.js'
 import instrucoes from '../itau/instrucoes.js'
+import servicos from '../itau/servicos.js'
 import uf from '../uf.js'
 import {hoje} from '../lib.js'
 
@@ -11,54 +12,123 @@ export default {
   "description": "Layout para envio de cobrança Itaú CNAB 400",
   "type": "object",
   "properties": {
-    "agencia": {
-      "title": "Agência",
-      "description": "Agência mantedora da conta",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 9999,
-      "default": 0
-    },
-    "conta": {
-      "title": "Conta",
-      "description": "Número da conta corrente da empresa",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 99999,
-      "default": 0
-    },
-    "dac": {
-      "title": "Dígito",
-      "description": "Dígito de auto conferência ag/conta empresa",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 9,
-      "default": 0
-    },
-    "nome": {
-      "title": "Nome da empresa",
-      "description": "Nome por extenso da \"empresa mãe\"",
-      "type": "string",
-      "minLength": 0,
-      "maxLength": 30,
-      "default": ""
-    },
-    "cnpjcpf": {
-      "title": "CNPJ/CPF",
-      "description": "CNPJ ou CPF da \"empresa mãe\"",
-      "type": "string",
-      "pattern": "^(|\d{11}|\d{14})$",
-      "maxLength": 30,
-      "format": "cnpjcpf",
-      "default": ""
-    },
-    "sequencia": {
-      "title": "Número sequencial",
-      "description": "Número seqüencial do registro no arquivo",
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 999999,
-      "default": 1
+    "header": {
+      "type": "object",
+      "properties": {
+        "tipo": {
+          "title": "Tipo de registro",
+          "description": "Identificação do registro header",
+          "type": "integer",
+          "const": 0
+        },
+        "codigo_uso": {
+          "title": "Operação",
+          "description": "Tipo de operação - remessa",
+          "type": "integer",
+          "const": 1
+        },
+        "uso": {
+          "title": "Literal de remessa",
+          "description": "Identificação por extenso do movimento",
+          "type": "string",
+          "const": "REMESSA"
+        },
+        "codigo_servico": {
+          "title": "Código do serviço",
+          "description": "Identificação do tipo de serviço",
+          "type": "string",
+          "enum": Object.keys(servicos),
+          "maxLength": 2
+        },
+        "servico": {
+          "title": "Literal de serviço",
+          "description": "Identificação por extenso do tipo de serviço",
+          "type": "string",
+          "enum": Object.values(servicos),
+          "maxLength": 15
+        },
+        "agencia": {
+          "title": "Agência",
+          "description": "Agência mantedora da conta",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999,
+          "default": 0
+        },
+        "zeros": {
+          "title": "Zeros",
+          "description": "Complemento de registro",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99,
+          "const": 0
+        },
+        "conta": {
+          "title": "Conta",
+          "description": "Número da conta corrente da empresa",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "dac": {
+          "title": "Dígito",
+          "description": "Dígito de auto conferência ag/conta empresa",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9,
+          "default": 0
+        },
+        "brancos": {
+          "title": "Brancos",
+          "description": "Complemento de registro",
+          "type": "string",
+          "minLength": 8,
+          "const": ""
+        },
+        "nome": {
+          "title": "Nome da empresa",
+          "description": "Nome por extenso da \"empresa mãe\"",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 30,
+          "default": ""
+        },
+        "codigo_banco": {
+          "title": "Código do banco",
+          "description": "Número do banco na câmara de compensação",
+          "type": "integer",
+          "const": 341
+        },
+        "banco": {
+          "title": "Nome do banco",
+          "description": "Nome por extenso do banco cobrador",
+          "type": "string",
+          "const": "BANCO ITAU S.A."
+        },
+        "geracao": {
+          "title": "Data de geração",
+          "description": "Data de geração do arquivo",
+          "type": "string",
+          "format": "date6",
+          "default": hoje()
+        },
+        "brancos": {
+          "title": "Brancos",
+          "description": "Complemento de registro",
+          "type": "string",
+          "minLength": 294,
+          "const": ""
+        },
+        "sequencia": {
+          "title": "Número sequencial",
+          "description": "Número seqüencial do registro no arquivo",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999999,
+          "default": 1
+        }
+      }
     },
     "registros": {
       "type": "array",
@@ -66,6 +136,29 @@ export default {
       "items": {
         "type": "object",
         "properties": {
+          "tipo": {
+            "title": "Tipo de registro",
+            "description": "Identificação do registro transação",
+            "type": "integer",
+            "const": 1
+          },
+          "cod_inscricao": {
+            "title": "Código de inscrição",
+            "description": "Identificação do tipo de inscrição/empresa",
+            "type": "string",
+            "enum": ['01', '02'],
+            "labels": ['CPF', 'CNPJ'],
+            "maxLength": 2
+          },
+          "inscricao": {
+            "title": "Número de inscrição",
+            "description": "Número de inscrição da empresa (cpf/cnpj)",
+            "type": "string",
+            "pattern": "^\d{14}$",
+            "default": "00000000000000",
+            "minLength": 14,
+            "maxLength": 14
+          },
           "carteira": {
             "title": "Carteira",
             "type": "string",
@@ -128,7 +221,7 @@ export default {
             "default": "N",
             "minLength": 1,
             "maxLength": 1
-          },
+          }, 
           "instrucoes": {
             "title": "Instruções",
             "type": "array",

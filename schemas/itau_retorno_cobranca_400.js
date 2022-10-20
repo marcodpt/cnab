@@ -3,6 +3,7 @@ import carteiras from '../itau/carteiras.js'
 import especies from '../itau/especies.js'
 import liquidacoes from '../itau/liquidacoes.js'
 import {retorno as ocorrencias} from '../itau/ocorrencias.js'
+import servicos from '../itau/servicos.js'
 
 export default {
   "title": "Retorno Itaú Cobrança",
@@ -33,15 +34,15 @@ export default {
         "codigo_servico": {
           "title": "Código do serviço",
           "description": "Identificação do tipo de serviço",
-          "type": "integer",
-          "maximum": 99,
-          "const": 1
+          "type": "string",
+          "enum": Object.keys(servicos),
+          "maxLength": 2
         },
         "servico": {
           "title": "Literal de serviço",
           "description": "Identificação por extenso do tipo de serviço",
           "type": "string",
-          "const": "COBRANCA",
+          "enum": Object.values(servicos),
           "maxLength": 15
         },
         "agencia": {
@@ -112,15 +113,15 @@ export default {
         "densidade": {
           "title": "Densidade",
           "description": "Densidade de gravação do arquivo",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 99999,
-          "default": 0
+          "type": "string",
+          "maxLength": 5,
+          "default": ""
         },
         "unidade": {
           "title": "Unidade de densidade",
           "type": "string",
-          "const": "BPI"
+          "enum": ["BPI", ""],
+          "maxLength": 3
         },
         "sequencia": {
           "title": "Nº seq. arquivo ret",
@@ -218,7 +219,7 @@ export default {
             "title": "Brancos",
             "description": "Complemento de registro",
             "type": "string",
-            "const": "",
+            "default": "",
             "maxLength": 8 
           },
           "uso_empresa": {
@@ -279,8 +280,7 @@ export default {
             "title": "Carteira",
             "description": "Código da carteira",
             "type": "string",
-            "enum": ['I', 'E'],
-            "labels": ['Real', 'Dólar'],
+            "enum": ['I', 'E', 'R'],
             "maxLength": 1
           },
           "ocorrencia": {
@@ -555,9 +555,9 @@ export default {
         "codigo_servico": {
           "title": "Código do serviço",
           "description": "Identificação do tipo de serviço",
-          "type": "integer",
-          "const": 1,
-          "maximum": 99
+          "type": "string",
+          "enum": Object.keys(servicos),
+          "maxLength": 2
         },
         "codigo_banco": {
           "title": "Código do banco",
@@ -683,9 +683,10 @@ export default {
           "title": "Controle do arquivo",
           "description": "Número seqüencial do arquivo retorno",
           "type": "integer",
-          "minimum": 1,
+          "minimum": 0,
           "maximum": 99999,
-          "const": dados => dados.header.sequencia
+          "const": dados => dados.header.codigo_servico != '04' ?
+            dados.header.sequencia : 0
         },
         "quantidade": {
           "title": "Quantidade de detalhes",

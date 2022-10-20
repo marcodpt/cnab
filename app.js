@@ -64,9 +64,11 @@ import {reader, writer} from './index.js'
   window.addEventListener('hashchange', changeTab)
   window.addEventListener('load', () => {
     const select = document.getElementById('schemas')
-    select.innerHTML = Object.keys(schemas)
-      .map(key => `<option value="${key}">${key.replace(/_/g, ' ')}</option>`)
-      .join('\n')
+    document.body.querySelectorAll('select').forEach(select => {
+      select.innerHTML += Object.keys(schemas)
+        .map(key => `<option value="${key}">${key.replace(/_/g, ' ')}</option>`)
+        .join('\n')
+    })
     const textarea = loadJson()
     select.addEventListener('change', loadJson)
 
@@ -117,7 +119,9 @@ import {reader, writer} from './index.js'
             }
             reader.readAsText(file, 'UTF-8')
           })
-          .then(data => JSON.stringify(reader(data), undefined, 2))
+          .then(data => JSON.stringify(reader(data,
+            schemas[ev.target.closest('form').querySelector('select').value]
+          ), undefined, 2))
           .then(json => setCard(file.name, json))
           .catch(err => setCard(`${file.name}: ERRO!`, err))
         )
