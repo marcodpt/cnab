@@ -123,7 +123,10 @@ import {reader, writer} from './index.js'
             schemas[ev.target.closest('form').querySelector('select').value]
           ), undefined, 2))
           .then(json => setCard(file.name, json))
-          .catch(err => setCard(`${file.name}: ERRO!`, err))
+          .catch(err => {
+            console.log(err)
+            setCard(`${file.name}: ERRO!`, err)
+          })
         )
       ).then(data => {
         file.removeAttribute('disabled')
