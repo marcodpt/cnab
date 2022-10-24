@@ -23,7 +23,7 @@ export default {
   '036':'Banco Bradesco BBI S.A.',
   '122':'Banco Bradesco BERJ S.A.',
   '394':'Banco Bradesco Financiamentos S.A.',
-  '237':'Banco Bradesco S.A',
+  '237':'BRADESCO',
   '218':'Banco BS2 S.A',
   '208':'Banco BTG Pactual S.A',
   '336':'Banco C6 S.A.',
