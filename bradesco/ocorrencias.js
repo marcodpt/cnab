@@ -1,4 +1,4 @@
-export default {
+const remessa = {
   '00': 'Nenhum',
   '01': 'Remessa',
   '02': 'Pedido de Baixa',
@@ -27,3 +27,49 @@ export default {
   '68': 'Acerto nos Dados do Rateio de Crédito',
   '69': 'Cancelamento do Rateio de Crédito'
 }
+
+
+const retorno = {
+  '02': 'Entrada Confirmada (verificar motivo nas posições 319 a 328)',
+  '03': 'Entrada Rejeitada (verificar motivo nas posições 319 a 328)',
+  '06': 'Liquidação Normal (sem motivo)',
+  '07': 'Conf. Exc. Cadastro Pagador Débito (verificar motivos nas posições 319 a 328)',
+  '08': 'Rej. Ped. Exc. Cadastro de Pagador Débito (verificar motivos nas posições 319 a 328)',
+  '09': 'Baixado Automat. via Arquivo (verificar motivo posições 319 a 328)',
+  '10': 'Baixado conforme instruções da Agência (verificar motivo Pos.319 a 328)',
+  '11': 'Em Ser - Arquivo de Títulos Pendentes',
+  '12': 'Abatimento Concedido',
+  '13': 'Abatimento Cancelado',
+  '14': 'Vencimento Alterado',
+  '15': 'Liquidação em Cartório (sem motivo)',
+  '16': 'Título Pago em Cheque - Vinculado',
+  '17': 'Liquidação após Baixa ou Título não Registrado (verificar motivo nas posições 319 a 328)',
+  '18': 'Acerto de Depositária',
+  '19': 'Confirmação Receb. Inst. de Protesto (verificar motivo pos.295 a 295)',
+  '20': 'Confirmação Recebimento Instrução Sustação de Protesto',
+  '21': 'Acerto do Controle do Participante',
+  '22': 'Título com Pagamento Cancelado',
+  '23': 'Entrada do Título em Cartório',
+  '24': 'Entrada Rejeitada por CEP Irregular (verificar motivo pos.319 a 328)',
+  '25': 'Confirmação Receb.Inst.de Protesto Falimentar (verificar pos.295 a 295)',
+  '27': 'Baixa Rejeitada (verificar motivo posições 319 a 328)',
+  '28': 'Débito de Tarifas/Custas (verificar motivo nas posições 319 a 328)',
+  '29': 'Ocorrências do Pagador (verificar motivo nas posições 319 a 328)',
+  '30': 'Alteração de Outros Dados Rejeitados (verificar motivo Pos.319 a 328)',
+  '31': 'Confirmado Inclusão Cadastro Pagador',
+  '32': 'Instrução Rejeitada (verificar motivo posições 319 a 328)',
+  '33': 'Confirmação Pedido Alteração Outros Dados',
+  '34': 'Retirado de Cartório e Manutenção Carteira',
+  '35': 'Desagendamento do Débito Automático (verificar motivos pos. 319 a 328)',
+  '37': 'Rejeitado Inclusão Cadastro Pagador (verificar motivos nas posições 319 a 328)',
+  '38': 'Confirmado Alteração Pagador',
+  '39': 'Rejeitado Alteração Cadastro Pagador (verificar motivos nas posições 319 a 328)',
+  '40': 'Estorno de Pagamento',
+  '55': 'Sustado Judicial',
+  '68': 'Acerto dos Dados do Rateio de Crédito (verificar motivo posição de status do registro Tipo 3)',
+  '69': 'Cancelamento de Rateio (verificar motivo posição de status do registro Tipo 3)',
+  '73': 'Confirmação Receb. Pedido de Negativação',
+  '74': 'Confir Pedido de Excl de Negat (com ou sem baixa)'
+}
+
+export {remessa, retorno}

@@ -1,4 +1,5 @@
 export default {
+  '': 'Nenhum',
   '01': 'Duplicata',
   '02': 'Nota Promissória',
   '03': 'Nota de Seguro',

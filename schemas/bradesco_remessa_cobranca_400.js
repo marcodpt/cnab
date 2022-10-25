@@ -1,4 +1,4 @@
-import ocorrencias from '../bradesco/ocorrencias.js'
+import {remessa as ocorrencias} from '../bradesco/ocorrencias.js'
 import especies from '../bradesco/especies.js'
 import {hoje} from '../lib.js'
 
@@ -148,7 +148,7 @@ export default {
             "default": "",
             "maxLength": 17
           },
-          "controle": {
+          "uso_empresa": {
             "title": "Nº Controle do Participante",
             "type": "string",
             "default": "",
@@ -179,13 +179,7 @@ export default {
             "title": "Identificação do Título no Banco",
             "type": "string",
             "default": "",
-            "maxLength": 11
-          },
-          "dac_banco": {
-            "title": "Dígito de Autoconferência do Número Bancário",
-            "type": "integer",
-            "default": 0,
-            "maximum": 9
+            "maxLength": 12
           },
           "bonificacao": {
             "title": "Desconto Bonificação por dia",

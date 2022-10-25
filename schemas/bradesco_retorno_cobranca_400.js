@@ -1,9 +1,8 @@
 import bancos from '../bancos.js'
-import carteiras from '../bradesco/carteiras.js'
 import especies from '../bradesco/especies.js'
-import liquidacoes from '../bradesco/liquidacoes.js'
+import origens from '../bradesco/origens.js'
 import {retorno as ocorrencias} from '../bradesco/ocorrencias.js'
-import servicos from '../bradesco/servicos.js'
+import {hoje} from '../lib.js'
 
 export default {
   "title": "Retorno Bradesco Cobrança",
@@ -14,106 +13,80 @@ export default {
       "type": "object",
       "properties": {
         "tipo": {
-          "title": "Tipo de registro",
+          "title": "Identificação do Registro",
           "type": "integer",
           "const": 0
         },
         "codigo_uso": {
-          "title": "Código de retorno",
+          "title": "Identificação do Arquivo-Retorno",
           "type": "integer",
           "const": 2
         },
         "uso": {
-          "title": "Literal de retorno",
+          "title": "Literal Retorno",
           "type": "string",
           "const": "RETORNO"
         },
         "codigo_servico": {
-          "title": "Código do serviço",
-          "type": "string",
-          "enum": Object.keys(servicos),
-          "maxLength": 2
-        },
-        "servico": {
-          "title": "Literal de serviço",
-          "type": "string",
-          "enum": Object.values(servicos),
-          "maxLength": 15
-        },
-        "agencia": {
-          "title": "Agência",
+          "title": "Código do Serviço",
           "type": "integer",
-          "minimum": 0,
-          "maximum": 9999,
-          "default": 0
-        },
-        "zeros1": {
-          "title": "Zeros",
-          "type": "integer",
-          "const": 0,
+          "const": 1,
           "maximum": 99
         },
-        "conta": {
-          "title": "Conta",
+        "servico": {
+          "title": "Literal Serviço",
+          "type": "string",
+          "enum": "COBRANCA",
+          "maxLength": 15
+        },
+        "codigo_empresa": {
+          "title": "Código da Empresa",
+          "type": "string",
+          "default": "",
+          "maxLength": 20
+        },
+        "nome": {
+          "title": "Nome da Empresa por Extenso",
+          "description": "Razão Social",
+          "type": "string",
+          "maxLength": 30,
+          "default": ""
+        },
+        "codigo_banco": {
+          "title": "Nº do Bradesco na Câmara Compensação",
+          "type": "integer",
+          "const": 237
+        },
+        "banco": {
+          "title": "Nome do Banco por Extenso",
+          "type": "string",
+          "const": "BRADESCO",
+          "maxLength": 15
+        },
+        "geracao": {
+          "title": "Data da Gravação do Arquivo",
+          "type": "string",
+          "format": "date6",
+          "default": ""
+        },
+        "densidade": {
+          "title": "Densidade de Gravação",
+          "type": "string",
+          "maxLength": 8,
+          "const": "01600000"
+        },
+        "sequencia": {
+          "title": "Nº Aviso Bancário",
           "type": "integer",
           "minimum": 0,
           "maximum": 99999,
-          "default": 0
-        },
-        "dac": {
-          "title": "Dígito",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 9,
           "default": 0
         },
         "brancos1": {
           "title": "Brancos",
           "type": "string",
           "const": "",
-          "maxLength": 8
-        },
-        "empresa": {
-          "title": "Nome da empresa",
-          "type": "string",
-          "minLength": 0,
-          "maxLength": 30,
-          "default": ""
-        },
-        "codigo_banco": {
-          "title": "Código do banco",
-          "type": "integer",
-          "const": 341
-        },
-        "banco": {
-          "title": "Nome do banco",
-          "type": "string",
-          "const": "BANCO ITAU S.A."
-        },
-        "geracao": {
-          "title": "Data de geração",
-          "type": "string",
-          "format": "date6",
-          "default": ""
-        },
-        "densidade": {
-          "title": "Densidade",
-          "type": "string",
-          "maxLength": 5,
-          "default": ""
-        },
-        "unidade": {
-          "title": "Unidade de densidade",
-          "type": "string",
-          "enum": ["BPI", ""],
-          "maxLength": 3
-        },
-        "sequencia": {
-          "title": "Nº seq. arquivo ret",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 99999,
-          "default": 0
+          "maxLength": 266
         },
         "credito": {
           "title": "Data de crédito",
@@ -125,7 +98,7 @@ export default {
           "title": "Brancos",
           "type": "string",
           "const": "",
-          "maxLength": 275
+          "maxLength": 9
         },
         "indice": {
           "title": "Número seqüencial",
@@ -143,12 +116,12 @@ export default {
         "type": "object",
         "properties": {
           "tipo": {
-            "title": "Tipo de registro",
+            "title": "Identificação do Registro",
             "type": "integer",
             "const": 1
           },
           "cod_inscricao": {
-            "title": "Código de inscrição",
+            "title": "Tipo de Inscrição Empresa",
             "type": "string",
             "enum": ['01', '02'],
             "labels": ['CPF', 'CNPJ'],
@@ -162,130 +135,99 @@ export default {
             "minLength": 14,
             "maxLength": 14
           },
-          "agencia": {
-            "title": "Agência",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9999,
-            "default": 0
-          },
           "zeros1": {
             "title": "Zeros",
             "type": "integer",
             "const": 0,
-            "maximum": 99
+            "maximum": 999
           },
-          "conta": {
-            "title": "Conta",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 99999,
-            "default": 0
-          },
-          "dac": {
-            "title": "Dígito",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9,
-            "default": 0
-          },
-          "brancos1": {
-            "title": "Brancos",
+          "id_empresa": {
+            "title": "Identificação da Empresa Beneficiária no Banco",
             "type": "string",
             "default": "",
-            "maxLength": 8 
+            "maxLength": 17
           },
           "uso_empresa": {
-            "title": "Uso da empresa",
+            "title": "Nº Controle do Participante",
             "type": "string",
-            "maxLength": 25,
-            "default": ""
+            "default": "",
+            "maxLength": 25
+          },
+          "zeros2": {
+            "title": "Zeros",
+            "type": "integer",
+            "const": 0,
+            "maximum": 99999999
           },
           "id_banco": {
-            "title": "Nosso número",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 99999999,
-            "default": 0
-          },
-          "brancos2": {
-            "title": "Brancos",
+            "title": "Identificação do Título no Banco",
             "type": "string",
-            "const": "",
+            "default": "",
             "maxLength": 12
+          },
+          "zeros3": {
+            "title": "Uso do Banco",
+            "type": "integer",
+            "const": 0,
+            "maximum": 9999999999
+          },
+          "zeros4": {
+            "title": "Uso do Banco",
+            "type": "integer",
+            "const": 0,
+            "maximum": 999999999999
+          },
+          "rateio": {
+            "title": "Indicador de Rateio Crédito",
+            "type": "string",
+            "enum": ["0", "R", ""],
+            "labels": ["Sem rateio", "Com rateio", ""],
+            "default": " ",
+            "maxLength": 1
+          },
+          "parcial": {
+            "title": "Pagamento Parcial",
+            "type": "string",
+            "default": "00",
+            "maxLength": 2
           },
           "carteira": {
             "title": "Carteira",
-            "type": "string",
-            "enum": Object.keys(carteiras),
-            "labels": Object.values(carteiras),
-            "maxLength": 3
-          },
-          "id_banco2": {
-            "title": "Nosso número",
             "type": "integer",
-            "minimum": 0,
-            "maximum": 99999999,
             "default": 0,
-            "const": (dados, linha) => linha.id_banco
-          },
-          "dac_banco": {
-            "title": "DAC nosso número",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9,
-            "default": 0
-          },
-          "brancos3": {
-            "title": "Brancos",
-            "type": "string",
-            "const": "",
-            "maxLength": 13
-          },
-          "cod_carteira": {
-            "title": "Carteira",
-            "type": "string",
-            "enum": ['I', 'E', 'R'],
-            "maxLength": 1
+            "maximum": 9
           },
           "ocorrencia": {
-            "title": "Código de ocorrência",
+            "title": "Identificação de Ocorrência",
             "type": "string",
+            "default": "01",
+            "maxLength": 2,
             "enum": Object.keys(ocorrencias),
-            "labels": Object.values(ocorrencias),
-            "maxLength": 2
+            "labels": Object.values(ocorrencias)
           },
           "data": {
-            "title": "Data de ocorrência",
+            "title": "Data Ocorrência no Banco",
             "type": "string",
             "format": "date6",
-            "default": ""
+            "default": hoje()
           },
-          "titulo": {
-            "title": "Nº do documento",
+          "documento": {
+            "title": "Número do Documento",
             "type": "string",
             "default": "",
             "maxLength": 10
           },
-          "id_banco3": {
-            "title": "Nosso número",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 99999999,
-            "default": 0,
-            "const": (dados, linha) => linha.id_banco
-          },
-          "brancos4": {
-            "title": "Brancos",
+          "codigo_empresa": {
+            "title": "Código da Empresa",
             "type": "string",
-            "const": "",
-            "maxLength": 12
+            "default": "",
+            "maxLength": 20
           },
           "vencimento": {
-            "title": "Vencimento",
+            "title": "Data Vencimento do Título",
             "type": "string",
             "format": "date6",
-            "default": ""
+            "default": hoje()
           },
           "valor": {
             "title": "Valor do título",
@@ -306,13 +248,7 @@ export default {
             "title": "Agência cobradora",
             "type": "integer",
             "default": 0,
-            "maximum": 9999
-          },
-          "dac_cobradora": {
-            "title": "DAC agência cobradora",
-            "type": "integer",
-            "default": 0,
-            "maximum": 9
+            "maximum": 99999
           },
           "especie": {
             "title": "Espécie",
@@ -322,51 +258,15 @@ export default {
             "maxLength": 2
           },
           "tarifa": {
-            "title": "Tarifa de cobrança (R$)",
+            "title": "Despesas de cobrança para os Códigos de Ocorrência: 02 - Entradas Confirmadas, 28 - Débitos de TarifasTarifa de cobrança (R$)",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
             "default": 0
           },
-          "zeros2": {
-            "title": "Zeros",
-            "type": "integer",
-            "const": 0,
-            "maximum": 9999999999999
-          },
-          "zeros3": {
-            "title": "Zeros",
-            "type": "integer",
-            "const": 0,
-            "maximum": 9999999999999
-          },
-          "iof": {
-            "title": "Valor do IOF (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "abatimento": {
-            "title": "Valor abatimento (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "descontos": {
-            "title": "Descontos (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "principal": {
-            "title": "Valor principal (R$)",
+          "protesto": {
+            "title": "Outras Despesas Custas de Protesto",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -374,7 +274,47 @@ export default {
             "default": 0
           },
           "juros": {
-            "title": "Juros de mora/multa (R$)",
+            "title": "Juros Operação em Atraso",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "iof": {
+            "title": "IOF Devido",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "abatimento": {
+            "title": "Abatimento Concedido sobre o Título",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "descontos": {
+            "title": "Desconto Concedido",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "principal": {
+            "title": "Valor Pago",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "juros": {
+            "title": "Juros de Mora",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -382,83 +322,93 @@ export default {
             "default": 0
           },
           "outros": {
-            "title": "Outros créditos (R$)",
+            "title": "Outros Créditos",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
             "default": 0
           },
-          "dda": {
-            "title": "Boleto DDA",
-            "type": "string",
-            "enum": ["", "1"],
-            "labels": [
-              "Não é boleto dda (sacado não aderiu ao dda até o momento)",
-              "Boleto dda (sacado aderiu ao dda em ao menos um banco de relacionamento)"
-            ],
-            "maxLength": 1
+          "outros2": {
+            "title": "Outros Créditos",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
           },
-          "brancos5": {
+          "brancos1": {
             "title": "Brancos",
             "type": "string",
             "const": "",
             "maxLength": 2
           },
+          "motivo": {
+            "title": "Motivo do Código de Ocorrência",
+            "type": "string",
+            "enum": ["A", "D", ""],
+            "labels": [
+              "Aceito",
+              "Desprezado",
+              ""
+            ],
+            "maxLength": 1
+          },
           "credito": {
-            "title": "Data crédito",
+            "title": "Data do Crédito",
             "type": "string",
             "format": "date6",
             "default": ""
           },
+          "origem": {
+            "title": "Origem Pagamento",
+            "type": "string",
+            "enum": Object.keys(origens),
+            "labels": Object.values(origens),
+            "maxLength": 3,
+            "default": ""
+          },
+          "brancos2": {
+            "title": "Brancos",
+            "type": "string",
+            "const": "",
+            "maxLength": 10
+          },
+          "cod_banco": {
+            "title": "Código do banco",
+            "type": "string",
+            "default": "",
+            "maxLength": 4
+          },
           "cancelada": {
-            "title": "Instrução cancelada",
-            "type": "integer",
-            "maximum": 9999,
-            "default": 0
-          },
-          "zeros4": {
-            "title": "Zeros",
-            "type": "integer",
-            "const": 0,
-            "maximum": 999999
-          },
-          "zeros5": {
-            "title": "Zeros",
-            "type": "integer",
-            "const": 0,
-            "maximum": 9999999999999
-          },
-          "nome": {
-            "title": "Nome do sacado",
+            "title": "Motivos das Rejeições para os Códigos de Ocorrência das Posições 109 a 110",
             "type": "string",
-            "default": "",
-            "maxLength": 30
+            "default": "", 
+            "maxLength": 10
           },
-          "brancos6": {
+          "brancos3": {
             "title": "Brancos",
             "type": "string",
             "const": "",
-            "maxLength": 23
+            "maxLength": 40
           },
-          "erros": {
-            "title": "Erros / mensagem informativa",
+          "cartorio": {
+            "title": "Número do Cartório",
             "type": "string",
             "default": "",
-            "maxLength": 8
-          },
-          "brancos7": {
-            "title": "Brancos",
-            "type": "string",
-            "const": "",
-            "maxLength": 7
-          },
-          "liquidacao": {
-            "title": "Código de liquidação",
-            "type": "string",
-            "enum": Object.keys(liquidacoes),
-            "labels": Object.values(liquidacoes),
             "maxLength": 2
+          },
+          "protocolo": {
+            "title": "Número do Protocolo",
+            "type": "string",
+            "default": "", 
+            "maxLength": 10
+          },
+          "brancos4": {
+            "title": "Brancos",
+            "type": "string",
+            "const": "",
+            "maxLength": 14
           },
           "indice": {
             "title": "Número seqüencial",
@@ -475,25 +425,24 @@ export default {
       "type": "object",
       "properties": {
         "tipo": {
-          "title": "Tipo de registro",
+          "title": "Identificação do Registro",
           "type": "integer",
           "const": 9
         },
         "codigo_uso": {
-          "title": "Código de retorno",
+          "title": "Identificação do Retorno",
           "type": "integer",
           "const": 2
         },
         "codigo_servico": {
-          "title": "Código do serviço",
+          "title": "Identificação Tipo de Registro",
           "type": "string",
-          "enum": Object.keys(servicos),
-          "maxLength": 2
+          "const": "01"
         },
         "codigo_banco": {
-          "title": "Código do banco",
+          "title": "Código do Banco",
           "type": "integer",
-          "const": 341
+          "const": 237
         },
         "brancos1": {
           "title": "Brancos",
@@ -501,23 +450,23 @@ export default {
           "const": "",
           "maxLength": 10
         },
-        "simples_qtde": {
-          "title": "Quantidade simples",
+        "cobranca_qtde": {
+          "title": "Quantidade de Títulos em Cobrança",
           "type": "integer",
           "minimum": 0,
           "maximum": 99999999,
           "default": 0
         },
-        "simples_total": {
-          "title": "Total simples (R$)",
+        "cobranca_total": {
+          "title": "Valor Total em Cobrança",
           "type": "number",
           "multipleOf": 0.01,
           "minimum": 0,
           "maximum": 999999999999.99,
           "default": 0
         },
-        "simples_aviso": {
-          "title": "Aviso simples",
+        "cobranca_aviso": {
+          "title": "Nº do Aviso Bancário",
           "type": "string",
           "maxLength": 8,
           "default": ""
@@ -528,105 +477,148 @@ export default {
           "const": "",
           "maxLength": 10
         },
-        "vinculada_qtde": {
-          "title": "Quantidade vinculada",
+        "entradas_qtde": {
+          "title": "Quantidade de Registros- Ocorrência 02 - Confirmação de Entradas",
           "type": "integer",
           "minimum": 0,
-          "maximum": 99999999,
+          "maximum": 99999,
           "default": 0
         },
-        "vinculada_total": {
-          "title": "Total vinculada (R$)",
+        "entradas_total": {
+          "title": "Valor dos Registros - Ocorrência 02 - Confirmação de Entradas",
           "type": "number",
           "multipleOf": 0.01,
           "minimum": 0,
-          "maximum": 999999999999.99,
+          "maximum": 9999999999.99,
           "default": 0
         },
-        "vinculada_aviso": {
-          "title": "Aviso vinculada",
-          "type": "string",
-          "maxLength": 8,
-          "default": ""
+        "liquidacao_total": {
+          "title": "Valor dos Registros-Ocorrência 06 - Liquidação",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "liquidacao_qtde": {
+          "title": "Quantidade dos Registros - Ocorrência 06 - Liquidação",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "liquidacao_principal": {
+          "title": "Valor dos Registros - Ocorrência 06",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "baixado_qtde": {
+          "title": "Quantidade dos Registros - Ocorrência 09 e 10-Títulos baixados",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "baixado_total": {
+          "title": "Valor dos Registros - Ocorrência 09 e 10 - Títulos Baixados",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "cancelado_qtde": {
+          "title": "Quantidade de Registros - Ocorrência 13 - Abatimento Cancelado",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "cancelado_total": {
+          "title": "Valor dos Registros - Ocorrência 13 - Abatimento Cancelado",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "vencimento_qtde": {
+          "title": "Quantidade dos Registros - Ocorrência 14 - Vencimento Alterado",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "vencimento_total": {
+          "title": "Valor dos Registros - Ocorrência 14 - Vencimento Alterado",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "abatimento_qtde": {
+          "title": "Quantidade dos Registros- Ocorrência 12 - Abatimento Concedido",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "abatimento_total": {
+          "title": "Valor dos Registros - Ocorrência 12 - Abatimento Concedido",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
+        },
+        "protesto_qtde": {
+          "title": "Quantidade dos Registros-Ocorrência 19-Confirmação da Instrução Protesto",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999,
+          "default": 0
+        },
+        "protesto_total": {
+          "title": "Valor dos Registros - Ocorrência 19 - Confirmação da Instrução de Protesto",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999.99,
+          "default": 0
         },
         "brancos3": {
           "title": "Brancos",
           "type": "string",
           "const": "",
-          "maxLength": 50
+          "maxLength": 174
         },
-        "zeros1": {
-          "title": "Zeros",
-          "type": "integer",
-          "const": 0,
-          "maximum": 999999999999999
+        "rateio_total": {
+          "title": "Valor Total dos Rateios Efetuados",
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999999999999.99,
+          "default": 0
         },
-        "zeros2": {
-          "title": "Zeros",
+        "rateio_qtde": {
+          "title": "Quantidade Total dos Rateios Efetuados",
           "type": "integer",
-          "const": 0,
-          "maximum": 999999999999999
+          "minimum": 0,
+          "maximum": 99999999,
+          "default": 0
         },
         "brancos4": {
           "title": "Brancos",
           "type": "string",
           "const": "",
-          "maxLength": 10
-        },
-        "escritural_qtde": {
-          "title": "Quantidade direta/escritural",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 99999999,
-          "default": 0
-        },
-        "escritural_total": {
-          "title": "Total direta/escritural (R$)",
-          "type": "number",
-          "multipleOf": 0.01,
-          "minimum": 0,
-          "maximum": 999999999999.99,
-          "default": 0
-        },
-        "escritural_aviso": {
-          "title": "Aviso direta/escritural",
-          "type": "string",
-          "maxLength": 8,
-          "default": ""
-        },
-        "sequencia": {
-          "title": "Controle do arquivo",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 99999,
-          "const": dados => dados.header.codigo_servico != '04' ?
-            dados.header.sequencia : 0
-        },
-        "quantidade": {
-          "title": "Quantidade de detalhes",
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 99999999,
-          "const": dados => dados.registros.length
-        },
-        "total": {
-          "title": "Total (R$)",
-          "type": "number",
-          "multipleOf": 0.01,
-          "minimum": 0,
-          "maximum": 999999999999.99,
-          "const": dados => dados.registros.reduce(
-            (total, linha) => total + linha.valor
-          , 0).toFixed(2)
-        },
-        "brancos5": {
-          "title": "Brancos",
-          "type": "string",
-          "const": "",
-          "maxLength": 160
+          "maxLength": 9
         },
         "indice": {
-          "title": "Número seqüencial",
+          "title": "Número seqüencial do Registro",
           "type": "integer",
           "minimum": 1,
           "maximum": 999999,
