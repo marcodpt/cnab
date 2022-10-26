@@ -313,7 +313,7 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "juros": {
+          "mora": {
             "title": "Juros de Mora",
             "type": "number",
             "multipleOf": 0.01,
@@ -322,14 +322,6 @@ export default {
             "default": 0
           },
           "outros": {
-            "title": "Outros Créditos",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "outros2": {
             "title": "Outros Créditos",
             "type": "number",
             "multipleOf": 0.01,

@@ -89,7 +89,7 @@ export default {
   '741':'Banco Ribeirão Preto S.A',
   '120':'Banco Rodobens S.A',
   '422':'Banco Safra S.A',
-  '033':'Banco Santander (Brasil) S.A',
+  '033':'SANTANDER',
   '743':'Banco Semear S.A',
   '754':'Banco Sistema S.A',
   '630':'Banco Smartbank S.A.',
