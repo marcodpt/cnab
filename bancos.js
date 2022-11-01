@@ -120,7 +120,7 @@ export default {
   '173':'BRL Trust Distribuidora de Títulos e Valores Mobiliários S.A.',
   '142':'Broker Brasil Corretora de Câmbio Ltda.',
   '292':'BS2 Distribuidora de Títulos e Valores Mobiliários S.A.',
-  '104':'Caixa Econômica Federa',
+  '104':'CAIXA',
   '309':'CAMBIONET CORRETORA DE CÂMBIO LTDA.',
   '288':'CAROL DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.',
   '130':'CARUANA S.A. – SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO',
