@@ -1,5 +1,5 @@
-import schemas from './schemas/index.js'
-import {reader, writer} from './index.js'
+import schemas from './schemas.js'
+import cnab from './index.js'
 
 (() => {
   const changeTab = () => {
@@ -23,8 +23,10 @@ import {reader, writer} from './index.js'
   const loadSchema = schema => {
     const P = schema.properties
     return Object.keys(P).reduce((Dflt, key) => {
-      if (P[key].const == null || typeof P[key].const == 'function') {
+      if (P[key].const == null) {
         Dflt[key] = P[key].default
+      } else {
+        Dflt[key] = P[key].const
       }
       if (P[key].enum instanceof Array) {
         var i = P[key].enum.indexOf(Dflt[key])
@@ -45,15 +47,8 @@ import {reader, writer} from './index.js'
     const select = document.getElementById('schemas')
     const schema = schemas[select.value]
 
-    const P = schema.properties
-    const Data = Object.keys(P).reduce((Dflt, key) => {
-      if (P[key].type == "array") {
-        Dflt[key] = [loadSchema(P[key].items)]
-      } else {
-        Dflt[key] = loadSchema(P[key])
-      }
-      return Dflt
-    }, {})
+    const Data = loadSchema(schema)
+    Data.registros = [loadSchema(schema.properties.registros.items)]
 
     const textarea = document.getElementById('json')
     textarea.value = JSON.stringify(Data, undefined, 2)
@@ -78,9 +73,8 @@ import {reader, writer} from './index.js'
       ev.stopPropagation()
       const link = document.createElement("a")
       link.setAttribute('href', 'data:text/plain;charset=utf-8,'+
-        encodeURIComponent(writer(
-          JSON.parse(textarea.value),
-          schemas[select.value]
+        encodeURIComponent(cnab(
+          JSON.parse(textarea.value)
         ))
       ) 
       link.setAttribute('download', select.value+'.txt')
@@ -119,9 +113,7 @@ import {reader, writer} from './index.js'
             }
             reader.readAsText(file, 'UTF-8')
           })
-          .then(data => JSON.stringify(reader(data,
-            schemas[ev.target.closest('form').querySelector('select').value]
-          ), undefined, 2))
+          .then(data => JSON.stringify(cnab(data), undefined, 2))
           .then(json => setCard(file.name, json))
           .catch(err => {
             console.log(err)

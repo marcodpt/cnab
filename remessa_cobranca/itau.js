@@ -3,6 +3,7 @@ export default ({
   conta,
   empresa,
   cod_empresa,
+  tipo_empresa,
   criacao,
   registros
 }, {
@@ -34,15 +35,20 @@ export default ({
     desconto,
     iof,
     abatimento,
+    tipo_cliente,
     cod_cliente,
     cliente,
     endereco,
     bairro,
     cep,
-    cidade
+    cidade,
+    uf
   }, index) => 
     fixo('10')+
-    (cod_empresa.length > 11 ? '2' : '1')+ 
+    mapa(tipo_empresa, {
+      '1': 'Física',
+      '2': 'Jurídica'
+    })+
     numero(cod_empresa, 14)+
     numero(agencia, 4)+
     fixo('0', 2)+
@@ -51,7 +57,7 @@ export default ({
     fixo('0', 21)+
     fixo('112')+
     fixo(' ', 21)+
-    'I'+mapa(operacao, {
+    fixo('I')+mapa(operacao, {
       '01': 'Entrada',
       '02': 'Baixa',
       '04': 'Abatimento',
@@ -62,15 +68,18 @@ export default ({
     })+texto(duplicata, 10)+
     data(vencimento, 6)+
     numero(valor, 13, 2)+
-    '3410000001N'+
+    fixo('3410000001N')+
     data(emissao, 6)+
-    '0'.repeat(4)+
+    fixo('0', 4)+
     numero(juros, 13, 2)+
     data(limite, 6)+
     numero(desconto, 13, 2)+
     numero(iof, 13, 2)+
     numero(abatimento, 13, 2)+
-    (cod_cliente.length > 11 ? '2' : '1')+ 
+    mapa(tipo_cliente, {
+      '01': 'Física',
+      '02': 'Jurídica'
+    })+
     numero(cod_cliente, 14)+
     texto(cliente, 40)+
     texto(endereco, 40)+
@@ -79,9 +88,9 @@ export default ({
     texto(cidade, 15)+
     texto(uf, 2)+
     texto(empresa, 30)+
-    ' '.repeat(4)+
+    fixo(' ', 4)+
     data(vencimento, 6)+
-    '00 '+
-    numero(index + 2, 6)
+    fixo('00 ')+
+    fixo(index + 2, 6, true)
   ).join('\n')+(registros.length ? '\n' : '')+
-  fixo('9')+fixo(' ', 393)+numero(registros.length + 2, 6)+'\n'
+  fixo('9')+fixo(' ', 393)+fixo(registros.length + 2, 6, true)+'\n'

@@ -1,9 +1,15 @@
 import uf from '../uf.js'
+import {hoje} from '../lib.js'
 
 export default {
   "title": "Remessa Cobrança",
   "type": "object",
   "properties": {
+    "tipo": {
+      "title": "Tipo",
+      "type": "string",
+      "const": "remessa_cobranca"
+    },
     "empresa": {
       "title": "Empresa",
       "type": "string",
@@ -13,7 +19,7 @@ export default {
     "tipo_empresa": {
       "title": "Pessoa",
       "type": "string",
-      "enum": ["Física", "Jurídica"]
+      "enum": ["Física", "Jurídica"],
       "default": "Jurídica"
     },
     "cod_empresa": {
@@ -28,18 +34,18 @@ export default {
       "title": "Data de geração",
       "type": "string",
       "format": "date",
-      "default": ""
+      "default": hoje()
     },
     "banco": {
       "title": "Banco",
       "type": "string",
       "enum": [
-        "Itaú",
-        "Bradesco",
-        "Santader",
-        "Caixa",
-        "BB",
-        "Daycoval"
+        "itau",
+        "bradesco",
+        "santader",
+        "caixa",
+        "bb",
+        "daycoval"
       ]
     },
     "agencia": {
@@ -75,7 +81,7 @@ export default {
           "tipo_cliente": {
             "title": "Pessoa",
             "type": "string",
-            "enum": ["Física", "Jurídica"]
+            "enum": ["Física", "Jurídica"],
             "default": "Jurídica"
           },
           "cod_cliente": {
@@ -109,13 +115,13 @@ export default {
             "title": "Data de Emissão",
             "type": "string",
             "format": "date",
-            "default": ""
+            "default": hoje()
           },
           "vencimento": {
             "title": "Data de Vencimento",
             "type": "string",
             "format": "date",
-            "default": ""
+            "default": hoje()
           },
           "valor": {
             "title": "Valor (R$)",
