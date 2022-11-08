@@ -1,5 +1,5 @@
 import schemas from './schemas.js'
-import {print, texto, numero, data, mapa, fixo} from './lib.js'
+import {texto, numero, data, mapa, fixo, checar} from './lib.js'
 import gravadores from './gravadores.js'
 
 const checagem = (dados, esperado) => {
@@ -32,7 +32,7 @@ export default dados => {
       fixo
     }
     dados = dados.replace(/\r\n/g, '\n')
-    const Dados = dados.split('\n')
+    const Dados = dados.trim().split('\n')
     const header = Dados[0]
     var valido = false
     const Final = {
@@ -78,23 +78,32 @@ export default dados => {
             const Associar = {
               registros: []
             }
+            Final.banco = banco
             const B = schema.properties
             Object.keys(B).forEach(k => {
               if (k != 'registros') {
-                Associar[k] = dado => {
-                  Final[k] = dado
+                if (B[k].const != null) {
+                  Final[k] = B[k].const
+                } else {
+                  Associar[k] = dado => {
+                    Final[k] = dado
+                  }
                 }
               }
             })
 
-            for (var i = 0; i < x - 1; i++) {
+            for (var i = 0; i < x; i++) {
               Final.registros.push({})
               const a = {}
               const P = B.registros.items.properties
+              const j = i
               Object.keys(P).forEach(k => {
-                a[k] = dado => {
-                  console.log(i)
-                  Final.registros[i][k] = dado
+                if (P[k].const != null) {
+                  Final.registros[j][k] = P[k].const
+                } else {
+                  a[k] = dado => {
+                    Final.registros[j][k] = dado
+                  }
                 }
               })
               Associar.registros.push(a)
@@ -107,7 +116,7 @@ export default dados => {
               numero: numero(arquivo),
               data: data(arquivo),
               mapa: mapa(arquivo),
-              fixo
+              fixo: checar(arquivo)
             })
           }
         }
@@ -116,6 +125,9 @@ export default dados => {
     if (!valido) {
       throw 'Não foi possível identificar o layout do arquivo'
     }
+    const registros = Final.registros
+    delete Final.registros
+    Final.registros = registros
     return Final
   } else {
     return gravadores[dados.tipo][dados.banco](dados, {

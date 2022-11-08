@@ -23,7 +23,7 @@ export default ({
   data(criacao, 6)+
   fixo(' ', 294)+
   fixo('000001')+
-  '\n'+
+  fixo('\n')+
   registros.map(({
     operacao,
     duplicata,
@@ -57,7 +57,8 @@ export default ({
     fixo('0', 21)+
     fixo('112')+
     fixo(' ', 21)+
-    fixo('I')+mapa(operacao, {
+    fixo('I')+
+    mapa(operacao, {
       '01': 'Entrada',
       '02': 'Baixa',
       '04': 'Abatimento',
@@ -65,7 +66,8 @@ export default ({
       '09': 'Protestar',
       '10': 'Não Protestar',
       '00': '*'
-    })+texto(duplicata, 10)+
+    })+
+    texto(duplicata, 10)+
     data(vencimento, 6)+
     numero(valor, 13, 2)+
     fixo('3410000001N')+
@@ -84,13 +86,17 @@ export default ({
     texto(cliente, 40)+
     texto(endereco, 40)+
     texto(bairro, 12)+
-    numero(cep, 8)+
+    texto(cep, 8)+
     texto(cidade, 15)+
     texto(uf, 2)+
     texto(empresa, 30)+
     fixo(' ', 4)+
     data(vencimento, 6)+
     fixo('00 ')+
-    fixo(index + 2, 6, true)
-  ).join('\n')+(registros.length ? '\n' : '')+
-  fixo('9')+fixo(' ', 393)+fixo(registros.length + 2, 6, true)+'\n'
+    fixo(index + 2, 6, true)+
+    fixo('\n')
+  ).join('')+
+  fixo('9')+
+  fixo(' ', 393)+
+  fixo(registros.length + 2, 6, true)+
+  fixo('\n')

@@ -1,7 +1,5 @@
 const hoje = () => new Date().toISOString().substr(0, 10)
 
-const print = obj => console.log(JSON.stringify(obj, undefined, 2))
-
 const ler = (arquivo, comprimento) => {
   const L = []
   while (L.length < comprimento && arquivo.length) {
@@ -25,6 +23,14 @@ const fixo = (dados, comprimento, numerico) => {
   return r
 }
 
+const checar = arquivo => (dados, comprimento, numerico) => {
+  const esperado = fixo(dados, comprimento, numerico)
+  const entrada = ler(arquivo, esperado.length)
+  if (entrada != esperado) {
+    throw `DIFERENÇA\n${esperado}\n${entrada}`
+  }
+}
+
 const texto = arquivo => {
   if (arquivo === false) {
     return (dados, comprimento) => fixo('*', comprimento)
@@ -32,7 +38,7 @@ const texto = arquivo => {
     return (dados, comprimento) => fixo(dados, comprimento)
   } else {
     return (associar, comprimento) => {
-      associar(ler(arquivo, comprimento))
+      associar(ler(arquivo, comprimento).trimEnd())
     }
   }
 }
@@ -57,7 +63,7 @@ const data = arquivo => {
   if (arquivo === false) {
     return (dados, comprimento) => fixo('*', comprimento)
   } else if (arquivo == null) {
-    return (dados, comprimento) => /^[1-9]\d+$/.test(dados) ?
+    return (dados, comprimento) => /^\d{4}-\d{2}-\d{2}$/.test(dados) ?
       comprimento == 6 ?
         `${dados.substr(8, 2)}${dados.substr(5, 2)}${dados.substr(2, 2)}` : 
       comprimento == 8 ?
@@ -66,7 +72,7 @@ const data = arquivo => {
   } else {
     return (associar, comprimento) => {
       const d = ler(arquivo, comprimento)
-      if (/^[1-9]\d+$/.test(d) && d.length == comprimento) {
+      if (/^\d+$/.test(d) && d.length == comprimento) {
         if (comprimento == 6) {
           associar('20'+d.substr(4, 2)+'-'+d.substr(2, 2)+'-'+d.substr(0, 2))
         } else if (comprimento == 8) {
@@ -107,4 +113,4 @@ const mapa = arquivo => {
   }
 }
 
-export {hoje, print, texto, numero, data, mapa, fixo}
+export {hoje, texto, numero, data, mapa, fixo, checar}
