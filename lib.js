@@ -1,11 +1,24 @@
 const hoje = () => new Date().toISOString().substr(0, 10)
 
+const copiar = X => JSON.parse(JSON.stringify(X))
+
 const ler = (arquivo, comprimento) => {
   const L = []
   while (L.length < comprimento && arquivo.length) {
     L.push(arquivo.shift())
   }
   return L.join('')
+}
+
+const escrever = (arquivo, dados) => {
+  Array.from(dados).forEach(c => {
+    arquivo.push(c)
+  })
+}
+
+const leitor = arquivo => {
+  const linha = 1
+  const coluna = 1
 }
 
 const fixo = (dados, comprimento, numerico) => {
@@ -113,4 +126,4 @@ const mapa = arquivo => {
   }
 }
 
-export {hoje, texto, numero, data, mapa, fixo, checar}
+export {hoje, copiar, texto, numero, data, mapa, fixo, checar}

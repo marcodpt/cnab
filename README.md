@@ -22,3 +22,13 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - BB sispag
  - Daycoval retorno cobrança
  - Daycoval remessa cobrança
+
+## Melhorias
+ - Formularios na interface gráfica
+ - Testes deno/browser
+ - remover retorno string nos codigos específicos dos bancos
+ - implementar funcao de calculo preguiçosa
+ - Implementar retorno cobrança
+ - Implementar remessa cobrança
+ - Implementar sispag
+ - Implementar conciliação bancária
