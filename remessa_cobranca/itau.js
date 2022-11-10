@@ -1,12 +1,5 @@
 export default ({
-  agencia,
-  conta,
-  empresa,
-  cod_empresa,
-  tipo_empresa,
-  criacao,
-  registros
-}, {
+  X,
   numero,
   texto,
   data,
@@ -14,51 +7,32 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  numero(agencia, 4)
+  numero(X, 'agencia', 4)
   fixo('0', 2)
-  numero(conta, 6)
+  numero(X, 'conta', 6)
   fixo(' ', 8)
-  texto(empresa, 30)
+  texto(X, 'empresa', 30)
   fixo('341BANCO ITAU SA  ')
-  data(criacao, 6)
+  data(X, 'criacao', 6)
   fixo(' ', 294)
   fixo('000001')
   fixo('\n')
-  registros.forEach(({
-    operacao,
-    duplicata,
-    vencimento,
-    valor,
-    emissao,
-    juros,
-    limite,
-    desconto,
-    iof,
-    abatimento,
-    tipo_cliente,
-    cod_cliente,
-    cliente,
-    endereco,
-    bairro,
-    cep,
-    cidade,
-    uf
-  }, index) => {
+  X.registros.forEach((R, index) => {
     fixo('10')
-    mapa(tipo_empresa, {
+    mapa(X, 'tipo_empresa', {
       '1': 'Física',
       '2': 'Jurídica'
     })
-    numero(cod_empresa, 14)
-    numero(agencia, 4)
+    numero(X, 'cod_empresa', 14)
+    numero(X, 'agencia', 4)
     fixo('0', 2)
-    numero(conta, 6)
+    numero(X, 'conta', 6)
     fixo(' ', 33)
     fixo('0', 21)
     fixo('112')
     fixo(' ', 21)
     fixo('I')
-    mapa(operacao, {
+    mapa(R, 'operacao', {
       '01': 'Entrada',
       '02': 'Baixa',
       '04': 'Abatimento',
@@ -67,37 +41,37 @@ export default ({
       '10': 'Não Protestar',
       '00': '*'
     })
-    texto(duplicata, 10)
-    data(vencimento, 6)
-    numero(valor, 13, 2)
+    texto(R, 'duplicata', 10)
+    data(R, 'vencimento', 6)
+    numero(R, 'valor', 13, 2)
     fixo('3410000001N')
-    data(emissao, 6)
+    data(R, 'emissao', 6)
     fixo('0', 4)
-    numero(juros, 13, 2)
-    data(limite, 6)
-    numero(desconto, 13, 2)
-    numero(iof, 13, 2)
-    numero(abatimento, 13, 2)
-    mapa(tipo_cliente, {
+    numero(R, 'juros', 13, 2)
+    data(R, 'limite', 6)
+    numero(R, 'desconto', 13, 2)
+    numero(R, 'iof', 13, 2)
+    numero(R, 'abatimento', 13, 2)
+    mapa(R, 'tipo_cliente', {
       '01': 'Física',
       '02': 'Jurídica'
     })
-    numero(cod_cliente, 14)
-    texto(cliente, 40)
-    texto(endereco, 40)
-    texto(bairro, 12)
-    texto(cep, 8)
-    texto(cidade, 15)
-    texto(uf, 2)
-    texto(empresa, 30)
+    numero(R, 'cod_cliente', 14)
+    texto(R, 'cliente', 40)
+    texto(R, 'endereco', 40)
+    texto(R, 'bairro', 12)
+    texto(R, 'cep', 8)
+    texto(R, 'cidade', 15)
+    texto(R, 'uf', 2)
+    texto(R, 'empresa', 30)
     fixo(' ', 4)
-    data(vencimento, 6)
+    data(R, 'vencimento', 6)
     fixo('00 ')
     fixo(index + 2, 6, true)
     fixo('\n')
   })
   fixo('9')
   fixo(' ', 393)
-  fixo(registros.length + 2, 6, true)
+  fixo(X.registros.length + 2, 6, true)
   fixo('\n')
 }

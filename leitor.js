@@ -1,35 +1,5 @@
-import {copiar, imprimir} from './lib.js'
-
-const dflt = schema => {
-  if (schema.const != null) {
-    return schema.const
-  }
-  if (schema.type == "object") {
-    const P = schema.properties
-    const R = schema.default || {}
-    Object.keys(P).forEach(k => {
-      const d = dflt(R[k])
-      if (d != null) {
-        R[k] = d
-      }
-    })
-    return R
-  } else if (schema.type == "array") {
-    const R = schema.default || []
-    if (!schema.minItems || !schema.items) {
-      return R
-    }
-    const d = dflt(schema.items)
-    if (d == null) {
-      return R
-    }
-    for (var i = 0; i < schema.minItems; i++) {
-      R.push(copiar(d))
-    }
-  } else {
-    return schema.dflt
-  }
-}
+import {copiar, imprimir, constante, dflt} from './lib.js'
+import escritor from './escritor.js'
 
 const ler = (Escopo, tamanho) => {
   const L = []
@@ -55,23 +25,8 @@ const ler = (Escopo, tamanho) => {
   return L.join('')
 }
 
-const constante = (valor, tamanho, numerico) => {
-  const d = String(valor)
-  var r = d.substr(0, tamanho)
-  while (r.length < tamanho) {
-    if (numerico) {
-      r = '0'+r
-    } else if (typeof valor == "string" && valor.length == 1) {
-      r += d
-    } else {
-      r += ' '
-    }
-  }
-  return r
-}
-
 const igual = entrada => (valor, tamanho, numerico) => {
-  const entrada = constante(valor, tamanho, numerico)
+  const esperado = constante(valor, tamanho, numerico)
   if (esperado != entrada) {
     throw `DIFERENÇA\n${esperado}\n${entrada}`
   }
@@ -145,18 +100,8 @@ const mapa = Escopo => (X, chave, mapa) => {
   }
 }
 
-export default (arquivo, schema, layout, teste) => {
-  const Escopo = {
-    arquivo: Array.from(arquivo),
-    linha: 1,
-    coluna: 1,
-    proximo: () => {},
-    teste: teste === true,
-    pilha: []
-  }
-  const X = dflt(schema)
-
-  const embrulho = (nome) => (X, Y, A, B) => {
+const leitor = (Escopo, Dados, layout) => {
+  const embrulho = nome => (X, Y, A, B) => {
     try {
       if (nome == 'fixo') {
         fixo(Escopo)(X, Y, A, B)
@@ -185,9 +130,9 @@ export default (arquivo, schema, layout, teste) => {
   }
 
   layout({
-    X: X,
+    X: Dados,
     fixo: embrulho('fixo'),
-    texto: embrulho('texto')
+    texto: embrulho('texto'),
     numero: embrulho('numero'),
     data: embrulho('data'),
     mapa: embrulho('mapa')
@@ -206,4 +151,44 @@ export default (arquivo, schema, layout, teste) => {
   })
 
   return X
+}
+
+export default (arquivo, schema, layout, teste) => {
+  const Escopo = {
+    arquivo: Array.from(arquivo),
+    linha: 1,
+    coluna: 1,
+    proximo: () => {},
+    pilha: []
+  }
+
+  const X = dflt(schema)
+
+  if (teste) {
+    X.registros = []
+    try {
+      leitor(Escopo, X, layout)
+    } catch (err) {
+      if (Escopo.linha == 1) {
+        throw err
+      }
+    }
+  } else {
+    const a = escritor({
+      ...X,
+      registros: []
+    }, layout).split('\n').length
+    const b = escritor(X, layout).split('\n').length
+    const n = arquivo.split('\n')
+
+    if ((n - a) % b) {
+      throw 'Não foi possível determinar o número de registros do arquivo!'
+    }
+
+    const k = (n - a) / b
+    while (X.registros.length < k) {
+      X.registros.push(copiar(X.registros[0]))
+    }
+    leitor(Escopo, X, layout)
+  }
 }
