@@ -93,7 +93,7 @@ const mapa = Escopo => (X, chave, mapa) => {
     const V = Object.values(mapa)
     const i = V.indexOf('*')
     if (i >= 0) {
-      associar(K[i])
+      X[chave] = '*'
     } else {
       throw `${imprimir(mapa)}\nNão é uma chave possível: ${k}`
     }
@@ -124,7 +124,11 @@ const leitor = (Escopo, Dados, layout) => {
         }
       }
     } catch (err) {
-      throw `(${nome}) linha: ${Escopo.linha} coluna: ${Escopo.coluna}\n${err}`
+      throw `${Escopo.Arquivo[Escopo.linha - 1]}\n(${nome} ${
+        nome == 'fixo' ? '' : `-> ${Y}`
+      }) linha: ${Escopo.linha} / ${
+        Escopo.Arquivo.length
+      } coluna: ${Escopo.coluna}\n${err}`
     }
     Escopo.proximo()
   }
@@ -149,13 +153,12 @@ const leitor = (Escopo, Dados, layout) => {
       throw `(fixo) linha: ${linha} coluna: ${coluna}\n${err}`
     }
   })
-
-  return X
 }
 
-export default (arquivo, schema, layout, teste) => {
+export default (arquivo, schema, layout, banco) => {
   const Escopo = {
     arquivo: Array.from(arquivo),
+    Arquivo: arquivo.split('\n'),
     linha: 1,
     coluna: 1,
     proximo: () => {},
@@ -164,7 +167,7 @@ export default (arquivo, schema, layout, teste) => {
 
   const X = dflt(schema)
 
-  if (teste) {
+  if (!banco) {
     X.registros = []
     try {
       leitor(Escopo, X, layout)
@@ -178,8 +181,8 @@ export default (arquivo, schema, layout, teste) => {
       ...X,
       registros: []
     }, layout).split('\n').length
-    const b = escritor(X, layout).split('\n').length
-    const n = arquivo.split('\n')
+    const b = escritor(X, layout).split('\n').length - a
+    const n = arquivo.split('\n').length
 
     if ((n - a) % b) {
       throw 'Não foi possível determinar o número de registros do arquivo!'
@@ -189,6 +192,8 @@ export default (arquivo, schema, layout, teste) => {
     while (X.registros.length < k) {
       X.registros.push(copiar(X.registros[0]))
     }
+    X.banco = banco
     leitor(Escopo, X, layout)
+    return X
   }
 }

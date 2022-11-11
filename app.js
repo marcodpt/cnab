@@ -1,4 +1,4 @@
-import schemas from './schemas.js'
+import layouts from './layouts.js'
 import cnab from './index.js'
 
 (() => {
@@ -45,7 +45,7 @@ import cnab from './index.js'
 
   const loadJson = () => {
     const select = document.getElementById('schemas')
-    const schema = schemas[select.value]
+    const schema = layouts[select.value].schema
 
     const Data = loadSchema(schema)
     Data.registros = [loadSchema(schema.properties.registros.items)]
@@ -60,7 +60,7 @@ import cnab from './index.js'
   window.addEventListener('load', () => {
     const select = document.getElementById('schemas')
     document.body.querySelectorAll('select').forEach(select => {
-      select.innerHTML += Object.keys(schemas)
+      select.innerHTML += Object.keys(layouts)
         .map(key => `<option value="${key}">${key.replace(/_/g, ' ')}</option>`)
         .join('\n')
     })
@@ -116,8 +116,8 @@ import cnab from './index.js'
           .then(data => JSON.stringify(cnab(data), undefined, 2))
           .then(json => setCard(file.name, json))
           .catch(err => {
-            console.log(err)
             setCard(`${file.name}: ERRO!`, err)
+            throw err
           })
         )
       ).then(data => {

@@ -1,4 +1,3 @@
-import schemas from './schemas.js'
 import layouts from './layouts.js'
 import escritor from './escritor.js'
 import leitor from './leitor.js'
@@ -8,21 +7,23 @@ export default dados => {
     var valido = false
     var final = null
     Object.keys(layouts).forEach(tipo => {
-      const schema = schemas[tipo]
+      const schema = layouts[tipo].schema
       Object.keys(layouts[tipo]).forEach(banco => {
-        const layout = layouts[tipo][banco]
-        if (!valido) {
+        if (banco != 'schema' && !valido) {
+          const layout = layouts[tipo][banco]
           try {
-            leitor(dados, schema, layout, true)
+            leitor(dados, schema, layout)
             valido = true
           } catch (err) {
             console.log(`${tipo} ${banco}`)
             console.log(err)
           }
-          try {
-            final = leitor(dados, schema, layout)
-          } catch (err) {
-            throw `${tipo} ${banco} ${err}`
+          if (valido) {
+            try {
+              final = leitor(dados, schema, layout, banco)
+            } catch (err) {
+              throw `${tipo} ${banco} ${err}`
+            }
           }
         }
       })

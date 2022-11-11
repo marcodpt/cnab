@@ -46,7 +46,8 @@ export default {
         "caixa",
         "bb",
         "daycoval"
-      ]
+      ],
+      "default": ""
     },
     "agencia": {
       "title": "Agência",

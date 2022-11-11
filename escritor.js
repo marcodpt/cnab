@@ -10,26 +10,26 @@ const fixo = arquivo => (dados, tamanho, numerico) => escrever(arquivo,
   constante(typeof dados == 'function' ? dados() : dados, tamanho, numerico)
 )
 
-const texto = arquivo => (dados, tamanho) =>
-  escrever(arquivo, constante(dados, tamanho))
+const texto = arquivo => (X, campo, tamanho) =>
+  escrever(arquivo, constante(X[campo], tamanho))
 
-const numero = arquivo => (dados, tamanho, precisao) => escrever(arquivo,
-  constante(Math.round(dados * 10 ** (precisao || 0)), tamanho, true)
+const numero = arquivo => (X, campo, tamanho, precisao) => escrever(arquivo,
+  constante(Math.round(X[campo] * 10 ** (precisao || 0)), tamanho, true)
 )
 
-const data = arquivo => (dados, tamanho) => escrever(arquivo,
-  /^\d{4}-\d{2}-\d{2}$/.test(dados) ?
+const data = arquivo => (X, campo, tamanho) => escrever(arquivo,
+  /^\d{4}-\d{2}-\d{2}$/.test(X[campo]) ?
     tamanho == 6 ?
-      `${dados.substr(8, 2)}${dados.substr(5, 2)}${dados.substr(2, 2)}` : 
+      `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(2, 2)}` : 
     tamanho == 8 ?
-      `${dados.substr(8, 2)}${dados.substr(5, 2)}${dados.substr(0, 4)}` :
-    constante('0', tamanho) : constante('0', tamanho)
+      `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(0, 4)}` :
+    constante('0', tamanho) : constante(' ', tamanho)
 )
 
-const mapa = arquivo => (dados, mapa) => {
+const mapa = arquivo => (X, campo, mapa) => {
   const K = Object.keys(mapa)
   const V = Object.values(mapa)
-  var i = V.indexOf(dados)
+  var i = V.indexOf(X[campo])
   if (i < 0) {
     i = V.indexOf('*')
   }

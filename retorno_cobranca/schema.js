@@ -53,7 +53,8 @@ export default {
         "caixa",
         "bb",
         "daycoval"
-      ]
+      ],
+      "default": ""
     },
     "agencia": {
       "title": "Agência",
@@ -155,7 +156,8 @@ export default {
           "cliente": {
             "title": "Cliente",
             "type": "string",
-            "maxLength": 40
+            "maxLength": 40,
+            "default": ""
           },
           "tipo_cliente": {
             "title": "Pessoa",
@@ -228,7 +230,8 @@ export default {
           "banco": {
             "title": "Banco",
             "type": "string",
-            "enum": Object.values(bancos)
+            "enum": Object.values(bancos),
+            "default": ""
           },
           "agencia": {
             "title": "Agência",
@@ -276,6 +279,15 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
+          "tarifa": {
+            "title": "Tarifa (R$)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
           "saldo": {
             "title": "Saldo (R$)",
             "description": "",
@@ -299,6 +311,11 @@ export default {
             "type": "string",
             "format": "date",
             "default": hoje()
+          },
+          "extra1": {
+            "title": "Variável extra dependente do banco",
+            "type": "string",
+            "default": ""
           }
         }
       }

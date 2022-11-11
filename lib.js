@@ -1,6 +1,6 @@
 const hoje = () => new Date().toISOString().substr(0, 10)
 
-const imprimir = X => JSON.stringify(X, undefined, 2)
+const imprimir = X => console.log(JSON.stringify(X, undefined, 2))
 
 const copiar = X => JSON.parse(JSON.stringify(X))
 
@@ -21,11 +21,11 @@ const constante = (valor, tamanho, numerico) => {
 
 const dflt = schema => {
   if (schema.const != null) {
-    return schema.const
+    return copiar(schema.const)
   }
   if (schema.type == "object") {
     const P = schema.properties
-    const R = schema.default || {}
+    const R = copiar(schema.default || {})
     Object.keys(P).forEach(k => {
       const d = dflt(P[k])
       if (d != null) {
@@ -34,7 +34,7 @@ const dflt = schema => {
     })
     return R
   } else if (schema.type == "array") {
-    const R = schema.default || []
+    const R = copiar(schema.default || [])
     if (!schema.items) {
       return R
     }
@@ -43,8 +43,9 @@ const dflt = schema => {
       return R
     }
     R.push(d)
-  } else {
-    return schema.dflt
+    return R
+  } else if (schema.default !== undefined) {
+    return copiar(schema.default)
   }
 }
 
