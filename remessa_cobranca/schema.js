@@ -30,6 +30,12 @@ export default {
       "default": "",
       "format": "cnpjcpf"
     },
+    "id_empresa": {
+      "title": "Id empresa",
+      "type": "string",
+      "maxLength": 20,
+      "default": ""
+    },
     "criacao": {
       "title": "Data de geração",
       "type": "string",
@@ -169,6 +175,15 @@ export default {
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99999999999.99,
+            "default": 0
+          },
+          "multa": {
+            "title": "Multa (%)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99.99,
             "default": 0
           },
           "uf": {
