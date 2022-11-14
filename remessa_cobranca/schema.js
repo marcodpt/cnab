@@ -118,6 +118,26 @@ export default {
             ],
             "default": "Entrada"
           },
+          "nota": {
+            "title": "Nota",
+            "type": "string",
+            "maxLength": 15,
+            "default": ""
+          },
+          "chave": {
+            "title": "Chave NFe",
+            "type": "string",
+            "maxLength": 44,
+            "default": ""
+          },
+          "total": {
+            "title": "Total (R$)",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
           "duplicata": {
             "title": "Duplicata",
             "type": "string",

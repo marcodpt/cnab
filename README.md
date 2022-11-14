@@ -12,6 +12,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Santander remessa cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
  - [Caixa remessa cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
+ - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## A fazer
  - Caixa retorno cobrança
@@ -22,7 +23,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - BB remessa cobrança
  - BB sispag
  - Daycoval retorno cobrança
- - Daycoval remessa cobrança
 
 ## Melhorias
  - Formularios na interface gráfica
