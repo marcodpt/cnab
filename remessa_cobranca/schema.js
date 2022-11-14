@@ -36,6 +36,12 @@ export default {
       "maxLength": 20,
       "default": ""
     },
+    "contrato": {
+      "title": "contrato",
+      "type": "string",
+      "maxLength": 10,
+      "default": ""
+    },
     "criacao": {
       "title": "Data de geração",
       "type": "string",
@@ -170,7 +176,6 @@ export default {
           },
           "abatimento": {
             "title": "Abatimento (R$)",
-            "description": "",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -179,11 +184,24 @@ export default {
           },
           "multa": {
             "title": "Multa (%)",
-            "description": "",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
             "maximum": 99.99,
+            "default": 0
+          },
+          "protestar": {
+            "title": "Protestar (dias)",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 99,
+            "default": 0
+          },
+          "baixa": {
+            "title": "Baixa (dias)",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999,
             "default": 0
           },
           "uf": {
