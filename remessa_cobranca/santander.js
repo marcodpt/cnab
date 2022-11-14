@@ -14,7 +14,7 @@ export default ({
   fixo('0', 16)
   fixo(' ', 275)
   fixo('0', 3)
-  fixo('000001')
+  numero(X, 'sequencia', 6)
   fixo('\n')
   X.registros.forEach((R, index) => {
     fixo('10')
@@ -24,7 +24,8 @@ export default ({
     })
     numero(X, 'cod_empresa', 14)
     texto(X, 'id_empresa', 20)
-    fixo(' ', 40)
+    fixo(' ', 25)
+    fixo('0', 15)
     fixo(() => R.multa > 0 ? 4 : 0)
     numero(R, 'multa', 4, 2)
     fixo('0', 15)

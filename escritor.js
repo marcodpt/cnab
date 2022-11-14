@@ -23,7 +23,7 @@ const data = arquivo => (X, campo, tamanho) => escrever(arquivo,
       `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(2, 2)}` : 
     tamanho == 8 ?
       `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(0, 4)}` :
-    constante('0', tamanho) : constante(' ', tamanho)
+    constante('0', tamanho) : constante('0', tamanho)
 )
 
 const mapa = arquivo => (X, campo, mapa) => {

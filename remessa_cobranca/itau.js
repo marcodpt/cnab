@@ -16,7 +16,7 @@ export default ({
   data(X, 'criacao', 6)
   fixo(' ', 294)
   fixo('000001')
-  fixo('\n')
+  fixo('\r\n')
   X.registros.forEach((R, index) => {
     fixo('10')
     mapa(X, 'tipo_empresa', {
@@ -63,15 +63,15 @@ export default ({
     texto(R, 'cep', 8)
     texto(R, 'cidade', 15)
     texto(R, 'uf', 2)
-    texto(R, 'empresa', 30)
+    texto(X, 'empresa', 30)
     fixo(' ', 4)
     data(R, 'vencimento', 6)
     fixo('00 ')
     fixo(index + 2, 6, true)
-    fixo('\n')
+    fixo('\r\n')
   })
   fixo('9')
   fixo(' ', 393)
   fixo(X.registros.length + 2, 6, true)
-  fixo('\n')
+  fixo('\r\n')
 }

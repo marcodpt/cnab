@@ -48,6 +48,12 @@ export default {
       "format": "date",
       "default": hoje()
     },
+    "hora": {
+      "title": "Hora",
+      "type": "string",
+      "maxLength": 6,
+      "default": "000000"
+    },
     "banco": {
       "title": "Banco",
       "type": "string",
@@ -89,7 +95,8 @@ export default {
           "cliente": {
             "title": "Cliente",
             "type": "string",
-            "maxLength": 40
+            "maxLength": 40,
+            "default": ""
           },
           "tipo_cliente": {
             "title": "Pessoa",
