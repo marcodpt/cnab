@@ -184,28 +184,6 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "desconto": {
-            "title": "Desconto (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "limite": {
-            "title": "Desconto até",
-            "type": "string",
-            "format": "date",
-            "default": ""
-          },
-          "iof": {
-            "title": "IOF (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
           "abatimento": {
             "title": "Abatimento (R$)",
             "type": "number",

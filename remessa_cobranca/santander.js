@@ -49,9 +49,7 @@ export default ({
     data(R, 'emissao', 6)
     fixo('0', 4)
     numero(R, 'juros', 13, 2)
-    data(R, 'limite', 6)
-    numero(R, 'desconto', 13, 2)
-    numero(R, 'iof', 13, 2)
+    fixo('0', 32)
     numero(R, 'abatimento', 13, 2)
     mapa(R, 'tipo_cliente', {
       '01': 'Física',
