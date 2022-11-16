@@ -48,12 +48,6 @@ export default {
       "format": "date",
       "default": hoje()
     },
-    "hora": {
-      "title": "Hora",
-      "type": "string",
-      "maxLength": 6,
-      "default": "000000"
-    },
     "banco": {
       "title": "Banco",
       "type": "string",

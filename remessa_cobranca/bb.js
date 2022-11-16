@@ -24,7 +24,7 @@ export default ({
   fixo(' ', 10)
   fixo('1')
   data(X, 'criacao', 8)
-  texto(X, 'hora', 6)
+  fixo('0', 6)
   numero(X, 'sequencia', 6)
   fixo('03000000')
   fixo(' ', 54)
