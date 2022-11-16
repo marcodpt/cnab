@@ -124,11 +124,13 @@ const leitor = (Escopo, Dados, layout) => {
         }
       }
     } catch (err) {
-      throw `${Escopo.Arquivo[Escopo.linha - 1]}\n(${nome} ${
-        nome == 'fixo' ? '' : `-> ${Y}`
-      }) linha: ${Escopo.linha} / ${
-        Escopo.Arquivo.length
-      } coluna: ${Escopo.coluna}\n${err}`
+      const call = [X, Y, A, B].map(
+        v => v == null || typeof v == "object" ? null :
+          JSON.stringify(v, undefined, 2)
+      ).filter(v => v != null).join(', ')
+      throw `${Escopo.Arquivo[Escopo.linha - 1]}\n\n${nome}(${call}) linha:${
+        Escopo.linha
+      }/${Escopo.Arquivo.length} coluna:${Escopo.coluna}\n\n${err}`
     }
     Escopo.proximo()
   }
@@ -150,7 +152,9 @@ const leitor = (Escopo, Dados, layout) => {
     try {
       teste()
     } catch (err) {
-      throw `(fixo) linha: ${linha} coluna: ${coluna}\n${err}`
+      throw `${Escopo.Arquivo[linha - 1]}\n\n(fixo) linha: ${
+        linha
+      } coluna: ${coluna}\n\n${err}`
     }
   })
 }

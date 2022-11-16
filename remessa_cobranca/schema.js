@@ -39,7 +39,7 @@ export default {
     "contrato": {
       "title": "contrato",
       "type": "string",
-      "maxLength": 10,
+      "maxLength": 20,
       "default": ""
     },
     "criacao": {
@@ -74,6 +74,11 @@ export default {
     },
     "conta": {
       "title": "Conta",
+      "type": "integer",
+      "default": 0
+    },
+    "carteira": {
+      "title": "Carteira",
       "type": "integer",
       "default": 0
     },
