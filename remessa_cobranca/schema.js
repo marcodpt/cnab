@@ -214,14 +214,6 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "multa": {
-            "title": "Multa (%)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99.99,
-            "default": 0
-          },
           "protestar": {
             "title": "Protestar (dias)",
             "type": "integer",
@@ -246,7 +238,7 @@ export default {
             "title": "Cidade",
             "type": "string",
             "maxLength": 15,
-            "default": "SAO PAULO"
+            "default": ""
           },
           "cep": {
             "title": "CEP",
