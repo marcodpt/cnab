@@ -63,7 +63,7 @@ export default ({
     fixo(index * 2 + 2, 6, true)
     fixo('\n')
     fixo('4')
-    texto(R, 'nota', 15)
+    fixo(() => R.chave.substr(29, 5), 15)
     numero(R, 'total', 13, 2)
     data(R, 'emissao', 8)
     texto(R, 'chave', 44)

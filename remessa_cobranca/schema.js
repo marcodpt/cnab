@@ -124,12 +124,6 @@ export default {
             ],
             "default": "Entrada"
           },
-          "nota": {
-            "title": "Nota",
-            "type": "string",
-            "maxLength": 15,
-            "default": ""
-          },
           "chave": {
             "title": "Chave NFe",
             "type": "string",
