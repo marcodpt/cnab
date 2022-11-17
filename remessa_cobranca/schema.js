@@ -30,12 +30,6 @@ export default {
       "maxLength": 20,
       "default": ""
     },
-    "contrato": {
-      "title": "contrato",
-      "type": "string",
-      "maxLength": 20,
-      "default": ""
-    },
     "criacao": {
       "title": "Data de geração",
       "type": "string",
