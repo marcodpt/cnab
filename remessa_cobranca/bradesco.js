@@ -1,3 +1,5 @@
+import {tipo} from '../lib.js'
+
 export default ({
   X,
   numero,
@@ -7,8 +9,8 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  texto(X, 'id_empresa', 20)
-  texto(X, 'empresa', 30)
+  texto(X, 'id', 20)
+  texto(X, 'nome', 30)
   fixo('237BRADESCO       ')
   data(X, 'criacao', 6)
   fixo(' ', 8)
@@ -48,12 +50,10 @@ export default ({
     numero(R, 'juros', 13, 2)
     fixo('0', 32)
     numero(R, 'abatimento', 13, 2)
-    mapa(R, 'tipo_cliente', {
-      '01': 'Física',
-      '02': 'Jurídica'
-    })
-    numero(R, 'cod_cliente', 14)
-    texto(R, 'cliente', 40)
+    fixo('0')
+    fixo(tipo(R, 'cnpjcpf'), 1)
+    numero(R, 'cnpjcpf', 14)
+    texto(R, 'nome', 40)
     texto(R, 'endereco', 40)
     fixo(' ', 12)
     texto(R, 'cep', 8)

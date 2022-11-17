@@ -49,4 +49,7 @@ const dflt = schema => {
   }
 }
 
-export {hoje, imprimir, copiar, constante, dflt}
+const tipo = (X, campo) => () =>
+  X[campo].length < 14 ? '1' : '2'
+
+export {hoje, imprimir, copiar, constante, dflt, tipo}

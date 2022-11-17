@@ -1,3 +1,5 @@
+import {tipo} from '../lib.js'
+
 export default ({
   X,
   numero,
@@ -11,7 +13,7 @@ export default ({
   fixo('0', 2)
   numero(X, 'conta', 6)
   fixo(' ', 8)
-  texto(X, 'empresa', 30)
+  texto(X, 'nome', 30)
   fixo('341BANCO ITAU SA  ')
   data(X, 'criacao', 6)
   fixo(' ', 294)
@@ -19,11 +21,8 @@ export default ({
   fixo('\r\n')
   X.registros.forEach((R, index) => {
     fixo('10')
-    mapa(X, 'tipo_empresa', {
-      '1': 'Física',
-      '2': 'Jurídica'
-    })
-    numero(X, 'cod_empresa', 14)
+    fixo(tipo(X, 'cnpjcpf'), 1)
+    numero(X, 'cnpjcpf', 14)
     numero(X, 'agencia', 4)
     fixo('0', 2)
     numero(X, 'conta', 6)
@@ -50,18 +49,16 @@ export default ({
     numero(R, 'juros', 13, 2)
     fixo('0', 32)
     numero(R, 'abatimento', 13, 2)
-    mapa(R, 'tipo_cliente', {
-      '01': 'Física',
-      '02': 'Jurídica'
-    })
-    numero(R, 'cod_cliente', 14)
-    texto(R, 'cliente', 40)
+    fixo('0')
+    fixo(tipo(R, 'cnpjcpf'), 1)
+    numero(R, 'cnpjcpf', 14)
+    texto(R, 'nome', 40)
     texto(R, 'endereco', 40)
     texto(R, 'bairro', 12)
     texto(R, 'cep', 8)
     texto(R, 'cidade', 15)
     texto(R, 'uf', 2)
-    texto(X, 'empresa', 30)
+    texto(X, 'nome', 30)
     fixo(' ', 4)
     data(R, 'vencimento', 6)
     fixo('00 ')

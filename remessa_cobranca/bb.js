@@ -1,3 +1,5 @@
+import {tipo} from '../lib.js'
+
 export default ({
   X,
   numero,
@@ -8,18 +10,15 @@ export default ({
 }) => {
   fixo('00100000')
   fixo(' ', 9)
-  mapa(X, 'tipo_empresa', {
-    '1': 'Física',
-    '2': 'Jurídica'
-  })
-  numero(X, 'cod_empresa', 14)
-  numero(X, 'id_empresa', 9)
+  fixo(tipo(X, 'cnpjcpf'), 1)
+  texto(X, 'cnpjcpf', 14)
+  numero(X, 'id', 9)
   fixo('001411019')
   fixo(' ', 2)
   numero(X, 'agencia', 6)
   numero(X, 'conta', 13)
   fixo(' ')
-  texto(X, 'empresa', 30)
+  texto(X, 'nome', 30)
   fixo('BANCO DO BRASIL S.A.', 30)
   fixo(' ', 10)
   fixo('1')
@@ -32,19 +31,16 @@ export default ({
   fixo(' ', 12)
   fixo('\n')
   fixo('00100011R0100020 ')
-  mapa(X, 'tipo_empresa', {
-    '1': 'Física',
-    '2': 'Jurídica'
-  })
-  numero(X, 'cod_empresa', 15)
-  numero(X, 'id_empresa', 9)
+  fixo(tipo(X, 'cnpjcpf'), 1)
+  fixo(X.cnpjcpf, 15, true)
+  numero(X, 'id', 9)
   fixo('0014')
   numero(X, 'carteira', 5)
   fixo(' ', 2)
   numero(X, 'agencia', 6)
   numero(X, 'conta', 13)
   fixo(' ')
-  texto(X, 'empresa', 31)
+  texto(X, 'nome', 31)
   fixo(' ', 39)
   fixo(' ', 40)
   numero(X, 'sequencia', 8)
@@ -102,12 +98,9 @@ export default ({
       '10': 'Não Protestar',
       '00': '*'
     })
-    mapa(R, 'tipo_cliente', {
-      '1': 'Física',
-      '2': 'Jurídica'
-    })
-    numero(R, 'cod_cliente', 15)
-    texto(R, 'cliente', 40)
+    fixo(tipo(R, 'cnpjcpf'), 1)
+    numero(R, 'cnpjcpf', 15)
+    texto(R, 'nome', 40)
     texto(R, 'endereco', 40)
     texto(R, 'bairro', 15)
     texto(R, 'cep', 8)

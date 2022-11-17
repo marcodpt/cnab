@@ -10,28 +10,22 @@ export default {
       "type": "string",
       "const": "remessa_cobranca"
     },
-    "empresa": {
-      "title": "Empresa",
+    "nome": {
+      "title": "Nome da Empresa",
       "type": "string",
       "maxLength": 30,
       "default": ""
     },
-    "tipo_empresa": {
-      "title": "Pessoa",
-      "type": "string",
-      "enum": ["Física", "Jurídica"],
-      "default": "Jurídica"
-    },
-    "cod_empresa": {
-      "title": "CNPJ/CPF",
+    "cnpjcpf": {
+      "title": "CNPJ/CPF da Empresa",
       "type": "string",
       "pattern": "^(|\d{11}|\d{14})$",
       "maxLength": 14,
       "default": "",
       "format": "cnpjcpf"
     },
-    "id_empresa": {
-      "title": "Id empresa",
+    "id": {
+      "title": "Id da Empresa no banco",
       "type": "string",
       "maxLength": 20,
       "default": ""
@@ -91,20 +85,14 @@ export default {
       "items": {
         "type": "object",
         "properties": {
-          "cliente": {
-            "title": "Cliente",
+          "nome": {
+            "title": "Nome do Cliente",
             "type": "string",
             "maxLength": 40,
             "default": ""
           },
-          "tipo_cliente": {
-            "title": "Pessoa",
-            "type": "string",
-            "enum": ["Física", "Jurídica"],
-            "default": "Jurídica"
-          },
-          "cod_cliente": {
-            "title": "CNPJ/CPF",
+          "cnpjcpf": {
+            "title": "CNPJ/CPF do Cliente",
             "type": "string",
             "pattern": "^(|\d{11}|\d{14})$",
             "maxLength": 14,

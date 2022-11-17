@@ -1,3 +1,5 @@
+import {tipo} from '../lib.js'
+
 export default ({
   X,
   numero,
@@ -7,8 +9,8 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  texto(X, 'id_empresa', 20)
-  texto(X, 'empresa', 30)
+  texto(X, 'id', 20)
+  texto(X, 'nome', 30)
   fixo('707BANCO DAYCOVAL ')
   data(X, 'criacao', 6)
   fixo(' ', 294)
@@ -16,12 +18,9 @@ export default ({
   fixo('\n')
   X.registros.forEach((R, index) => {
     fixo('10')
-    mapa(X, 'tipo_empresa', {
-      '1': 'Física',
-      '2': 'Jurídica'
-    })
-    numero(X, 'cod_empresa', 14)
-    texto(X, 'id_empresa', 20)
+    fixo(tipo(X, 'cnpjcpf'), 1)
+    numero(X, 'cnpjcpf', 14)
+    texto(X, 'id', 20)
     fixo(' ', 25)
     fixo('0', 8)
     fixo(' ', 37)
@@ -46,19 +45,17 @@ export default ({
     numero(R, 'juros', 13, 2)
     fixo('0', 32)
     numero(R, 'abatimento', 13, 2)
-    mapa(R, 'tipo_cliente', {
-      '01': 'Física',
-      '02': 'Jurídica'
-    })
-    texto(R, 'cod_cliente', 14)
-    texto(R, 'cliente', 30)
+    fixo('0')
+    fixo(tipo(R, 'cnpjcpf'), 1)
+    texto(R, 'cnpjcpf', 14)
+    texto(R, 'nome', 30)
     fixo(' ', 10)
     texto(R, 'endereco', 40)
     texto(R, 'bairro', 12)
     texto(R, 'cep', 8)
     texto(R, 'cidade', 15)
     texto(R, 'uf', 2)
-    texto(X, 'empresa', 40)
+    texto(X, 'nome', 40)
     fixo('0', 3)
     fixo(index * 2 + 2, 6, true)
     fixo('\n')

@@ -22,7 +22,7 @@ export default dados => {
             try {
               final = leitor(dados, schema, layout, banco)
             } catch (err) {
-              throw `${tipo} ${banco} ${err}`
+              throw `${tipo} ${banco}\n\n${err}`
             }
           }
         }
