@@ -30,8 +30,6 @@ export default ({
       '02': 'Baixa',
       '04': 'Abatimento',
       '06': 'Prorrogação',
-      '09': 'Protestar',
-      '10': 'Não Protestar',
       '00': '*'
     })
     texto(R, 'duplicata', 10)
@@ -56,7 +54,8 @@ export default ({
     texto(R, 'cidade', 15)
     texto(R, 'uf', 2)
     texto(X, 'nome', 40)
-    fixo('0', 3)
+    numero(R, 'protestar', 2)
+    fixo('0')
     fixo(index * 2 + 2, 6, true)
     fixo('\n')
     fixo('4')

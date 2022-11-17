@@ -100,9 +100,7 @@ export default {
               "Entrada",
               "Baixa",
               "Abatimento",
-              "Prorrogação",
-              "Protestar",
-              "Não Protestar"
+              "Prorrogação"
             ],
             "default": "Entrada"
           },
@@ -167,13 +165,6 @@ export default {
             "type": "integer",
             "minimum": 0,
             "maximum": 99,
-            "default": 0
-          },
-          "baixa": {
-            "title": "Baixa (dias)",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 999,
             "default": 0
           },
           "uf": {

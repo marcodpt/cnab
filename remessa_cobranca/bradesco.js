@@ -37,8 +37,6 @@ export default ({
       '02': 'Baixa',
       '04': 'Abatimento',
       '06': 'Prorrogação',
-      '09': 'Protestar',
-      '19': 'Não Protestar',
       '00': '*'
     })
     texto(R, 'duplicata', 10)

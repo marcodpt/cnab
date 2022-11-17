@@ -52,8 +52,6 @@ export default ({
       '02': 'Baixa',
       '04': 'Abatimento',
       '06': 'Prorrogação',
-      '09': 'Protestar',
-      '10': 'Não Protestar',
       '00': '*'
     })
     fixo(X.agencia, 6, true)
@@ -75,9 +73,7 @@ export default ({
     fixo(() => R.duplicata, 25)
     fixo(() => R.protestar > 0 ? 2 : 0, 1)
     numero(R, 'protestar', 2)
-    fixo(() => R.baixa > 0 ? 0 : 2, 1)
-    numero(R, 'baixa', 3)
-    fixo('09')
+    fixo('200009')
     numero(X, 'carteira', 10)
     fixo(' ')
     fixo('\n')

@@ -36,10 +36,8 @@ export default ({
     mapa(R, 'operacao', {
       '01': 'Entrada',
       '02': 'Baixa',
-      '04': 'Abatimento',
-      '06': 'Prorrogação',
-      '09': 'Protestar',
-      '18': 'Não Protestar',
+      '03': 'Abatimento',
+      '05': 'Prorrogação',
       '00': '*'
     })
     fixo('00')
