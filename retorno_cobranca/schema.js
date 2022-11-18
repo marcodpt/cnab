@@ -65,6 +65,12 @@ export default {
       "type": "integer",
       "default": 0
     },
+    "credito": {
+      "title": "Data de crédito",
+      "type": "string",
+      "format": "date",
+      "default": hoje()
+    },
     "sequencia": {
       "title": "Numero Sequencial",
       "type": "integer",
@@ -295,6 +301,11 @@ export default {
           },
           "mensagem": {
             "title": "Mensagem/Erros",
+            "type": "string",
+            "default": ""
+          },
+          "cartorio": {
+            "title": "Cartorio e Protocolo",
             "type": "string",
             "default": ""
           }
