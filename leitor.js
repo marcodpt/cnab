@@ -26,9 +26,11 @@ const ler = (Escopo, tamanho) => {
 }
 
 const igual = entrada => (valor, tamanho, numerico) => {
-  const esperado = constante(valor, tamanho, numerico)
-  if (esperado != entrada) {
-    throw `DIFERENÇA\n${esperado}\n${entrada}`
+  valor = valor instanceof Array ? valor : [valor]
+  valor = valor.map(v => constante(v, tamanho, numerico))
+
+  if (!valor.reduce((res, v) => res || v == entrada, false)) {
+    throw `OPÇÕES\n${valor.join('\n')}\n\nRESULTADO\n${entrada}`
   }
 }
 

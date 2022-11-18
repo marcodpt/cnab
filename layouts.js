@@ -9,6 +9,10 @@ import remessa_cobranca_caixa from './remessa_cobranca/caixa.js'
 import remessa_cobranca_daycoval from './remessa_cobranca/daycoval.js'
 
 export default {
+  retorno_cobranca: {
+    schema: retorno_cobranca,
+    itau: retorno_cobranca_itau
+  },
   remessa_cobranca: {
     schema: remessa_cobranca,
     itau: remessa_cobranca_itau,
@@ -17,9 +21,5 @@ export default {
     bb: remessa_cobranca_bb,
     caixa: remessa_cobranca_caixa,
     daycoval: remessa_cobranca_daycoval
-  },
-  retorno_cobranca: {
-    schema: retorno_cobranca,
-    itau: retorno_cobranca_itau
   }
 }

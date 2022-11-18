@@ -11,34 +11,28 @@ export default {
       "type": "string",
       "const": "retorno_cobranca"
     },
-    "empresa": {
-      "title": "Empresa",
+    "nome": {
+      "title": "Nome da Empresa",
       "type": "string",
       "maxLength": 30,
       "default": ""
     },
-    "tipo_empresa": {
-      "title": "Pessoa",
-      "type": "string",
-      "enum": ["Física", "Jurídica"],
-      "default": "Jurídica"
-    },
-    "cod_empresa": {
-      "title": "CNPJ/CPF",
+    "cnpjcpf": {
+      "title": "CNPJ/CPF da Empresa",
       "type": "string",
       "pattern": "^(|\d{11}|\d{14})$",
       "maxLength": 14,
       "default": "",
       "format": "cnpjcpf"
     },
+    "id": {
+      "title": "Id da Empresa no banco",
+      "type": "string",
+      "maxLength": 20,
+      "default": ""
+    },
     "criacao": {
       "title": "Data de geração",
-      "type": "string",
-      "format": "date",
-      "default": hoje()
-    },
-    "credito": {
-      "title": "Data de crédito",
       "type": "string",
       "format": "date",
       "default": hoje()
@@ -63,6 +57,11 @@ export default {
     },
     "conta": {
       "title": "Conta",
+      "type": "integer",
+      "default": 0
+    },
+    "carteira": {
+      "title": "Carteira",
       "type": "integer",
       "default": 0
     },
@@ -153,47 +152,19 @@ export default {
       "items": {
         "type": "object",
         "properties": {
-          "cliente": {
-            "title": "Cliente",
+          "nome": {
+            "title": "Nome do Cliente",
             "type": "string",
             "maxLength": 40,
             "default": ""
           },
-          "tipo_cliente": {
-            "title": "Pessoa",
-            "type": "string",
-            "enum": ["Física", "Jurídica"],
-            "default": "Jurídica"
-          },
-          "cod_cliente": {
-            "title": "CNPJ/CPF",
+          "cnpjcpf": {
+            "title": "CNPJ/CPF do Cliente",
             "type": "string",
             "pattern": "^(|\d{11}|\d{14})$",
             "maxLength": 14,
             "default": "",
             "format": "cnpjcpf"
-          },
-          "operacao": {
-            "title": "Operação",
-            "type": "string",
-            "enum": [
-              "Erro",
-              "Entrada",
-              "Pagamento",
-              "Pagamento em Cartório",
-              "Baixa",
-              "Abatimento",
-              "Prorrogação",
-              "Protestar",
-              "Não Protestar"
-            ],
-            "default": "Pagamento"
-          },
-          "ocorrencia": {
-            "title": "Data da Ocorrência",
-            "type": "string",
-            "format": "date",
-            "default": hoje()
           },
           "duplicata": {
             "title": "Duplicata",
@@ -201,8 +172,8 @@ export default {
             "maxLength": 10,
             "default": ""
           },
-          "id_banco": {
-            "title": "Id Banco",
+          "id": {
+            "title": "Id do Título em Banco",
             "type": "string",
             "maxLength": 10,
             "default": ""
@@ -227,6 +198,38 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
+          "op": {
+            "title": "Codigo da Operação",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 99,
+            "default": 0
+          },
+          "operacao": {
+            "title": "Operação",
+            "type": "string",
+            "enum": [
+              "Outro",
+              "Erro",
+              "Entrada",
+              "Pagamento",
+              "Cartório",
+              "Baixa",
+              "Alteração"
+            ],
+            "default": "Outro"
+          },
+          "ocorrencia": {
+            "title": "Data da Ocorrência",
+            "type": "string",
+            "format": "date",
+            "default": hoje()
+          },
+          "pagamento": {
+            "title": "Meio de pagamento",
+            "type": "string",
+            "default": ""
+          },
           "banco": {
             "title": "Banco",
             "type": "string",
@@ -241,29 +244,7 @@ export default {
             "maximum": 99999
           },
           "juros": {
-            "title": "Juros/dia (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "desconto": {
-            "title": "Desconto (R$)",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "limite": {
-            "title": "Desconto até",
-            "type": "string",
-            "format": "date",
-            "default": ""
-          },
-          "iof": {
-            "title": "IOF (R$)",
+            "title": "Juros (R$)",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -288,8 +269,8 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "saldo": {
-            "title": "Saldo (R$)",
+          "total": {
+            "title": "Total (R$)",
             "description": "",
             "type": "number",
             "multipleOf": 0.01,
@@ -298,7 +279,7 @@ export default {
             "default": 0
           },
           "outros": {
-            "title": "Outros (R$)",
+            "title": "Outros créditos (R$)",
             "description": "",
             "type": "number",
             "multipleOf": 0.01,
@@ -312,8 +293,8 @@ export default {
             "format": "date",
             "default": hoje()
           },
-          "extra1": {
-            "title": "Variável extra dependente do banco",
+          "mensagem": {
+            "title": "Mensagem/Erros",
             "type": "string",
             "default": ""
           }
