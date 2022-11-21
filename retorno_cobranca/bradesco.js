@@ -1,7 +1,6 @@
 import bancos from '../bancos.js'
 import {tipo} from '../lib.js'
 
-
 export default ({
   X,
   numero,

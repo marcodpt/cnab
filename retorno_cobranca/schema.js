@@ -71,6 +71,13 @@ export default {
       "format": "date",
       "default": hoje()
     },
+    "versao": {
+      "title": "Versão",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999,
+      "default": 0
+    },
     "sequencia": {
       "title": "Numero Sequencial",
       "type": "integer",

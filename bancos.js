@@ -233,4 +233,5 @@ export default {
   '102':'XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A',
   '325':'Órama Distribuidora de Títulos e Valores Mobiliários S.A.',
   '355':'ÓTIMO SOCIEDADE DE CRÉDITO DIRETO S.A',
+  '002':'Desconhecido',
 }
