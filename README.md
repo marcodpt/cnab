@@ -6,6 +6,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
 ## Layouts suportados
  - [Itaú remessa cobrança 400](https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf)
  - [Itaú retorno cobrança 400](https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf)
+ - [Itaú remessa sispag 240](https://download.itau.com.br/bankline/sispag_cnab.pdf)
  - [Bradesco remessa cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
  - [Bradesco retorno cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
  - [Santander remessa cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
@@ -18,12 +19,16 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## A fazer
- - Itaú sispag
  - BB sispag
  - Itaú conciliação bancária
 
-## Melhorias
+## Melhorias a serem feitas
+ - Campos formadores de lote
+ - Identificador de registro com regex
+ - Tamanho da linha salvo no arquivo
+ - Validação dos dados pelo schema
  - Formularios na interface gráfica
+ - Erro ao tentar salvar varias vezes a mesma variável
  - Testes deno/browser
  - Implementar retorno cobrança
  - Implementar sispag
