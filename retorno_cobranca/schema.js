@@ -273,6 +273,11 @@ export default {
             "minimum": 0,
             "maximum": 99999
           },
+          "especie": {
+            "title": "Espécie",
+            "type": "string",
+            "default": ""
+          },
           "juros": {
             "title": "Juros (R$)",
             "type": "number",

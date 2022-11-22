@@ -13,14 +13,14 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [BB retorno cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [Caixa remessa cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
+ - [Caixa retorno cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## A fazer
- - Caixa retorno cobrança
- - Itaú conciliação bancária
+ - Daycoval retorno cobrança
  - Itaú sispag
  - BB sispag
- - Daycoval retorno cobrança
+ - Itaú conciliação bancária
 
 ## Melhorias
  - Formularios na interface gráfica

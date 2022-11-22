@@ -1,9 +1,0 @@
-export default {
-  '00': 'NÃO HÁ INSTRUÇÕES',
-  '02': 'BAIXAR APÓS QUINZE DIAS DO VENCIMENTO',
-  '03': 'BAIXAR APÓS 30 DIAS DO VENCIMENTO',
-  '04': 'NÃO BAIXAR',
-  '06': 'PROTESTAR',
-  '07': 'NÃO PROTESTAR',
-  '08': 'NÃO COBRAR JUROS DE MORA'
-}

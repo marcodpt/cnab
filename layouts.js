@@ -9,6 +9,7 @@ import retorno_cobranca_santander from './retorno_cobranca/santander.js'
 import remessa_cobranca_bb from './remessa_cobranca/bb.js'
 import retorno_cobranca_bb from './retorno_cobranca/bb.js'
 import remessa_cobranca_caixa from './remessa_cobranca/caixa.js'
+import retorno_cobranca_caixa from './retorno_cobranca/caixa.js'
 import remessa_cobranca_daycoval from './remessa_cobranca/daycoval.js'
 
 export default {
@@ -17,7 +18,8 @@ export default {
     itau: retorno_cobranca_itau,
     bradesco: retorno_cobranca_bradesco,
     santander: retorno_cobranca_santander,
-    bb: retorno_cobranca_bb
+    bb: retorno_cobranca_bb,
+    caixa: retorno_cobranca_caixa
   },
   remessa_cobranca: {
     schema: remessa_cobranca,
