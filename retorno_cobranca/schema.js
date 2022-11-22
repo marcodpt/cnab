@@ -37,6 +37,12 @@ export default {
       "format": "date",
       "default": hoje()
     },
+    "hora": {
+      "title": "Hora de geração",
+      "type": "string",
+      "default": "000000",
+      "maxLength": 6
+    },
     "banco": {
       "title": "Banco",
       "type": "string",
@@ -84,6 +90,12 @@ export default {
       "minimum": 1,
       "maximum": 999999,
       "default": 1
+    },
+    "mensagem": {
+      "title": "Mensagem",
+      "type": "string",
+      "maxLength": 20,
+      "default": ""
     },
     "simples_qtde": {
       "title": "Quantidade simples",
@@ -191,6 +203,11 @@ export default {
             "maxLength": 10,
             "default": ""
           },
+          "carteira": {
+            "title": "Carteira",
+            "type": "integer",
+            "default": 0
+          },
           "emissao": {
             "title": "Data de Emissão",
             "type": "string",
@@ -273,6 +290,15 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
+          "iof": {
+            "title": "IOF (R$)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
           "tarifa": {
             "title": "Tarifa (R$)",
             "description": "",
@@ -282,8 +308,35 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
+          "despesas": {
+            "title": "Despesas (R$)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "custas": {
+            "title": "Custas (R$)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
           "total": {
             "title": "Total (R$)",
+            "description": "",
+            "type": "number",
+            "multipleOf": 0.01,
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "default": 0
+          },
+          "saldo": {
+            "title": "Saldo (R$)",
             "description": "",
             "type": "number",
             "multipleOf": 0.01,
