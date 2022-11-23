@@ -13,13 +13,13 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Santander retorno cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [BB retorno cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
+ - [BB remessa sispag 240](https://www.bb.com.br/docs/portal/disem/PgtVer03BB.pdf?pk_vid=f0d809ef68fd163c16692020076af852)
  - [Caixa remessa cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Caixa retorno cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## A fazer
- - BB sispag
  - Itaú conciliação bancária
 
 ## Melhorias a serem feitas
@@ -28,7 +28,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Tamanho da linha salvo no arquivo
  - Validação dos dados pelo schema
  - Formularios na interface gráfica
- - Erro ao tentar salvar varias vezes a mesma variável
+ - Gerar erro ao tentar salvar varias vezes a mesma variável
  - Testes deno/browser
  - Implementar retorno cobrança
  - Implementar sispag

@@ -10,6 +10,7 @@ import remessa_cobranca_santander from './remessa_cobranca/santander.js'
 import retorno_cobranca_santander from './retorno_cobranca/santander.js'
 import remessa_cobranca_bb from './remessa_cobranca/bb.js'
 import retorno_cobranca_bb from './retorno_cobranca/bb.js'
+import sispag_bb from './sispag/bb.js'
 import remessa_cobranca_caixa from './remessa_cobranca/caixa.js'
 import retorno_cobranca_caixa from './retorno_cobranca/caixa.js'
 import remessa_cobranca_daycoval from './remessa_cobranca/daycoval.js'
@@ -18,7 +19,8 @@ import retorno_cobranca_daycoval from './retorno_cobranca/daycoval.js'
 export default {
   sispag: {
     schema: sispag,
-    itau: sispag_itau
+    itau: sispag_itau,
+    bb: sispag_bb
   },
   remessa_cobranca: {
     schema: remessa_cobranca,

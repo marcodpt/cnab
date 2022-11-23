@@ -23,7 +23,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('SISPAGWITV2018', 69)
   fixo('\r\n')
   fixo('34100011C')
-  mapa(X, 'destino', {
+  mapa(X, 'servico', {
     '10': 'DIVIDENDOS',
     '15': 'DEBÊNTURES',
     '20': 'FORNECEDORES',

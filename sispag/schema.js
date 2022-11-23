@@ -25,6 +25,19 @@ export default {
       "default": "",
       "format": "cnpjcpf"
     },
+    "id": {
+      "title": "Identificador da Empresa",
+      "type": "string",
+      "maxLength": 20,
+      "default": ""
+    },
+    "sequencia": {
+      "title": "Numero Sequencial",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999999,
+      "default": 1
+    },
     "banco": {
       "title": "Banco",
       "type": "string",
@@ -43,14 +56,14 @@ export default {
       "type": "integer",
       "default": 0,
       "minimum": 0,
-      "maximum": 99999
+      "maximum": 999999
     },
     "conta": {
       "title": "Conta",
       "type": "integer",
       "default": 0,
       "minimum": 0,
-      "maximum": 999999999999
+      "maximum": 9999999999999
     },
     "dac": {
       "title": "Digito Verificador",
@@ -71,8 +84,8 @@ export default {
       "default": "000000",
       "maxLength": 6
     },
-    "destino": {
-      "title": "Destino do Pagamento",
+    "servico": {
+      "title": "Serviço",
       "type": "string",
       "default": ""
     },
@@ -146,14 +159,14 @@ export default {
             "type": "integer",
             "default": 0,
             "minimum": 0,
-            "maximum": 99999
+            "maximum": 999999
           },
           "conta": {
             "title": "Conta",
             "type": "integer",
             "default": 0,
             "minimum": 0,
-            "maximum": 999999999999
+            "maximum": 9999999999999
           },
           "dac": {
             "title": "Digito Verificador",
