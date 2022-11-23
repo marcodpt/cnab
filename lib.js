@@ -1,6 +1,6 @@
 const hoje = () => new Date().toISOString().substr(0, 10)
 
-const imprimir = X => console.log(JSON.stringify(X, undefined, 2))
+const imprimir = X => JSON.stringify(X, undefined, 2)
 
 const copiar = X => JSON.parse(JSON.stringify(X))
 

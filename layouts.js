@@ -1,9 +1,11 @@
 import remessa_cobranca from './remessa_cobranca/schema.js'
 import retorno_cobranca from './retorno_cobranca/schema.js'
 import sispag from './sispag/schema.js'
+import conciliacao from './conciliacao/schema.js'
 import remessa_cobranca_itau from './remessa_cobranca/itau.js'
 import retorno_cobranca_itau from './retorno_cobranca/itau.js'
 import sispag_itau from './sispag/itau.js'
+import conciliacao_itau from './conciliacao/itau.js'
 import remessa_cobranca_bradesco from './remessa_cobranca/bradesco.js'
 import retorno_cobranca_bradesco from './retorno_cobranca/bradesco.js'
 import remessa_cobranca_santander from './remessa_cobranca/santander.js'
@@ -17,11 +19,6 @@ import remessa_cobranca_daycoval from './remessa_cobranca/daycoval.js'
 import retorno_cobranca_daycoval from './retorno_cobranca/daycoval.js'
 
 export default {
-  sispag: {
-    schema: sispag,
-    itau: sispag_itau,
-    bb: sispag_bb
-  },
   remessa_cobranca: {
     schema: remessa_cobranca,
     itau: remessa_cobranca_itau,
@@ -39,5 +36,14 @@ export default {
     bb: retorno_cobranca_bb,
     caixa: retorno_cobranca_caixa,
     daycoval: retorno_cobranca_daycoval
+  },
+  sispag: {
+    schema: sispag,
+    itau: sispag_itau,
+    bb: sispag_bb
+  },
+  conciliacao: {
+    schema: conciliacao,
+    itau: conciliacao_itau
   }
 }

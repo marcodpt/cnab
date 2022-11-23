@@ -7,6 +7,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Itaú remessa cobrança 400](https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf)
  - [Itaú retorno cobrança 400](https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf)
  - [Itaú remessa sispag 240](https://download.itau.com.br/bankline/sispag_cnab.pdf)
+ - [Itaú conciliação bancária 240](https://download.itau.com.br/bankline/conciliacao_bancaria_%20240.pdf)
  - [Bradesco remessa cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
  - [Bradesco retorno cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
  - [Santander remessa cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
@@ -19,13 +20,12 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
-## A fazer
- - Itaú conciliação bancária
-
 ## Melhorias a serem feitas
+ - Datas com opção de hora junto com 12 e 14 digitos
+ - Adicionar especificação para valores negativos
  - Campos formadores de lote
  - Identificador de registro com regex
- - Tamanho da linha salvo no arquivo
+ - Tamanho da linha, checar arquivo e gerar erro
  - Validação dos dados pelo schema
  - Formularios na interface gráfica
  - Gerar erro ao tentar salvar varias vezes a mesma variável
@@ -33,3 +33,4 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Implementar retorno cobrança
  - Implementar sispag
  - Implementar conciliação bancária
+ - Documentação automatizada

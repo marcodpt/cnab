@@ -97,7 +97,8 @@ const mapa = Escopo => (X, chave, mapa) => {
     if (i >= 0) {
       X[chave] = '*'
     } else {
-      throw `${imprimir(mapa)}\nNão é uma chave possível: ${k}`
+      console.log(imprimir(mapa))
+      throw `Não é uma chave possível: ${k}`
     }
   }
 }

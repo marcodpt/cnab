@@ -1,4 +1,6 @@
 export default {
+  '   ':'Indefinido',
+  '000':'Nenhum',
   '332':'Acesso Soluções de Pagamento S.A.',
   '117':'ADVANCED CORRETORA DE CÂMBIO LTDA',
   '272':'AGK CORRETORA DE CAMBIO S.A.',
