@@ -9,22 +9,26 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  texto(X, 'id', 20)
+  texto(X, 'codigo', 20)
   texto(X, 'nome', 30)
   fixo('707BANCO DAYCOVAL ')
-  data(X, 'criacao', 6)
+  data(X, 'geracao', 6)
   fixo(' ', 294)
   fixo('000001')
   fixo('\n')
   X.registros.forEach((R, index) => {
     fixo('10')
     fixo(tipo(X, 'cnpjcpf'), 1)
-    numero(X, 'cnpjcpf', 14)
-    texto(X, 'id', 20)
+    texto(X, 'cnpjcpf', 14)
+    fixo(X.codigo, 20)
     fixo(' ', 25)
     fixo('0', 8)
     fixo(' ', 37)
-    fixo('3')
+    mapa(X, 'carteira', {
+      '1': 'Simples',
+      '2': 'Vinculada',
+      '3': 'Descontada'
+    })
     mapa(R, 'operacao', {
       '01': 'Entrada',
       '02': 'Baixa',
@@ -32,7 +36,7 @@ export default ({
       '06': 'Prorrogação',
       '00': '*'
     })
-    texto(R, 'duplicata', 10)
+    texto(R, 'documento', 10)
     data(R, 'vencimento', 6)
     numero(R, 'valor', 13, 2)
     fixo('707')

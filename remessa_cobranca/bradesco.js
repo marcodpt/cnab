@@ -9,10 +9,10 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  texto(X, 'id', 20)
+  texto(X, 'codigo', 20)
   texto(X, 'nome', 30)
   fixo('237BRADESCO       ')
-  data(X, 'criacao', 6)
+  data(X, 'geracao', 6)
   fixo(' ', 8)
   fixo('MX')
   numero(X, 'sequencia', 7)
@@ -25,10 +25,10 @@ export default ({
     fixo(' ')
     fixo('0', 12)
     fixo(' ')
-    texto(X, 'carteira', 4)
+    fixo('0009')
     texto(X, 'agencia', 5)
     texto(X, 'conta', 8)
-    texto(R, 'duplicata', 25)
+    fixo(() => R.documento, 25)
     fixo('0', 30)
     fixo('1')
     fixo(' ', 15)
@@ -39,7 +39,7 @@ export default ({
       '06': 'Prorrogação',
       '00': '*'
     })
-    texto(R, 'duplicata', 10)
+    texto(R, 'documento', 10)
     data(R, 'vencimento', 6)
     numero(R, 'valor', 13, 2)
     fixo('0000000001N')
@@ -50,7 +50,7 @@ export default ({
     numero(R, 'abatimento', 13, 2)
     fixo('0')
     fixo(tipo(R, 'cnpjcpf'), 1)
-    numero(R, 'cnpjcpf', 14)
+    texto(R, 'cnpjcpf', 14)
     texto(R, 'nome', 40)
     texto(R, 'endereco', 40)
     fixo(' ', 12)

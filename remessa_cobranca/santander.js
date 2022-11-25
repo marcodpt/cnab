@@ -9,10 +9,10 @@ export default ({
   fixo
 }) => {
   fixo('01REMESSA01COBRANCA       ')
-  texto(X, 'id', 20)
+  texto(X, 'codigo', 20)
   texto(X, 'nome', 30)
   fixo('033SANTANDER      ')
-  data(X, 'criacao', 6)
+  data(X, 'geracao', 6)
   fixo('0', 16)
   fixo(' ', 275)
   fixo('0', 3)
@@ -21,15 +21,19 @@ export default ({
   X.registros.forEach((R, index) => {
     fixo('10')
     fixo(tipo(X, 'cnpjcpf'), 1)
-    numero(X, 'cnpjcpf', 14)
-    texto(X, 'id', 20)
+    texto(X, 'cnpjcpf', 14)
+    fixo(X.codigo, 20)
     fixo(' ', 25)
     fixo('0', 14)
     fixo(' ')
     fixo('0', 20)
     fixo(' ', 4)
     fixo('0', 6)
-    fixo('1')
+    mapa(X, 'carteira', {
+      '1': 'Simples',
+      '3': 'Vinculada',
+      '7': 'Descontada'
+    })
     mapa(R, 'operacao', {
       '01': 'Entrada',
       '02': 'Baixa',
@@ -37,7 +41,7 @@ export default ({
       '06': 'Prorrogação',
       '00': '*'
     })
-    texto(R, 'duplicata', 10)
+    texto(R, 'documento', 10)
     data(R, 'vencimento', 6)
     numero(R, 'valor', 13, 2)
     fixo('033')
@@ -50,7 +54,7 @@ export default ({
     numero(R, 'abatimento', 13, 2)
     fixo('0')
     fixo(tipo(R, 'cnpjcpf'), 1)
-    numero(R, 'cnpjcpf', 14)
+    texto(R, 'cnpjcpf', 14)
     texto(R, 'nome', 40)
     texto(R, 'endereco', 40)
     texto(R, 'bairro', 12)
@@ -58,8 +62,7 @@ export default ({
     texto(R, 'cidade', 15)
     texto(R, 'uf', 2)
     fixo(' ', 31)
-    fixo('I')
-    numero(X, 'carteira', 2)
+    texto(X, 'info', 3)
     fixo('      00 000000')
     fixo('\n')
   })

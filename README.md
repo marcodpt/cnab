@@ -29,8 +29,10 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Validação dos dados pelo schema
  - Formularios na interface gráfica
  - Gerar erro ao tentar salvar varias vezes a mesma variável
- - Testes deno/browser
  - Implementar retorno cobrança
  - Implementar sispag
  - Implementar conciliação bancária
+
+ - Remover e substituir caracteres em campos de texto, cep, cnpj e cpf
+ - Testes deno/browser
  - Documentação automatizada

@@ -51,7 +51,9 @@ const dflt = schema => {
 
 const tipo = (X, campo) => () => {
   const c = String(X[campo])
-  return c.length < 14 || c.substr(0, 3) == "000" ? '1' : '2'
+  return c.length < 14 || (
+    c.substr(0, 3) == "000" && c.substr(8, 3) != "000"
+  ) ? '1' : '2'
 }
 
 export {hoje, imprimir, copiar, constante, dflt, tipo}
