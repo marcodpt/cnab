@@ -21,6 +21,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## Melhorias a serem feitas
+ - Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação
  - Datas com opção de hora junto com 12 e 14 digitos
  - Adicionar especificação para valores negativos
  - Campos formadores de lote
@@ -35,6 +36,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Implementar sispag
  - Implementar conciliação bancária
  - Remover e substituir caracteres em campos de texto, cep, cnpj e cpf
+ - Nomes dos arquivos combinar tipo e banco ao invés de apenas tipo
 
 ## Testes
 ### deno

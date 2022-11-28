@@ -2,7 +2,27 @@ import {constante} from './lib.js'
 
 const escrever = (arquivo, dados) => {
   Array.from(dados).forEach(c => {
-    arquivo.push(c)
+    arquivo.push(c.toUpperCase()
+      .replace('Á', 'A')
+      .replace('À', 'A')
+      .replace('Â', 'A')
+      .replace('Ã', 'A')
+      .replace('É', 'E')
+      .replace('È', 'E')
+      .replace('Ê', 'E')
+      .replace('Í', 'I')
+      .replace('Ì', 'I')
+      .replace('Î', 'I')
+      .replace('Ó', 'O')
+      .replace('Ò', 'O')
+      .replace('Ô', 'O')
+      .replace('Õ', 'O')
+      .replace('Ú', 'U')
+      .replace('Ù', 'U')
+      .replace('Û', 'U')
+      .replace('Ç', 'C')
+      .replace('&', 'E')
+    )
   })
 }
 
