@@ -1,0 +1,10 @@
+[book]
+authors = ["Marco Di Pillo Tomic"]
+language = "pt"
+multilingual = false
+src = "livro"
+title = "CNAB"
+description = "Um modulo javascript para criar e converter arquivos CNAB com JSON"
+
+[build]
+build-dir = "../docs"

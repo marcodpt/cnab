@@ -29,13 +29,12 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Validação dos dados pelo schema
  - Formularios na interface gráfica
  - Gerar erro ao tentar salvar varias vezes a mesma variável
+ - Corrigir problema no favicon na pagina de testes
+ - Eliminar logs e disparar erro com logs quando o layout não for identificado!
  - Implementar retorno cobrança
  - Implementar sispag
  - Implementar conciliação bancária
-
  - Remover e substituir caracteres em campos de texto, cep, cnpj e cpf
- - Testes deno/browser
- - Documentação automatizada
 
 ## Testes
 ### deno
@@ -46,3 +45,12 @@ deno test --allow-read deno.js
 
 ### browser
 [Testar](https://marcodpt.github.io/cnab/tests/)
+
+## Gerar documentação
+[Documentação](https://marcodpt.github.io/cnab/docs/)
+
+```
+cd manual
+deno run --allow-write manual.js
+mdbook build
+```
