@@ -4,6 +4,12 @@ const imprimir = X => JSON.stringify(X, undefined, 2)
 
 const copiar = X => JSON.parse(JSON.stringify(X))
 
+const linhas = texto => {
+  const L = texto.split(/\r?\n/)
+  L.pop()
+  return L
+}
+
 const constante = (valor, tamanho, numerico) => {
   const d = String(valor)
   var r = d.substr(0, tamanho)
@@ -56,4 +62,4 @@ const tipo = (X, campo) => () => {
   ) ? '1' : '2'
 }
 
-export {hoje, imprimir, copiar, constante, dflt, tipo}
+export {hoje, imprimir, linhas, copiar, constante, dflt, tipo}

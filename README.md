@@ -36,3 +36,13 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Remover e substituir caracteres em campos de texto, cep, cnpj e cpf
  - Testes deno/browser
  - Documentação automatizada
+
+## Testes
+### deno
+```
+cd tests
+deno test --allow-read deno.js
+```
+
+### browser
+[Testar](https://marcodpt.github.io/cnab/tests/)

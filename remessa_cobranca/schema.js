@@ -42,7 +42,7 @@ export default {
       "enum": [
         "itau",
         "bradesco",
-        "santader",
+        "santander",
         "caixa",
         "bb",
         "daycoval"
@@ -51,7 +51,7 @@ export default {
     },
     "codigo": {
       "title": "Código da Empresa",
-      "description": "Identificador da empresa fornecido pelo banco.\nNecessário para: santander, daycoval e bradesco.\nNos demais casos ignorar e deixar em branco.",
+      "description": "Identificador da empresa fornecido pelo banco.\nNecessário para: santander, daycoval e bradesco.\nNos demais casos ignorar e não preencher.",
       "type": "string",
       "maxLength": 20,
       "default": ""
@@ -66,7 +66,7 @@ export default {
     },
     "conta": {
       "title": "Conta Corrente",
-      "description": "Necessário para: bb, itaú e bradesco.\nNos demais casos ignorar e deixar em branco.",
+      "description": "Necessário para: bb, itaú e bradesco.\nNos demais casos ignorar e não preencher.",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
@@ -85,14 +85,14 @@ export default {
     },
     "contrato": {
       "title": "Número do Contrato",
-      "description": "No Banco do Brasil utilizar o número do contrato de cobrança.\nNa caixa econômica utilizar o código do beneficiário.\nNos demais casos ignorar e deixar em branco.",
+      "description": "No Banco do Brasil utilizar o número do contrato de cobrança.\nNa caixa econômica utilizar o código do beneficiário.\nNos demais casos ignorar e não preencher.",
       "type": "string",
       "maxLength": 10,
       "default": "" 
     },
     "info": {
       "title": "Informações Complementares",
-      "description": "No banco do brasil urtilizar o número do convênio de cobrança.\nNo santander quando necessário utilizar 'I{DC}' onde {DC} são o último dígito e o complemento da conta cobrança.\nNos demais casos ignorar e deixar em branco.",
+      "description": "No banco do brasil urtilizar o número do convênio de cobrança.\nNo santander quando necessário utilizar 'I{DC}' onde {DC} são o último dígito e o complemento da conta cobrança.\nNos demais casos ignorar e não preencher.",
       "type": "string",
       "maxLength": 9,
       "default": "" 
@@ -207,7 +207,7 @@ export default {
           },
           "protestar": {
             "title": "Protestar (dias)",
-            "description": "Número de dias úteis para protestar o título.\nSuportado apenas pelo BB, caixa e Daycoval.\nNos demais bancos deixar em branco.",
+            "description": "Número de dias úteis para protestar o título.\nSuportado apenas pelo BB, caixa e Daycoval.\nNos demais bancos não preencher.",
             "type": "integer",
             "minimum": 0,
             "maximum": 99,
