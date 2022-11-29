@@ -1,0 +1,768 @@
+<!DOCTYPE HTML>
+<html lang="pt" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Retorno Cobrança - CNAB</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Um modulo javascript para criar e converter arquivos CNAB com JSON">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Início</a></li><li class="chapter-item expanded "><a href="remessa_cobranca.html"><strong aria-hidden="true">2.</strong> Remessa Cobrança</a></li><li class="chapter-item expanded "><a href="retorno_cobranca.html" class="active"><strong aria-hidden="true">3.</strong> Retorno Cobrança</a></li><li class="chapter-item expanded "><a href="sispag.html"><strong aria-hidden="true">4.</strong> Sispag</a></li><li class="chapter-item expanded "><a href="conciliacao.html"><strong aria-hidden="true">5.</strong> Conciliação Bancária</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CNAB</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="retorno-cobrança"><a class="header" href="#retorno-cobrança">Retorno Cobrança</a></h1>
+<p>Objeto JSON para leitura de arquivo CNAB de Retorno de Cobrança</p>
+<h2 id="propriedades"><a class="header" href="#propriedades">Propriedades</a></h2>
+<h3 id="tipo-string"><a class="header" href="#tipo-string">tipo: <code>string</code></a></h3>
+<h4 id="tipo"><a class="header" href="#tipo">Tipo</a></h4>
+<ul>
+<li>Fixo: <code>retorno_cobranca</code></li>
+</ul>
+<h3 id="nome-string"><a class="header" href="#nome-string">nome: <code>string</code></a></h3>
+<h4 id="nome-da-empresa"><a class="header" href="#nome-da-empresa">Nome da Empresa</a></h4>
+<ul>
+<li>Comprimento máximo: <code>30</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="cnpjcpf-string"><a class="header" href="#cnpjcpf-string">cnpjcpf: <code>string</code></a></h3>
+<h4 id="cnpjcpf-da-empresa"><a class="header" href="#cnpjcpf-da-empresa">CNPJ/CPF da Empresa</a></h4>
+<ul>
+<li>Comprimento máximo: <code>14</code></li>
+<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="id-string"><a class="header" href="#id-string">id: <code>string</code></a></h3>
+<h4 id="id-da-empresa-no-banco"><a class="header" href="#id-da-empresa-no-banco">Id da Empresa no banco</a></h4>
+<ul>
+<li>Comprimento máximo: <code>20</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="criacao-string"><a class="header" href="#criacao-string">criacao: <code>string</code></a></h3>
+<h4 id="data-de-geração"><a class="header" href="#data-de-geração">Data de geração</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="hora-string"><a class="header" href="#hora-string">hora: <code>string</code></a></h3>
+<h4 id="hora-de-geração"><a class="header" href="#hora-de-geração">Hora de geração</a></h4>
+<ul>
+<li>Comprimento máximo: <code>6</code></li>
+<li>Valor padrão: <code>&quot;000000&quot;</code></li>
+</ul>
+<h3 id="banco-string"><a class="header" href="#banco-string">banco: <code>string</code></a></h3>
+<h4 id="banco"><a class="header" href="#banco">Banco</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;itau&quot;</code></li>
+<li><code>&quot;bradesco&quot;</code></li>
+<li><code>&quot;santader&quot;</code></li>
+<li><code>&quot;caixa&quot;</code></li>
+<li><code>&quot;bb&quot;</code></li>
+<li><code>&quot;daycoval&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="agencia-integer"><a class="header" href="#agencia-integer">agencia: <code>integer</code></a></h3>
+<h4 id="agência"><a class="header" href="#agência">Agência</a></h4>
+<ul>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="conta-integer"><a class="header" href="#conta-integer">conta: <code>integer</code></a></h3>
+<h4 id="conta"><a class="header" href="#conta">Conta</a></h4>
+<ul>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="carteira-integer"><a class="header" href="#carteira-integer">carteira: <code>integer</code></a></h3>
+<h4 id="carteira"><a class="header" href="#carteira">Carteira</a></h4>
+<ul>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="credito-string"><a class="header" href="#credito-string">credito: <code>string</code></a></h3>
+<h4 id="data-de-crédito"><a class="header" href="#data-de-crédito">Data de crédito</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="versao-integer"><a class="header" href="#versao-integer">versao: <code>integer</code></a></h3>
+<h4 id="versão"><a class="header" href="#versão">Versão</a></h4>
+<ul>
+<li>Valor mínimo: <code>1</code></li>
+<li>Valor máximo: <code>999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="sequencia-integer"><a class="header" href="#sequencia-integer">sequencia: <code>integer</code></a></h3>
+<h4 id="numero-sequencial"><a class="header" href="#numero-sequencial">Numero Sequencial</a></h4>
+<ul>
+<li>Valor mínimo: <code>1</code></li>
+<li>Valor máximo: <code>999999</code></li>
+<li>Valor padrão: <code>1</code></li>
+</ul>
+<h3 id="mensagem-string"><a class="header" href="#mensagem-string">mensagem: <code>string</code></a></h3>
+<h4 id="mensagem"><a class="header" href="#mensagem">Mensagem</a></h4>
+<ul>
+<li>Comprimento máximo: <code>20</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="simples_qtde-integer"><a class="header" href="#simples_qtde-integer">simples_qtde: <code>integer</code></a></h3>
+<h4 id="quantidade-simples"><a class="header" href="#quantidade-simples">Quantidade simples</a></h4>
+<p>Quantidade de títulos em cobrança simples</p>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="simples_total-number"><a class="header" href="#simples_total-number">simples_total: <code>number</code></a></h3>
+<h4 id="total-simples-r"><a class="header" href="#total-simples-r">Total simples (R$)</a></h4>
+<p>Valor total dos títulos em cobrança simples</p>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>999999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="simples_aviso-string"><a class="header" href="#simples_aviso-string">simples_aviso: <code>string</code></a></h3>
+<h4 id="aviso-simples"><a class="header" href="#aviso-simples">Aviso simples</a></h4>
+<p>Referência do aviso bancário dos títulos em cobrança simples</p>
+<ul>
+<li>Comprimento máximo: <code>8</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="vinculada_qtde-integer"><a class="header" href="#vinculada_qtde-integer">vinculada_qtde: <code>integer</code></a></h3>
+<h4 id="quantidade-vinculada"><a class="header" href="#quantidade-vinculada">Quantidade vinculada</a></h4>
+<p>Quantidade de títulos em cobrança vinculada</p>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="vinculada_total-number"><a class="header" href="#vinculada_total-number">vinculada_total: <code>number</code></a></h3>
+<h4 id="total-vinculada-r"><a class="header" href="#total-vinculada-r">Total vinculada (R$)</a></h4>
+<p>Valor total dos títulos em cobrança vinculada</p>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>999999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="vinculada_aviso-string"><a class="header" href="#vinculada_aviso-string">vinculada_aviso: <code>string</code></a></h3>
+<h4 id="aviso-vinculada"><a class="header" href="#aviso-vinculada">Aviso vinculada</a></h4>
+<p>Referência do aviso bancário dos títulos em cobrança vinculada</p>
+<ul>
+<li>Comprimento máximo: <code>8</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="escritural_qtde-integer"><a class="header" href="#escritural_qtde-integer">escritural_qtde: <code>integer</code></a></h3>
+<h4 id="quantidade-diretaescritural"><a class="header" href="#quantidade-diretaescritural">Quantidade direta/escritural</a></h4>
+<p>Quantidade de títulos em cobrança direta/escritural</p>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="escritural_total-number"><a class="header" href="#escritural_total-number">escritural_total: <code>number</code></a></h3>
+<h4 id="total-diretaescritural-r"><a class="header" href="#total-diretaescritural-r">Total direta/escritural (R$)</a></h4>
+<p>Valor total dos títulos em cobrança direta/escritural</p>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>999999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="escritural_aviso-string"><a class="header" href="#escritural_aviso-string">escritural_aviso: <code>string</code></a></h3>
+<h4 id="aviso-diretaescritural"><a class="header" href="#aviso-diretaescritural">Aviso direta/escritural</a></h4>
+<p>Referência do aviso bancário dos títulos em cobrança direta/escritural</p>
+<ul>
+<li>Comprimento máximo: <code>8</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h2 id="registros"><a class="header" href="#registros">Registros</a></h2>
+<h3 id="nome-string-1"><a class="header" href="#nome-string-1">nome: <code>string</code></a></h3>
+<h4 id="nome-do-cliente"><a class="header" href="#nome-do-cliente">Nome do Cliente</a></h4>
+<ul>
+<li>Comprimento máximo: <code>40</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="cnpjcpf-string-1"><a class="header" href="#cnpjcpf-string-1">cnpjcpf: <code>string</code></a></h3>
+<h4 id="cnpjcpf-do-cliente"><a class="header" href="#cnpjcpf-do-cliente">CNPJ/CPF do Cliente</a></h4>
+<ul>
+<li>Comprimento máximo: <code>14</code></li>
+<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="duplicata-string"><a class="header" href="#duplicata-string">duplicata: <code>string</code></a></h3>
+<h4 id="duplicata"><a class="header" href="#duplicata">Duplicata</a></h4>
+<ul>
+<li>Comprimento máximo: <code>10</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="id-string-1"><a class="header" href="#id-string-1">id: <code>string</code></a></h3>
+<h4 id="id-do-título-em-banco"><a class="header" href="#id-do-título-em-banco">Id do Título em Banco</a></h4>
+<ul>
+<li>Comprimento máximo: <code>10</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="carteira-integer-1"><a class="header" href="#carteira-integer-1">carteira: <code>integer</code></a></h3>
+<h4 id="carteira-1"><a class="header" href="#carteira-1">Carteira</a></h4>
+<ul>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="emissao-string"><a class="header" href="#emissao-string">emissao: <code>string</code></a></h3>
+<h4 id="data-de-emissão"><a class="header" href="#data-de-emissão">Data de Emissão</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="vencimento-string"><a class="header" href="#vencimento-string">vencimento: <code>string</code></a></h3>
+<h4 id="data-de-vencimento"><a class="header" href="#data-de-vencimento">Data de Vencimento</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="valor-number"><a class="header" href="#valor-number">valor: <code>number</code></a></h3>
+<h4 id="valor-r"><a class="header" href="#valor-r">Valor (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="op-integer"><a class="header" href="#op-integer">op: <code>integer</code></a></h3>
+<h4 id="codigo-da-operação"><a class="header" href="#codigo-da-operação">Codigo da Operação</a></h4>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="operacao-string"><a class="header" href="#operacao-string">operacao: <code>string</code></a></h3>
+<h4 id="operação"><a class="header" href="#operação">Operação</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;Outro&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Outro&quot;</code></li>
+<li><code>&quot;Erro&quot;</code></li>
+<li><code>&quot;Entrada&quot;</code></li>
+<li><code>&quot;Pagamento&quot;</code></li>
+<li><code>&quot;Cartório&quot;</code></li>
+<li><code>&quot;Baixa&quot;</code></li>
+<li><code>&quot;Alteração&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ocorrencia-string"><a class="header" href="#ocorrencia-string">ocorrencia: <code>string</code></a></h3>
+<h4 id="data-da-ocorrência"><a class="header" href="#data-da-ocorrência">Data da Ocorrência</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="pagamento-string"><a class="header" href="#pagamento-string">pagamento: <code>string</code></a></h3>
+<h4 id="meio-de-pagamento"><a class="header" href="#meio-de-pagamento">Meio de pagamento</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="banco-string-1"><a class="header" href="#banco-string-1">banco: <code>string</code></a></h3>
+<h4 id="banco-1"><a class="header" href="#banco-1">Banco</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Planner Corretora de Valores S.A.&quot;</code></li>
+<li><code>&quot;RENASCENCA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A&quot;</code></li>
+<li><code>&quot;CAIXA&quot;</code></li>
+<li><code>&quot;Lecca Crédito, Financiamento e Investimento S/A&quot;</code></li>
+<li><code>&quot;Banco BOCOM BBM S.A&quot;</code></li>
+<li><code>&quot;PORTOCRED S.A. – CREDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;OLIVEIRA TRUST DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIARIOS S.A.&quot;</code></li>
+<li><code>&quot;Magliano S.A. Corretora de Cambio e Valores Mobiliarios&quot;</code></li>
+<li><code>&quot;Central Cooperativa de Crédito no Estado do Espírito Santo – CECOOP&quot;</code></li>
+<li><code>&quot;ADVANCED CORRETORA DE CÂMBIO LTDA&quot;</code></li>
+<li><code>&quot;Banco Western Union do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Rodobens S.A&quot;</code></li>
+<li><code>&quot;Banco Agibank S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco BERJ S.A.&quot;</code></li>
+<li><code>&quot;Banco Woori Bank do Brasil S.A&quot;</code></li>
+<li><code>&quot;Plural S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;BR Partners Banco de Investimento S.A&quot;</code></li>
+<li><code>&quot;Codepe Corretora de Valores e Câmbio S.A.&quot;</code></li>
+<li><code>&quot;MS Bank S.A. Banco de Câmbi&quot;</code></li>
+<li><code>&quot;UBS Brasil Banco de Investimento S.A&quot;</code></li>
+<li><code>&quot;CARUANA S.A. – SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;TULLETT PREBON BRASIL CORRETORA DE VALORES E CÂMBIO LTDA&quot;</code></li>
+<li><code>&quot;ICBC do Brasil Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS DE CRÉDITO E ECONOMIA FAMILIAR E&quot;</code></li>
+<li><code>&quot;BGC LIQUIDEZ DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS UNICRED LTDA. – UNICRED DO BRASI&quot;</code></li>
+<li><code>&quot;Get Money Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;Intesa Sanpaolo Brasil S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Easynvest – Título Corretora de Valores SA&quot;</code></li>
+<li><code>&quot;Broker Brasil Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;Treviso Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;BEXS Banco de Câmbio S.A&quot;</code></li>
+<li><code>&quot;LEVYCAM – CORRETORA DE CAMBIO E VALORES LTDA.&quot;</code></li>
+<li><code>&quot;GUITTA CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Facta Financeira S.A. – Crédito Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;ICAP do Brasil Corretora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;Casa do Crédito S.A. Sociedade de Crédito ao Microempreendedor&quot;</code></li>
+<li><code>&quot;Commerzbank Brasil S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco Olé Bonsucesso Consignado S.A&quot;</code></li>
+<li><code>&quot;BRL Trust Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;PERNAMBUCANAS FINANCIADORA S.A. – CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;Guide Investimentos S.A. Corretora de Valores&quot;</code></li>
+<li><code>&quot;CM CAPITAL MARKETS CORRETORA DE CÂMBIO, TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;SOCRED S.A. – SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO P&quot;</code></li>
+<li><code>&quot;Banco Itaú BBA S.A&quot;</code></li>
+<li><code>&quot;ATIVA INVESTIMENTOS S.A. CORRETORA DE TÍTULOS, CÂMBIO E VALORES&quot;</code></li>
+<li><code>&quot;HS FINANCEIRA S/A CREDITO, FINANCIAMENTO E INVESTIMENTOS&quot;</code></li>
+<li><code>&quot;SERVICOOP – COOPERATIVA DE CRÉDITO DOS SERVIDORES PÚBLICOS ESTADUAIS DO RIO GRAN&quot;</code></li>
+<li><code>&quot;Nova Futura Corretora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;PARMETAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;FAIR CORRETORA DE CAMBIO S.A.&quot;</code></li>
+<li><code>&quot;Stone Pagamentos S.A.&quot;</code></li>
+<li><code>&quot;Banco BTG Pactual S.A&quot;</code></li>
+<li><code>&quot;Banco Original S.A&quot;</code></li>
+<li><code>&quot;Banco Arbi S.A&quot;</code></li>
+<li><code>&quot;Banco John Deere S.A&quot;</code></li>
+<li><code>&quot;Banco BS2 S.A&quot;</code></li>
+<li><code>&quot;Banco Credit Agricole Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Fibra S.A&quot;</code></li>
+<li><code>&quot;Banco Cifra S.A&quot;</code></li>
+<li><code>&quot;BRADESCO&quot;</code></li>
+<li><code>&quot;Banco Clássico S.A&quot;</code></li>
+<li><code>&quot;Banco Máxima S.A&quot;</code></li>
+<li><code>&quot;Banco ABC Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Investcred Unibanco S.A.&quot;</code></li>
+<li><code>&quot;BCV – Banco de Crédito e Varejo S.A&quot;</code></li>
+<li><code>&quot;Bexs Corretora de Câmbio S/A&quot;</code></li>
+<li><code>&quot;Paraná Banco S.A&quot;</code></li>
+<li><code>&quot;MONEYCORP BANCO DE CÂMBIO S.A.&quot;</code></li>
+<li><code>&quot;Nu Pagamentos S.A.&quot;</code></li>
+<li><code>&quot;Banco Fator S.A&quot;</code></li>
+<li><code>&quot;Banco Cédula S.A&quot;</code></li>
+<li><code>&quot;BARI COMPANHIA HIPOTECÁRIA&quot;</code></li>
+<li><code>&quot;HSBC Brasil S.A. – Banco de Investimento&quot;</code></li>
+<li><code>&quot;Sagitur Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;IB Corretora de Câmbio, Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;AGK CORRETORA DE CAMBIO S.A.&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural de São Miguel do Oeste – Sulcredi/São Miguel&quot;</code></li>
+<li><code>&quot;MONEY PLUS SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E A EMPRESA DE PEQUENO PORT&quot;</code></li>
+<li><code>&quot;Senff S.A. – Crédito, Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;Genial Investimentos Corretora de Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CREDITO RURAL DE PRIMAVERA DO LESTE&quot;</code></li>
+<li><code>&quot;Avista S.A. Crédito, Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural Coopavel&quot;</code></li>
+<li><code>&quot;RB CAPITAL INVESTIMENTOS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LIMITADA&quot;</code></li>
+<li><code>&quot;Frente Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CRÉDITO RURAL DE OURO SULCREDI/OURO&quot;</code></li>
+<li><code>&quot;CAROL DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;DECYSEO CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Pagseguro Internet S.A.&quot;</code></li>
+<li><code>&quot;BS2 Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Lastro RDV Distribuidora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;VISION S.A. CORRETORA DE CAMBIO&quot;</code></li>
+<li><code>&quot;Vip’s Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;SOROCRED CRÉDITO, FINANCIAMENTO E INVESTIMENTO S.A.&quot;</code></li>
+<li><code>&quot;Banco de La Nacion Argentin&quot;</code></li>
+<li><code>&quot;BPP Instituição de Pagamento S.A.&quot;</code></li>
+<li><code>&quot;PORTOPAR DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;Terra Investimentos Distribuidora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;CAMBIONET CORRETORA DE CÂMBIO LTDA.&quot;</code></li>
+<li><code>&quot;VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;PI Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Banco BMG S.A&quot;</code></li>
+<li><code>&quot;OM DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;China Construction Bank (Brasil) Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;CREFAZ SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E A EMPRESA DE PEQUENO PORTE LT&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural de Abelardo Luz – Sulcredi/Crediluz&quot;</code></li>
+<li><code>&quot;MERCADOPAGO.COM REPRESENTACOES LTDA.&quot;</code></li>
+<li><code>&quot;Órama Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;PARATI – CREDITO, FINANCIAMENTO E INVESTIMENTO S.A.&quot;</code></li>
+<li><code>&quot;QI Sociedade de Crédito Direto S.A.&quot;</code></li>
+<li><code>&quot;Banco Bari de Investimentos e Financiamentos S/&quot;</code></li>
+<li><code>&quot;Fram Capital Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Acesso Soluções de Pagamento S.A.&quot;</code></li>
+<li><code>&quot;Banco Digio S.A.&quot;</code></li>
+<li><code>&quot;Banco C6 S.A.&quot;</code></li>
+<li><code>&quot;Super Pagamentos e Administração de Meios Eletrônicos S.A.&quot;</code></li>
+<li><code>&quot;BANCO ITAU S.A.&quot;</code></li>
+<li><code>&quot;Creditas Sociedade de Crédito Direto S.A.&quot;</code></li>
+<li><code>&quot;FFA SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA.&quot;</code></li>
+<li><code>&quot;Banco XP S.A.&quot;</code></li>
+<li><code>&quot;AMAGGI S.A. – CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;TORO CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;NECTON INVESTIMENTOS S.A. CORRETORA DE VALORES MOBILIÁRIOS E COMMODITIES&quot;</code></li>
+<li><code>&quot;ÓTIMO SOCIEDADE DE CRÉDITO DIRETO S.A&quot;</code></li>
+<li><code>&quot;GERENCIANET PAGAMENTOS DO BRASIL LTDA&quot;</code></li>
+<li><code>&quot;SOLIDUS S.A. CORRETORA DE CAMBIO E VALORES MOBILIARIOS&quot;</code></li>
+<li><code>&quot;Banco Société Générale Brasil S.A&quot;</code></li>
+<li><code>&quot;VITREO DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.&quot;</code></li>
+<li><code>&quot;Banco Mizuho do Brasil S.A&quot;</code></li>
+<li><code>&quot;UP.P SOCIEDADE DE EMPRÉSTIMO ENTRE PESSOAS S.A.&quot;</code></li>
+<li><code>&quot;Banco J. P. Morgan S.A&quot;</code></li>
+<li><code>&quot;Banco Mercantil do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco Financiamentos S.A.&quot;</code></li>
+<li><code>&quot;Kirton Bank S.A. – Banco Múltiplo&quot;</code></li>
+<li><code>&quot;Banco Capital S.A&quot;</code></li>
+<li><code>&quot;Banco Safra S.A&quot;</code></li>
+<li><code>&quot;Banco MUFG Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Sumitomo Mitsui Brasileiro S.A&quot;</code></li>
+<li><code>&quot;Banco Caixa Geral – Brasil S.A&quot;</code></li>
+<li><code>&quot;Citibank N.A&quot;</code></li>
+<li><code>&quot;Banco ItauBank S.&quot;</code></li>
+<li><code>&quot;Deutsche Bank S.A. – Banco Alemã&quot;</code></li>
+<li><code>&quot;JPMorgan Chase Bank&quot;</code></li>
+<li><code>&quot;ING Bank N.V&quot;</code></li>
+<li><code>&quot;Banco de La Provincia de Buenos Aire&quot;</code></li>
+<li><code>&quot;Banco Credit Suisse (Brasil) S.A&quot;</code></li>
+<li><code>&quot;SENSO CORRETORA DE CAMBIO E VALORES MOBILIARIOS S.A&quot;</code></li>
+<li><code>&quot;Banco Luso Brasileiro S.A&quot;</code></li>
+<li><code>&quot;Banco Industrial do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco VR S.A&quot;</code></li>
+<li><code>&quot;Banco Paulista S.A&quot;</code></li>
+<li><code>&quot;Banco Guanabara S.A&quot;</code></li>
+<li><code>&quot;Omni Banco S.A&quot;</code></li>
+<li><code>&quot;Banco PAN S.A&quot;</code></li>
+<li><code>&quot;Banco Ficsa S.A&quot;</code></li>
+<li><code>&quot;Banco Smartbank S.A.&quot;</code></li>
+<li><code>&quot;Banco Rendimento S.A&quot;</code></li>
+<li><code>&quot;Banco Triângulo S.A&quot;</code></li>
+<li><code>&quot;Banco Sofisa S.A&quot;</code></li>
+<li><code>&quot;Banco Pine S.A&quot;</code></li>
+<li><code>&quot;Itaú Unibanco Holding S.A&quot;</code></li>
+<li><code>&quot;Banco Indusval S.A&quot;</code></li>
+<li><code>&quot;Banco A.J.Renner S.A&quot;</code></li>
+<li><code>&quot;Banco Votorantim S.A&quot;</code></li>
+<li><code>&quot;Banco Daycoval S.A&quot;</code></li>
+<li><code>&quot;Banco Ourinvest S.A&quot;</code></li>
+<li><code>&quot;Banco Cetelem S.A&quot;</code></li>
+<li><code>&quot;Banco Ribeirão Preto S.A&quot;</code></li>
+<li><code>&quot;Banco Semear S.A&quot;</code></li>
+<li><code>&quot;Banco Citibank S.A&quot;</code></li>
+<li><code>&quot;Banco Modal S.A&quot;</code></li>
+<li><code>&quot;Banco Rabobank International Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Cooperativo Sicredi S.A&quot;</code></li>
+<li><code>&quot;Scotiabank Brasil S.A. Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco BNP Paribas Brasil S.A&quot;</code></li>
+<li><code>&quot;Novo Banco Continental S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco Sistema S.A&quot;</code></li>
+<li><code>&quot;Bank of America Merrill Lynch Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;Banco Cooperativo do Brasil S.A. – BANCOO&quot;</code></li>
+<li><code>&quot;Banco KEB HANA do Brasil S.A&quot;</code></li>
+<li><code>&quot;Indefinido&quot;</code></li>
+<li><code>&quot;Nenhum&quot;</code></li>
+<li><code>&quot;B&amp;T CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Banco ABN AMRO S.A&quot;</code></li>
+<li><code>&quot;Banco Alfa S.A&quot;</code></li>
+<li><code>&quot;Banco Andbank (Brasil) S.A&quot;</code></li>
+<li><code>&quot;Banco B3 S.A&quot;</code></li>
+<li><code>&quot;Banco BANDEPE S.A&quot;</code></li>
+<li><code>&quot;Banco Bradescard S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco BBI S.A.&quot;</code></li>
+<li><code>&quot;Banco Cargill S.A&quot;</code></li>
+<li><code>&quot;Banco Crefisa S.A&quot;</code></li>
+<li><code>&quot;Banco da Amazônia S.A&quot;</code></li>
+<li><code>&quot;Banco da China Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado de Sergipe S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado do Pará S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado do Rio Grande do Sul S.A&quot;</code></li>
+<li><code>&quot;Banco do Nordeste do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Finaxis S.A&quot;</code></li>
+<li><code>&quot;Banco Inbursa S.A&quot;</code></li>
+<li><code>&quot;Banco Inter S.A&quot;</code></li>
+<li><code>&quot;Banco Itaú Consignado S.A.&quot;</code></li>
+<li><code>&quot;Banco J. Safra S.A&quot;</code></li>
+<li><code>&quot;Banco KDB S.A&quot;</code></li>
+<li><code>&quot;Banco Morgan Stanley S.A&quot;</code></li>
+<li><code>&quot;Banco Nacional de Desenvolvimento Econômico e Social – BNDE&quot;</code></li>
+<li><code>&quot;Banco Original do Agronegócio S.A&quot;</code></li>
+<li><code>&quot;SANTANDER&quot;</code></li>
+<li><code>&quot;Banco Topázio S.A&quot;</code></li>
+<li><code>&quot;Banco Tricury S.A&quot;</code></li>
+<li><code>&quot;BancoSeguro S.A&quot;</code></li>
+<li><code>&quot;BANESTES S.A. Banco do Estado do Espírito Sant&quot;</code></li>
+<li><code>&quot;BNY Mellon Banco S.A&quot;</code></li>
+<li><code>&quot;BRB – Banco de Brasília S.A&quot;</code></li>
+<li><code>&quot;Brickell S.A. Crédito&quot;</code></li>
+<li><code>&quot;CENTRAL DE COOPERATIVAS DE ECONOMIA E CRÉDITO MÚTUO DO ESTADO DO RIO GRANDE DO S&quot;</code></li>
+<li><code>&quot;Confidence Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;Cooperativa Central de Crédito Noroeste Brasileiro Ltda&quot;</code></li>
+<li><code>&quot;Cooperativa Central de Crédito – AILO&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CRÉDITO MÚTUO DOS DESPACHANTES DE TRÂNSITO DE SANTA CATARINA E RI&quot;</code></li>
+<li><code>&quot;Credialiança Cooperativa de Crédito Rural&quot;</code></li>
+<li><code>&quot;CREDICOAMO CREDITO RURAL COOPERATIVA&quot;</code></li>
+<li><code>&quot;CREDISAN COOPERATIVA DE CRÉDITO&quot;</code></li>
+<li><code>&quot;CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A&quot;</code></li>
+<li><code>&quot;Goldman Sachs do Brasil Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;Haitong Banco de Investimento do Brasil S.A&quot;</code></li>
+<li><code>&quot;Hipercard Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;PÓLOCRED SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORT&quot;</code></li>
+<li><code>&quot;State Street Brasil S.A. – Banco Comercia&quot;</code></li>
+<li><code>&quot;Travelex Banco de Câmbio S.A&quot;</code></li>
+<li><code>&quot;UBS Brasil Corretora de Câmbio, Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;UNIPRIME CENTRAL – CENTRAL INTERESTADUAL DE COOPERATIVAS DE CREDITO LTDA.&quot;</code></li>
+<li><code>&quot;Uniprime Norte do Paraná – Coop de Economia e Crédito Mútuo dos Médicos&quot;</code></li>
+<li><code>&quot;Desconhecido&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="agencia-integer-1"><a class="header" href="#agencia-integer-1">agencia: <code>integer</code></a></h3>
+<h4 id="agência-1"><a class="header" href="#agência-1">Agência</a></h4>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="especie-string"><a class="header" href="#especie-string">especie: <code>string</code></a></h3>
+<h4 id="espécie"><a class="header" href="#espécie">Espécie</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="juros-number"><a class="header" href="#juros-number">juros: <code>number</code></a></h3>
+<h4 id="juros-r"><a class="header" href="#juros-r">Juros (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="abatimento-number"><a class="header" href="#abatimento-number">abatimento: <code>number</code></a></h3>
+<h4 id="abatimento-r"><a class="header" href="#abatimento-r">Abatimento (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="iof-number"><a class="header" href="#iof-number">iof: <code>number</code></a></h3>
+<h4 id="iof-r"><a class="header" href="#iof-r">IOF (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="tarifa-number"><a class="header" href="#tarifa-number">tarifa: <code>number</code></a></h3>
+<h4 id="tarifa-r"><a class="header" href="#tarifa-r">Tarifa (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="despesas-number"><a class="header" href="#despesas-number">despesas: <code>number</code></a></h3>
+<h4 id="despesas-r"><a class="header" href="#despesas-r">Despesas (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="custas-number"><a class="header" href="#custas-number">custas: <code>number</code></a></h3>
+<h4 id="custas-r"><a class="header" href="#custas-r">Custas (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="total-number"><a class="header" href="#total-number">total: <code>number</code></a></h3>
+<h4 id="total-r"><a class="header" href="#total-r">Total (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="saldo-number"><a class="header" href="#saldo-number">saldo: <code>number</code></a></h3>
+<h4 id="saldo-r"><a class="header" href="#saldo-r">Saldo (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="outros-number"><a class="header" href="#outros-number">outros: <code>number</code></a></h3>
+<h4 id="outros-créditos-r"><a class="header" href="#outros-créditos-r">Outros créditos (R$)</a></h4>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="credito-string-1"><a class="header" href="#credito-string-1">credito: <code>string</code></a></h3>
+<h4 id="data-de-crédito-1"><a class="header" href="#data-de-crédito-1">Data de crédito</a></h4>
+<ul>
+<li>Valor padrão: <code>Dia atual</code></li>
+</ul>
+<h3 id="mensagem-string-1"><a class="header" href="#mensagem-string-1">mensagem: <code>string</code></a></h3>
+<h4 id="mensagemerros"><a class="header" href="#mensagemerros">Mensagem/Erros</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+<h3 id="cartorio-string"><a class="header" href="#cartorio-string">cartorio: <code>string</code></a></h3>
+<h4 id="cartorio-e-protocolo"><a class="header" href="#cartorio-e-protocolo">Cartorio e Protocolo</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="remessa_cobranca.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="sispag.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="remessa_cobranca.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="sispag.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

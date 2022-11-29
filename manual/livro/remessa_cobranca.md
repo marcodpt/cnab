@@ -1,6 +1,6 @@
 # Remessa Cobrança
 
-Esquema JSON para geração de arquivo CNAB de Remessa de Cobrança
+Objeto JSON para geração de arquivo CNAB de Remessa de Cobrança
 
 ## Propriedades
 

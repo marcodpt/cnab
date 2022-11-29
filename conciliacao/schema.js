@@ -3,6 +3,7 @@ import {hoje} from '../lib.js'
 
 export default {
   "title": "Conciliação Bancária",
+  "description": "Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária",
   "type": "object",
   "properties": {
     "tipo": {

@@ -3,7 +3,8 @@ import bancos from '../bancos.js'
 import {hoje} from '../lib.js'
 
 export default {
-  "title": "Remessa Cobrança",
+  "title": "Retorno Cobrança",
+  "description": "Objeto JSON para leitura de arquivo CNAB de Retorno de Cobrança",
   "type": "object",
   "properties": {
     "tipo": {

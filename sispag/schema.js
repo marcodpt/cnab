@@ -3,7 +3,8 @@ import bancos from '../bancos.js'
 import {hoje} from '../lib.js'
 
 export default {
-  "title": "Remessa Sispag",
+  "title": "Sispag",
+  "description": "Objeto JSON para envio de arquivo CNAB de Pagamentos",
   "type": "object",
   "properties": {
     "tipo": {

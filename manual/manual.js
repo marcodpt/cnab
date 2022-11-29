@@ -1,6 +1,4 @@
-import remessa_cobranca from '../remessa_cobranca/schema.js'
-
-const livro = {remessa_cobranca}
+import layouts from '../layouts.js'
 
 const texto = t => t.split('\n').join('\n\n')
 const valor = x => typeof x == "string" ? '"'+x+'"' : String(x)
@@ -8,7 +6,9 @@ const valor = x => typeof x == "string" ? '"'+x+'"' : String(x)
 const info = (T, k, S) =>  {
   T.push(`### ${k}: \`${S.type}\``)
   T.push('#### '+S.title)
-  T.push(texto(S.description))
+  if (S.description) {
+    T.push(texto(S.description))
+  }
 
   const Info = []
   if (S.minLength != null) {
@@ -50,7 +50,9 @@ const info = (T, k, S) =>  {
 const item = async (nome, S) => {
   const T = []
   T.push(`# ${S.title}`)
-  T.push(texto(S.description))
+  if (S.description) {
+    T.push(texto(S.description))
+  }
 
   const P = S.properties
   T.push(`## Propriedades`)
@@ -73,8 +75,8 @@ const I = []
 I.push('# Indice')
 I.push('')
 I.push(' - [Início](./index.md)')
-Object.keys(livro).forEach(nome => {
-  const B = livro[nome]
+Object.keys(layouts).forEach(nome => {
+  const B = layouts[nome].schema
   I.push(` - [${B.title}](./${nome}.md)`)
   item(nome, B)
 })

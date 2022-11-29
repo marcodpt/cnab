@@ -3,7 +3,7 @@ import {hoje} from '../lib.js'
 
 export default {
   "title": "Remessa Cobrança",
-  "description": "Esquema JSON para geração de arquivo CNAB de Remessa de Cobrança",
+  "description": "Objeto JSON para geração de arquivo CNAB de Remessa de Cobrança",
   "type": "object",
   "properties": {
     "tipo": {
