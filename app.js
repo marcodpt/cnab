@@ -72,12 +72,13 @@ import cnab from './index.js'
       ev.preventDefault()
       ev.stopPropagation()
       const link = document.createElement("a")
+      const data = JSON.parse(textarea.value)
       link.setAttribute('href', 'data:text/plain;charset=utf-8,'+
-        encodeURIComponent(cnab(
-          JSON.parse(textarea.value)
-        ))
+        encodeURIComponent(cnab(data))
       ) 
-      link.setAttribute('download', select.value+'.txt')
+      link.setAttribute('download',
+        select.value+(data && data.banco?`_${data.banco}`:'')+'.txt'
+      )
 
       document.body.appendChild(link)
       link.click()
