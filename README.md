@@ -22,7 +22,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
 
 ## Melhorias a serem feitas
  - Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação
- - Datas com opção de hora junto com 12 e 14 digitos
  - Adicionar especificação para valores negativos
  - Campos formadores de lote
  - Identificador de registro com regex
@@ -31,6 +30,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Formularios na interface gráfica
  - Gerar erro ao tentar salvar varias vezes a mesma variável
  - Corrigir problema no favicon na pagina de testes
+ - Valores defaults preenchidos no objeto
  - Implementar retorno cobrança
  - Implementar sispag
  - Implementar conciliação bancária

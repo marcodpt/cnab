@@ -10,7 +10,38 @@ const linhas = texto => {
   return L
 }
 
+const formatoData = (valor, tamanho) => {
+  if (
+    typeof valor == "string" &&
+    /^\d{4}-\d{2}-\d{2}(.\d{2}:\d{2}:\d{2})?/.test(valor) &&
+    (tamanho == 6 || tamanho == 8 || tamanho == 12 || tamanho == 14)
+  ) {
+    const Dados = [
+      valor.substr(8, 2),
+      valor.substr(5, 2)
+    ]
+    if (tamanho == 6 || tamanho == 12) {
+      Dados.push(valor.substr(2, 2))
+    } else {
+      Dados.push(valor.substr(0, 4))
+    }
+    if (tamanho == 12 || tamanho == 14) {
+      if (valor.length > 10) {
+        Dados.push(valor.substr(11, 2))
+        Dados.push(valor.substr(14, 2))
+        Dados.push(valor.substr(17, 2))
+      } else {
+        Dados.push('000000')
+      }
+    }
+    return Dados.join('')
+  } else {
+    return valor
+  }
+}
+
 const constante = (valor, tamanho, numerico) => {
+  valor = formatoData(valor, tamanho)
   const d = String(valor)
   var r = d.substr(0, tamanho)
   while (r.length < tamanho) {
@@ -62,4 +93,4 @@ const tipo = (X, campo) => () => {
   ) ? '1' : '2'
 }
 
-export {hoje, imprimir, linhas, copiar, constante, dflt, tipo}
+export {hoje, imprimir, linhas, copiar, formatoData, constante, dflt, tipo}

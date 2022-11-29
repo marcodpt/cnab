@@ -3,7 +3,7 @@ export default {
   "nome": "Marli e Benjamin Advocacia ME",
   "cnpjcpf": "22563410000183",
   "codigo": "49801110533315798292",
-  "geracao": "2022-11-24",
+  "geracao": "2022-11-24 18:10:35",
   "banco": "",
   "agencia": 6799,
   "conta": 27267110,

@@ -1,4 +1,4 @@
-import {constante} from './lib.js'
+import {constante, formatoData} from './lib.js'
 
 const escrever = (arquivo, dados) => {
   Array.from(dados).forEach(c => {
@@ -40,14 +40,13 @@ const numero = arquivo => (X, campo, tamanho, precisao) => escrever(arquivo,
   constante(Math.round(X[campo] * 10 ** (precisao || 0)), tamanho, true)
 )
 
-const data = arquivo => (X, campo, tamanho, texto) => escrever(arquivo,
-  /^\d{4}-\d{2}-\d{2}$/.test(X[campo]) ?
-    tamanho == 6 ?
-      `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(2, 2)}` : 
-    tamanho == 8 ?
-      `${X[campo].substr(8, 2)}${X[campo].substr(5, 2)}${X[campo].substr(0, 4)}` :
-    constante(texto ? ' ' : '0', tamanho) : constante(texto ? ' ' : '0', tamanho)
-)
+const data = arquivo => (X, campo, tamanho, texto) => {
+  var dados = formatoData(X[campo], tamanho)
+  if (dados.length != tamanho) {
+    dados = constante(texto ? ' ' : '0', tamanho)
+  }
+  return escrever(arquivo, dados)
+}
 
 const mapa = arquivo => (X, campo, mapa) => {
   const K = Object.keys(mapa)

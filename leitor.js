@@ -71,16 +71,20 @@ const numero = Escopo => (X, chave, tamanho, precisao) => {
 const data = Escopo => (X, chave, tamanho) => {
   const d = ler(Escopo, tamanho)
 
-  if (tamanho != 6 && tamanho != 8) {
+  if (tamanho != 6 && tamanho != 8 && tamanho != 12 && tamanho != 14) {
     throw `O tamanho do campo não é válido para datas: ${tamanho}`
   } else if (/^0+$/.test(d) || /^ +$/.test(d)) {
     X[chave] = ""
   } else if (/^\d+$/.test(d)) {
     X[chave] = [
-      tamanho == 6 ? '20'+d.substr(4, 2) : d.substr(4, 4),
+      tamanho == 6 || tamanho == 12 ? '20'+d.substr(4, 2) : d.substr(4, 4),
       d.substr(2, 2),
       d.substr(0, 2)
-    ].join('-')
+    ].join('-')+(tamanho == 12 || tamanho == 14 ? ' '+[
+        d.substr(tamanho - 6, 2),
+        d.substr(tamanho - 4, 2),
+        d.substr(tamanho - 2, 2)
+      ].join(':') : '')
   } else {
     throw `Não é uma data válida: ${d}`
   }
