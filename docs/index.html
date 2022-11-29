@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html" class="active"><strong aria-hidden="true">1.</strong> Início</a></li><li class="chapter-item expanded "><a href="remessa_cobranca.html"><strong aria-hidden="true">2.</strong> Remessa Cobrança</a></li><li class="chapter-item expanded "><a href="retorno_cobranca.html"><strong aria-hidden="true">3.</strong> Retorno Cobrança</a></li><li class="chapter-item expanded "><a href="sispag.html"><strong aria-hidden="true">4.</strong> Sispag</a></li><li class="chapter-item expanded "><a href="conciliacao.html"><strong aria-hidden="true">5.</strong> Conciliação Bancária</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html" class="active"><strong aria-hidden="true">1.</strong> Início</a></li><li class="chapter-item expanded "><a href="remessa_cobranca.html"><strong aria-hidden="true">2.</strong> Remessa Cobrança</a></li><li class="chapter-item expanded "><a href="retorno_cobranca.html"><strong aria-hidden="true">3.</strong> Retorno Cobrança</a></li><li class="chapter-item expanded "><a href="sispag.html"><strong aria-hidden="true">4.</strong> Sispag</a></li><li class="chapter-item expanded "><a href="conciliacao.html"><strong aria-hidden="true">5.</strong> Conciliação Bancária</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,55 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="cnab"><a class="header" href="#cnab">CNAB</a></h1>
-<p>Um modulo javascript para criar e converter arquivos CNAB com JSON</p>
+<p>Um modulo javascript para criar e converter arquivos CNAB com JSON </p>
+<p><a href="https://marcodpt.github.io/cnab/">Experimente Online</a></p>
+<h2 id="layouts-suportados"><a class="header" href="#layouts-suportados">Layouts suportados</a></h2>
+<ul>
+<li><a href="https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf">Itaú remessa cobrança 400</a></li>
+<li><a href="https://download.itau.com.br/bankline/layout_cobranca_400bytes_cnab_itau_mensagem.pdf">Itaú retorno cobrança 400</a></li>
+<li><a href="https://download.itau.com.br/bankline/sispag_cnab.pdf">Itaú remessa sispag 240</a></li>
+<li><a href="https://download.itau.com.br/bankline/conciliacao_bancaria_%20240.pdf">Itaú conciliação bancária 240</a></li>
+<li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco remessa cobrança 400</a></li>
+<li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco retorno cobrança 400</a></li>
+<li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander remessa cobrança 400</a></li>
+<li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander retorno cobrança 400</a></li>
+<li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB remessa cobrança 240</a></li>
+<li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB retorno cobrança 240</a></li>
+<li><a href="https://www.bb.com.br/docs/portal/disem/PgtVer03BB.pdf?pk_vid=f0d809ef68fd163c16692020076af852">BB remessa sispag 240</a></li>
+<li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa remessa cobrança 400</a></li>
+<li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa retorno cobrança 400</a></li>
+<li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval remessa cobrança 400</a></li>
+<li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval retorno cobrança 400</a></li>
+</ul>
+<h2 id="melhorias-a-serem-feitas"><a class="header" href="#melhorias-a-serem-feitas">Melhorias a serem feitas</a></h2>
+<ul>
+<li>Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação</li>
+<li>Adicionar especificação para valores negativos</li>
+<li>Campos formadores de lote</li>
+<li>Identificador de registro com regex</li>
+<li>Tamanho da linha, checar arquivo e gerar erro</li>
+<li>Validação dos dados pelo schema</li>
+<li>Formularios na interface gráfica</li>
+<li>Gerar erro ao tentar salvar varias vezes a mesma variável</li>
+<li>Corrigir problema no favicon na pagina de testes</li>
+<li>Valores defaults preenchidos no objeto</li>
+<li>Implementar retorno cobrança</li>
+<li>Implementar sispag</li>
+<li>Implementar conciliação bancária</li>
+</ul>
+<h2 id="testes"><a class="header" href="#testes">Testes</a></h2>
+<h3 id="deno"><a class="header" href="#deno">deno</a></h3>
+<pre><code>cd tests
+deno test --allow-read deno.js
+</code></pre>
+<h3 id="browser"><a class="header" href="#browser">browser</a></h3>
+<p><a href="https://marcodpt.github.io/cnab/tests/">Testar</a></p>
+<h2 id="gerar-documentação"><a class="header" href="#gerar-documentação">Gerar documentação</a></h2>
+<p><a href="https://marcodpt.github.io/cnab/docs/">Documentação</a></p>
+<pre><code>cd manual
+deno run --allow-write manual.js
+mdbook build
+</code></pre>
 
                     </main>
 

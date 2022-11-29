@@ -72,9 +72,9 @@ const item = async (nome, S) => {
 }
 
 const I = []
-I.push('# Indice')
+I.push('# Índice')
 I.push('')
-I.push(' - [Início](./index.md)')
+I.push(' - [Início](../../README.md)')
 Object.keys(layouts).forEach(nome => {
   const B = layouts[nome].schema
   I.push(` - [${B.title}](./${nome}.md)`)
