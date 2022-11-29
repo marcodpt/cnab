@@ -6,6 +6,7 @@ export default dados => {
   if (typeof dados == 'string') {
     var valido = false
     var final = null
+    var erros = ''
     Object.keys(layouts).forEach(tipo => {
       const schema = layouts[tipo].schema
       Object.keys(layouts[tipo]).forEach(banco => {
@@ -15,8 +16,7 @@ export default dados => {
             leitor(dados, schema, layout)
             valido = true
           } catch (err) {
-            console.log(`${tipo} ${banco}`)
-            console.log(err)
+            erros += `\n\n\n\n${tipo} ${banco}\n\n${err}`
           }
           if (valido) {
             try {
@@ -29,7 +29,7 @@ export default dados => {
       })
     })
     if (!valido) {
-      throw 'Não foi possível identificar o layout do arquivo'
+      throw `Não foi possível identificar o layout do arquivo${erros}`
     }
     return final
   } else {
