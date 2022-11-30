@@ -9,43 +9,36 @@ export default {
   "properties": {
     "tipo": {
       "title": "Tipo",
+      "description": "Tipo do objeto.\nNecessário preencher para identificar o tipo do layout ao gerar o arquivo.",
       "type": "string",
       "const": "retorno_cobranca"
     },
     "nome": {
       "title": "Nome da Empresa",
+      "description": "Todos os bancos utilizam esse campo.",
       "type": "string",
       "maxLength": 30,
       "default": ""
     },
     "cnpjcpf": {
       "title": "CNPJ/CPF da Empresa",
+      "description": "Todos os bancos utilizam esse campo.",
       "type": "string",
-      "pattern": "^(|\d{11}|\d{14})$",
+      "pattern": "^(|\\d{11}|\\d{14})$",
       "maxLength": 14,
       "default": "",
       "format": "cnpjcpf"
     },
-    "id": {
-      "title": "Id da Empresa no banco",
-      "type": "string",
-      "maxLength": 20,
-      "default": ""
-    },
-    "criacao": {
-      "title": "Data de geração",
+    "geracao": {
+      "title": "Data de geração do Arquivo",
+      "description": "Todos os bancos utilizam esse campo.",
       "type": "string",
       "format": "date",
       "default": hoje()
     },
-    "hora": {
-      "title": "Hora de geração",
-      "type": "string",
-      "default": "000000",
-      "maxLength": 6
-    },
     "banco": {
       "title": "Banco",
+      "description": "Layout do arquivo.",
       "type": "string",
       "enum": [
         "itau",
@@ -57,57 +50,47 @@ export default {
       ],
       "default": ""
     },
+    "codigo": {
+      "title": "Código da Empresa",
+      "description": "Identificador da empresa no banco.\nItaú e Caixa ignoram esse campo.",
+      "type": "string",
+      "maxLength": 20,
+      "default": ""
+    },
     "agencia": {
       "title": "Agência",
+      "description": "Agência da empresa.\nDaycoval e Santander ignoram esse campo.",
       "type": "integer",
+      "minimum": 0,
+      "maximum": 99999,
       "default": 0
     },
     "conta": {
       "title": "Conta",
+      "description": "Conta da empresa.\nNo Santander é preenchido com o código do cedente.\nDaycoval ignora esse campo.",
       "type": "integer",
-      "default": 0
-    },
-    "carteira": {
-      "title": "Carteira",
-      "type": "integer",
-      "default": 0
-    },
-    "credito": {
-      "title": "Data de crédito",
-      "type": "string",
-      "format": "date",
-      "default": hoje()
-    },
-    "versao": {
-      "title": "Versão",
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 999,
+      "minimum": 0,
+      "maximum": 99999999,
       "default": 0
     },
     "sequencia": {
       "title": "Numero Sequencial",
+      "description": "Número sequencial do arquivo começando de 1.\nTodos os bancos utilizam esse campo.",
       "type": "integer",
       "minimum": 1,
       "maximum": 999999,
       "default": 1
     },
-    "mensagem": {
-      "title": "Mensagem",
-      "type": "string",
-      "maxLength": 20,
-      "default": ""
-    },
-    "simples_qtde": {
-      "title": "Quantidade simples",
+    "quantidade": {
+      "title": "Quantidade",
       "description": "Quantidade de títulos em cobrança simples",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
       "default": 0
     },
-    "simples_total": {
-      "title": "Total simples (R$)",
+    "total": {
+      "title": "Total (R$)",
       "description": "Valor total dos títulos em cobrança simples",
       "type": "number",
       "multipleOf": 0.01,
@@ -115,59 +98,59 @@ export default {
       "maximum": 999999999999.99,
       "default": 0
     },
-    "simples_aviso": {
-      "title": "Aviso simples",
+    "info": {
+      "title": "Aviso",
       "description": "Referência do aviso bancário dos títulos em cobrança simples",
       "type": "string",
-      "maxLength": 8,
+      "maxLength": 20,
       "default": ""
     },
-    "vinculada_qtde": {
-      "title": "Quantidade vinculada",
-      "description": "Quantidade de títulos em cobrança vinculada",
+    "quantidade2": {
+      "title": "Quantidade",
+      "description": "Quantidade de títulos em cobrança simples",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
       "default": 0
     },
-    "vinculada_total": {
-      "title": "Total vinculada (R$)",
-      "description": "Valor total dos títulos em cobrança vinculada",
+    "total2": {
+      "title": "Total (R$)",
+      "description": "Valor total dos títulos em cobrança simples",
       "type": "number",
       "multipleOf": 0.01,
       "minimum": 0,
       "maximum": 999999999999.99,
       "default": 0
     },
-    "vinculada_aviso": {
-      "title": "Aviso vinculada",
-      "description": "Referência do aviso bancário dos títulos em cobrança vinculada",
+    "info2": {
+      "title": "Aviso bancário",
+      "description": "Referência do aviso bancário dos títulos em cobrança simples",
       "type": "string",
-      "maxLength": 8,
+      "maxLength": 20,
       "default": ""
     },
-    "escritural_qtde": {
-      "title": "Quantidade direta/escritural",
-      "description": "Quantidade de títulos em cobrança direta/escritural",
+    "quantidade3": {
+      "title": "Quantidade de títulos",
+      "description": "Quantidade de títulos em cobrança simples",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
       "default": 0
     },
-    "escritural_total": {
-      "title": "Total direta/escritural (R$)",
-      "description": "Valor total dos títulos em cobrança direta/escritural",
+    "total3": {
+      "title": "Total (R$)",
+      "description": "Valor total dos títulos em cobrança simples",
       "type": "number",
       "multipleOf": 0.01,
       "minimum": 0,
       "maximum": 999999999999.99,
       "default": 0
     },
-    "escritural_aviso": {
-      "title": "Aviso direta/escritural",
-      "description": "Referência do aviso bancário dos títulos em cobrança direta/escritural",
+    "info3": {
+      "title": "Aviso bancário",
+      "description": "Referência do aviso bancário dos títulos em cobrança simples",
       "type": "string",
-      "maxLength": 8,
+      "maxLength": 20,
       "default": ""
     },
     "registros": {
@@ -180,49 +163,46 @@ export default {
         "properties": {
           "nome": {
             "title": "Nome do Cliente",
+            "description": "Apenas Itaú e Santander utilizam esse campo.",
             "type": "string",
             "maxLength": 40,
             "default": ""
           },
-          "cnpjcpf": {
-            "title": "CNPJ/CPF do Cliente",
-            "type": "string",
-            "pattern": "^(|\d{11}|\d{14})$",
-            "maxLength": 14,
-            "default": "",
-            "format": "cnpjcpf"
-          },
-          "duplicata": {
-            "title": "Duplicata",
+          "documento": {
+            "title": "Id do documento na empresa (Duplicata)",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "string",
             "maxLength": 10,
             "default": ""
           },
           "id": {
             "title": "Id do Título em Banco",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "string",
             "maxLength": 10,
             "default": ""
           },
           "carteira": {
             "title": "Carteira",
-            "type": "integer",
-            "default": 0
-          },
-          "emissao": {
-            "title": "Data de Emissão",
+            "description": "Carteira do título no banco.",
             "type": "string",
-            "format": "date",
-            "default": hoje()
+            "enum": [
+              "Simples",
+              "Vinculada",
+              "Descontada"
+            ],
+            "default": "Simples"
           },
           "vencimento": {
             "title": "Data de Vencimento",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "string",
             "format": "date",
             "default": hoje()
           },
           "valor": {
             "title": "Valor (R$)",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -252,6 +232,7 @@ export default {
           },
           "ocorrencia": {
             "title": "Data da Ocorrência",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "string",
             "format": "date",
             "default": hoje()
@@ -273,11 +254,6 @@ export default {
             "default": 0,
             "minimum": 0,
             "maximum": 99999
-          },
-          "especie": {
-            "title": "Espécie",
-            "type": "string",
-            "default": ""
           },
           "juros": {
             "title": "Juros (R$)",
@@ -314,35 +290,8 @@ export default {
             "maximum": 99999999999.99,
             "default": 0
           },
-          "despesas": {
-            "title": "Despesas (R$)",
-            "description": "",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "custas": {
-            "title": "Custas (R$)",
-            "description": "",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "total": {
-            "title": "Total (R$)",
-            "description": "",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
           "saldo": {
-            "title": "Saldo (R$)",
+            "title": "Saldo em Conta (R$)",
             "description": "",
             "type": "number",
             "multipleOf": 0.01,
@@ -364,6 +313,12 @@ export default {
             "type": "string",
             "format": "date",
             "default": hoje()
+          },
+          "erro": {
+            "title": "Código do Erro",
+            "type": "string",
+            "default": "",
+            "maxLength": 4
           },
           "mensagem": {
             "title": "Mensagem/Erros",

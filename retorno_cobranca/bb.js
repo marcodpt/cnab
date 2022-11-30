@@ -13,7 +13,9 @@ export default ({
   fixo(' ', 9)
   fixo(tipo(X, 'cnpjcpf'), 1)
   texto(X, 'cnpjcpf', 14)
-  texto(X, 'id', 20)
+  fixo('000')
+  texto(X, 'info', 6)
+  fixo('0014', 11)
   numero(X, 'agencia', 6)
   numero(X, 'conta', 13)
   fixo(' ')
@@ -21,17 +23,17 @@ export default ({
   fixo('BANCO DO BRASIL', 30)
   fixo(' ', 10)
   fixo('2')
-  data(X, 'criacao', 8)
-  texto(X, 'hora', 6)
+  data(X, 'geracao', 14)
   numero(X, 'sequencia', 6)
   fixo('03000000')
-  texto(X, 'mensagem', 20)
+  texto(X, 'info2', 20)
   fixo(' ', 49)
   fixo('\r\n')
   fixo('00100011T0100020 ')
   fixo(tipo(X, 'cnpjcpf'), 1)
   fixo(X.cnpjcpf, 15, true)
-  fixo(X.id, 20)
+  fixo(X.info, 9, true)
+  fixo('0014', 11)
   fixo(X.agencia, 6, true)
   fixo(X.conta, 13, true)
   fixo(' ')
@@ -39,7 +41,7 @@ export default ({
   fixo(' ', 39)
   fixo(' ', 40)
   fixo('0', 8)
-  data(X, 'criacao', 8)
+  fixo(X.geracao, 8)
   fixo('0', 8)
   fixo(' ', 2)
   fixo('0', 9)
@@ -67,21 +69,46 @@ export default ({
     fixo(X.conta, 13, true)
     fixo(' ')
     texto(R, 'id', 20)
-    numero(R, 'carteira', 1)
-    texto(R, 'duplicata', 15)
+    mapa(R, 'carteira', {
+      '1': 'Simples',
+      '2': 'Vinculada',
+      '4': 'Descontada'
+    })
+    texto(R, 'documento', 15)
     data(R, 'vencimento', 8)
     numero(R, 'valor', 15, 2)
     mapa(R, 'banco', bancos)
     texto(R, 'agencia', 6)
-    fixo(() => R.duplicata, 25)
+    fixo(() => R.documento, 25)
     fixo('09')
-    numero(R, 'tarifa', 16, 2)
+    fixo('0', 12)
+    fixo(() => 
+      R.erro == 'A9A4' ? 1050 :
+      R.erro == 'A9' ? 1000 :
+      R.erro == '04' ? 1010 :
+      R.erro == '08' ? R.operacao != 'Pagamento' ? 0 : 1011 :
+      R.erro == '33' ? 1006 :
+      R.erro == '34' ? 1004 : 0
+    , 4, true)
     fixo('0', 37)
     fixo(' ', 3)
     fixo('0', 10)
-    numero(R, 'custas', 15, 2)
-    texto(R, 'pagamento', 10)
-    texto(R, 'mensagem', 17)
+    numero(R, 'tarifa', 15, 2)
+    texto(R, 'erro', 4)
+    fixo(' ', 6)
+    mapa(R, 'carteira', {
+      '11': 'Simples',
+      '31': 'Vinculada',
+      '51': 'Descontada'
+    })
+    fixo('019')
+    fixo(X.info, 6, true)
+    fixo(() => R.operacao != 'Entrada' || R.erro[0] == 'A' ? '' : 
+      R.carteira == 'Descontada' || R.op == 4 ? [4, 1] : 
+      R.carteira == 'Simples' ? 1 :
+      R.carteira == 'Vinculada' ? 2 : ''
+    , 1)
+    fixo(' ', 5)
     fixo('\r\n')
     fixo('00100013')
     fixo(index * 2 + 2, 5, true)
@@ -89,12 +116,19 @@ export default ({
     fixo(R.op, 2, true)
     numero(R, 'juros', 15, 2)
     fixo('0', 15)
-    numero(R, 'abatimento', 15, 2)
+    fixo('0', 15)
     numero(R, 'iof', 15, 2)
-    numero(R, 'total', 15, 2)
-    numero(R, 'saldo', 15, 2)
-    numero(R, 'despesas', 15, 2)
-    numero(R, 'outros', 15, 2)
+    fixo(() => R.operacao != "Pagamento" ? 0 :
+      Math.round(100 * (R.valor + R.juros))
+    , 15, true)
+    fixo(() =>
+      R.operacao == "Entrada" ?
+        [0, Math.round(100 * (R.valor - R.juros - R.iof))] : 
+      R.operacao == "Pagamento" ?
+        [0, Math.round(100 * (R.valor + R.juros))] : 0
+    , 15, true)
+    numero(R, 'abatimento', 15, 2)
+    fixo('0', 15)
     data(R, 'ocorrencia', 8)
     data(R, 'credito', 8)
     fixo(' ', 12)
@@ -107,12 +141,12 @@ export default ({
   fixo('00100015')
   fixo(' ', 9)
   fixo(X.registros.length * 2 + 2, 6, true)
-  numero(X, 'simples_qtde', 6)
-  numero(X, 'simples_total', 17, 2)
+  numero(X, 'quantidade', 6)
+  numero(X, 'total', 17, 2)
   fixo('0', 23)
-  numero(X, 'vinculada_qtde', 6)
+  numero(X, 'quantidade2', 6)
   fixo('0', 23)
-  numero(X, 'vinculada_total', 17, 2)
+  numero(X, 'total2', 17, 2)
   fixo('0', 31)
   fixo(' ', 94)
   fixo('\r\n')

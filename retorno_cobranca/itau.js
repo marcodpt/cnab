@@ -1,28 +1,34 @@
 import bancos from '../bancos.js'
-import {tipo} from '../lib.js'
+import {tipo, hoje} from '../lib.js'
 
 export default ({X, fixo, numero, texto, data, mapa}) => {
+  const K = {
+    carteira: X.registros.reduce((c, {carteira}) =>
+      c != 'Simples' ? c : carteira
+    , 'Simples'),
+    credito: X.registros.reduce((c, {credito}) =>
+      c > credito ? c : credito
+    , '') || hoje(),
+    info: ''
+  }
   fixo('02RETORNO')
-  fixo([
-    '01COBRANCA',
-    '04EMPRESTIMO'
-  ], 17)
+  fixo('0')
+  mapa(K, 'carteira', {
+    '1': 'Simples',
+    '2': 'Vinculada',
+    '4': 'Descontada'
+  })
+  fixo(() => K.carteira == 'Descontada' ? 'EMPRESTIMO' : 'COBRANCA', 15)
   numero(X, 'agencia', 4)
   fixo('0', 2)
   numero(X, 'conta', 6)
   fixo(' ', 8)
   texto(X, 'nome', 30)
   fixo('341BANCO ITAU S.A.')
-  data(X, 'criacao', 6)
-  fixo([
-    '01600BPI',
-    '',
-  ], 8)
+  data(X, 'geracao', 6)
+  fixo(() => K.carteira == 'Descontada' ? '' : '01600BPI', 8)
   numero(X, 'sequencia', 5)
-  fixo(() => {
-    const c = X.registros.reduce((c, r) => r.credito || c, "")
-    return `${c.substr(8, 2)}${c.substr(5, 2)}${c.substr(2, 2)}`
-  }, 6)
+  data(K, 'credito', 6)
   fixo(' ', 275)
   fixo('000001')
   fixo('\r\n')
@@ -30,22 +36,27 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('10')
     fixo(tipo(X, 'cnpjcpf'), 1)
     numero(X, 'cnpjcpf', 14)
-    numero(X, 'agencia', 4)
+    fixo(X.agencia, 4, true)
     fixo('0', 2)
     numero(X, 'conta', 6)
     fixo(' ')
-    fixo([
-      '',
+    fixo(() => K.carteira == 'Descontada' ? [
       '0015000',
-      '0015900'
-    ], 7)
+      '0015900',
+      '0017600'
+    ] : '', 7)
     fixo(' ', 25)
     fixo(() => R.id, 8, true)
     fixo(' ', 12)
     fixo('112')
     texto(R, 'id', 9)
-    fixo(' ', 13)
-    fixo(['I', 'R'], 1)
+    if (R.operacao == 'Entrada' && K.carteira == 'Descontada') {
+      numero(R, 'juros', 13, 2)
+    } else {
+      texto(K, 'info', 13)
+    }
+    fixo(() => K.carteira == 'Descontada' ? 'R' : 'I', 1)
+    R.carteira = K.carteira
     numero(R, 'op', 2)
     if (R.op == 2 || R.op == 64 || R.op == 71 || R.op == 73) {
       R.operacao = "Entrada"
@@ -61,7 +72,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
       R.operacao = "Erro"
     }
     data(R, 'ocorrencia', 6)
-    texto(R, 'duplicata', 10)
+    texto(R, 'documento', 10)
     fixo(() => R.id, 8, true)
     fixo(' ', 12)
     data(R, 'vencimento', 6)
@@ -70,15 +81,35 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     numero(R, 'agencia', 5)
     fixo('01')
     numero(R, 'tarifa', 13, 2)
-    fixo('0', 39)
+    fixo('0', 13)
+    if (R.operacao == 'Entrada' && K.carteira == 'Descontada') {
+      numero(R, 'saldo', 13, 2)
+    } else {
+      fixo('0', 13)
+    }
+    numero(R, 'iof', 13, 2)
     numero(R, 'abatimento', 13, 2)
     fixo('0', 13)
-    numero(R, 'total', 13, 2)
-    numero(R, 'juros', 13, 2)
-    numero(R, 'outros', 13, 2)
+    if (R.operacao == 'Entrada' && K.carteira == 'Descontada') {
+      fixo('0', 13)
+    } else {
+      numero(R, 'saldo', 13, 2)
+    }
+    if (R.operacao == 'Entrada' && K.carteira == 'Descontada') {
+      if (K.info != '') {
+        R.juros = parseInt(K.info) / 100
+      }
+      fixo('0', 13)
+    } else {
+      numero(R, 'juros', 13, 2)
+    }
+    fixo(() => Math.round(100 *
+      (R.juros == 0 && R.saldo > 0 ? Math.abs(R.saldo - R.valor) : 0)
+    ), 13, true)
     fixo(' ', 3)
     data(R, 'credito', 6, true)
-    fixo('0', 23)
+    texto(R, 'erro', 4)
+    fixo('0', 19)
     texto(R, 'nome', 30)
     fixo(' ', 23)
     texto(R, 'mensagem', 8)
@@ -88,23 +119,27 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('\r\n')
   })
   fixo('920')
-  fixo(['1', '4'], 1)
+  mapa(K, 'carteira', {
+    '1': 'Simples',
+    '2': 'Vinculada',
+    '4': 'Descontada'
+  })
   fixo('341')
   fixo(' ', 10)
-  numero(X, 'simples_qtde', 8)
-  numero(X, 'simples_total', 14, 2)
-  texto(X, 'simples_aviso', 8)
+  numero(X, 'quantidade', 8)
+  numero(X, 'total', 14, 2)
+  texto(X, 'info', 8)
   fixo(' ', 10)
-  numero(X, 'vinculada_qtde', 8)
-  numero(X, 'vinculada_total', 14, 2)
-  texto(X, 'vinculada_aviso', 8)
+  numero(X, 'quantidade2', 8)
+  numero(X, 'total2', 14, 2)
+  texto(X, 'info2', 8)
   fixo(' ', 50)
   fixo('0', 30)
   fixo(' ', 10)
-  numero(X, 'escritural_qtde', 8)
-  numero(X, 'escritural_total', 14, 2)
-  texto(X, 'escritural_aviso', 8)
-  fixo([X.sequencia, 0], 5, true)
+  numero(X, 'quantidade3', 8)
+  numero(X, 'total3', 14, 2)
+  texto(X, 'info3', 8)
+  fixo(() => K.carteira == 'Descontada' ? 0 : X.sequencia, 5, true)
   fixo(X.registros.length, 8, true)
   fixo(Math.round(100 * X.registros.reduce(
     (total, {valor}) => total + valor

@@ -1,5 +1,5 @@
 import bancos from '../bancos.js'
-import {tipo} from '../lib.js'
+import {tipo, hoje} from '../lib.js'
 
 export default ({
   X,
@@ -9,15 +9,20 @@ export default ({
   mapa,
   fixo
 }) => {
+  const K = {
+    credito: X.registros.reduce((c, {credito}) =>
+      c > credito ? c : credito
+    , '') || hoje()
+  }
   fixo('02RETORNO01COBRANCA       ')
-  texto(X, 'id', 20)
+  texto(X, 'codigo', 20)
   texto(X, 'nome', 30)
   fixo('237BRADESCO       ')
-  data(X, 'criacao', 6)
+  data(X, 'geracao', 6)
   fixo('01600000')
   numero(X, 'sequencia', 5)
   fixo(' ', 266)
-  data(X, 'credito', 6)
+  data(K, 'credito', 6)
   fixo(' ', 9)
   fixo('000001')
   fixo('\r\n')
@@ -26,15 +31,15 @@ export default ({
     fixo(tipo(X, 'cnpjcpf'), 1)
     numero(X, 'cnpjcpf', 14)
     fixo('0', 3)
-    numero(X, 'carteira', 4)
+    numero(R, 'carteira', 4)
     numero(X, 'agencia', 5)
     numero(X, 'conta', 8)
-    fixo(() => R.duplicata, 25)
+    fixo(() => R.documento, 25)
     fixo('0', 8)
     texto(R, 'id', 12)
     fixo('0', 22)
     fixo('000')
-    fixo([X.carteira, 0], 1)
+    fixo([R.carteira, 0], 1)
     numero(R, 'op', 2)
     if (R.op == 2) {
       R.operacao = "Entrada"
@@ -50,7 +55,7 @@ export default ({
       R.operacao = "Erro"
     }
     data(R, 'ocorrencia', 6)
-    texto(R, 'duplicata', 10)
+    texto(R, 'documento', 10)
     fixo(R.id, 20, true)
     data(R, 'vencimento', 6)
     numero(R, 'valor', 13, 2)
@@ -61,12 +66,16 @@ export default ({
     fixo('0', 39)
     numero(R, 'abatimento', 13, 2)
     fixo('0', 13)
-    numero(R, 'total', 13, 2)
+    numero(R, 'saldo', 13, 2)
     numero(R, 'juros', 13, 2)
-    numero(R, 'outros', 13, 2)
-    fixo(' ', 9)
+    //numero(R, 'outros', 13, 2)
+    fixo('0', 13)
+    fixo(' ', 3)
+    data(R, 'credito', 6)
     texto(R, 'pagamento', 3)
-    fixo(' ', 14)
+    console.log(R.operacao)
+    fixo(' ', 10)
+    fixo(() => R.operacao == "Pagamento" ? '0' : '', 4)
     texto(R, 'mensagem', 10)
     fixo(' ', 40)
     texto(R, 'cartorio', 12)
@@ -76,9 +85,9 @@ export default ({
   })
   fixo('9201237')
   fixo(' ', 10)
-  numero(X, 'simples_qtde', 8)
-  numero(X, 'simples_total', 14, 2)
-  texto(X, 'simples_aviso', 8)
+  numero(X, 'quantidade', 8)
+  numero(X, 'total', 14, 2)
+  texto(X, 'info', 8)
   fixo(' ', 10)
 
   const qtde = codigo => X.registros.reduce(

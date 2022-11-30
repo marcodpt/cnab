@@ -31,9 +31,14 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Gerar erro ao tentar salvar varias vezes a mesma variável
  - Corrigir problema no favicon na pagina de testes
  - Valores defaults preenchidos no objeto
- - Implementar retorno cobrança
+ - Eliminar regra de 1 caracter repete ele nos campos fixos
+ - campos fixos saber tratar mapas
+ - adicionar testes ao objeto
  - Implementar sispag
  - Implementar conciliação bancária
+
+ - Corrigir index nos testes
+ - Implementar retorno cobrança
 
 ## Testes
 ### deno
