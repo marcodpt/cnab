@@ -1,4 +1,3 @@
-import uf from '../uf.js'
 import bancos from '../bancos.js'
 import {hoje} from '../lib.js'
 
