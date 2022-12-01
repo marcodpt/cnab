@@ -121,12 +121,7 @@ export default ({
     fixo(() => R.operacao != "Pagamento" ? 0 :
       Math.round(100 * (R.valor + R.juros))
     , 15, true)
-    fixo(() =>
-      R.operacao == "Entrada" ?
-        [0, Math.round(100 * (R.valor - R.juros - R.iof))] : 
-      R.operacao == "Pagamento" ?
-        [0, Math.round(100 * (R.valor + R.juros))] : 0
-    , 15, true)
+    numero(R, 'saldo', 15, 2)
     numero(R, 'abatimento', 15, 2)
     fixo('0', 15)
     data(R, 'ocorrencia', 8)

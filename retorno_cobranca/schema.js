@@ -83,7 +83,7 @@ export default {
     },
     "quantidade": {
       "title": "Quantidade",
-      "description": "Quantidade de títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere a quantidade de títulos em cobrança simples.\nNo Bradesco se refere a quantidade total dos títulos em cobrança.\nNo Banco do Brasil essa valor está presente mas não documentado.\nOs demais bancos ignoram esse campo.",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
@@ -91,7 +91,7 @@ export default {
     },
     "total": {
       "title": "Total (R$)",
-      "description": "Valor total dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao valor total dos títulos em cobrança simples.\nNo Bradesco se refere ao valor total dos títulos em cobrança.\nNo Banco do Brasil essa total está presente mas não documentado.\nOs demais bancos ignoram esse campo.",
       "type": "number",
       "multipleOf": 0.01,
       "minimum": 0,
@@ -100,14 +100,14 @@ export default {
     },
     "info": {
       "title": "Aviso",
-      "description": "Referência do aviso bancário dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança simples.\nNo Bradesco se refere ao aviso bancário dos títulos em cobrança.\nNo Banco do Brasil se refere ao número do convênio de cobrança.\nOs demais bancos ignoram esse campo.",
       "type": "string",
       "maxLength": 20,
       "default": ""
     },
     "quantidade2": {
       "title": "Quantidade",
-      "description": "Quantidade de títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere a quantidade de títulos em cobrança vinculada.\nNo Banco do Brasil essa valor está presente mas não documentado.\nOs demais bancos ignoram esse campo.",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
@@ -115,7 +115,7 @@ export default {
     },
     "total2": {
       "title": "Total (R$)",
-      "description": "Valor total dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao valor total dos títulos em cobrança vinculada.\nNo Banco do Brasil essa total está presente mas não documentado.\nOs demais bancos ignoram esse campo.",
       "type": "number",
       "multipleOf": 0.01,
       "minimum": 0,
@@ -124,14 +124,14 @@ export default {
     },
     "info2": {
       "title": "Aviso bancário",
-      "description": "Referência do aviso bancário dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança vinculada.\nNo Banco do Brasil se refere a um código de retorno de uso do banco não documentado.\nOs demais bancos ignoram esse campo.",
       "type": "string",
       "maxLength": 20,
       "default": ""
     },
     "quantidade3": {
       "title": "Quantidade de títulos",
-      "description": "Quantidade de títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere a quantidade de títulos em cobrança descontada.\nOs demais bancos ignoram esse campo.",
       "type": "integer",
       "minimum": 0,
       "maximum": 99999999,
@@ -139,7 +139,7 @@ export default {
     },
     "total3": {
       "title": "Total (R$)",
-      "description": "Valor total dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao valor total dos títulos em cobrança descontada.\nOs demais bancos ignoram esse campo.",
       "type": "number",
       "multipleOf": 0.01,
       "minimum": 0,
@@ -148,7 +148,7 @@ export default {
     },
     "info3": {
       "title": "Aviso bancário",
-      "description": "Referência do aviso bancário dos títulos em cobrança simples",
+      "description": "No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança descontada.\nOs demais bancos ignoram esse campo.",
       "type": "string",
       "maxLength": 20,
       "default": ""
@@ -184,7 +184,7 @@ export default {
           },
           "carteira": {
             "title": "Carteira",
-            "description": "Carteira do título no banco.",
+            "description": "Carteira do título no banco.\nApenas a Caixa ignora esse campo.",
             "type": "string",
             "enum": [
               "Simples",
@@ -210,7 +210,8 @@ export default {
             "default": 0
           },
           "op": {
-            "title": "Codigo da Operação",
+            "title": "Código da Operação",
+            "description": "Todos os bancos utilizam esse campo.",
             "type": "integer",
             "minimum": 0,
             "maximum": 99,
@@ -218,6 +219,7 @@ export default {
           },
           "operacao": {
             "title": "Operação",
+            "description": "Categoria do código da operação.\nAplicado em todos os bancos.",
             "type": "string",
             "enum": [
               "Outro",
@@ -232,24 +234,21 @@ export default {
           },
           "ocorrencia": {
             "title": "Data da Ocorrência",
-            "description": "Todos os bancos utilizam esse campo.",
+            "description": "Data contabil da ocorrência.\nTodos os bancos utilizam esse campo.",
             "type": "string",
             "format": "date",
             "default": hoje()
           },
-          "pagamento": {
-            "title": "Meio de pagamento",
-            "type": "string",
-            "default": ""
-          },
           "banco": {
             "title": "Banco",
+            "description": "Banco onde foi efetuado o pagamento do título.\nTodos os bancos utilizam esse campo.",
             "type": "string",
             "enum": Object.values(bancos),
             "default": ""
           },
           "agencia": {
             "title": "Agência",
+            "description": "Agência onde foi efetuado o pagamento do título.\nTodos os bancos utilizam esse campo.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -257,6 +256,7 @@ export default {
           },
           "juros": {
             "title": "Juros (R$)",
+            "description": "Juros pago pelo cliente na baixa do título.\nTodos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -265,7 +265,7 @@ export default {
           },
           "abatimento": {
             "title": "Abatimento (R$)",
-            "description": "",
+            "description": "Abatimento concedido no título.\nTodos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -274,7 +274,7 @@ export default {
           },
           "iof": {
             "title": "IOF (R$)",
-            "description": "",
+            "description": "Imposto sobre operação financeira, utilizado em títulos descontados.\nTodos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -283,7 +283,7 @@ export default {
           },
           "tarifa": {
             "title": "Tarifa (R$)",
-            "description": "",
+            "description": "Tarifa bancária ou custas de cartório associada a operação.\nTodos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -291,17 +291,8 @@ export default {
             "default": 0
           },
           "saldo": {
-            "title": "Saldo em Conta (R$)",
-            "description": "",
-            "type": "number",
-            "multipleOf": 0.01,
-            "minimum": 0,
-            "maximum": 99999999999.99,
-            "default": 0
-          },
-          "outros": {
-            "title": "Outros créditos (R$)",
-            "description": "",
+            "title": "Saldo (R$)",
+            "description": "Saldo creditado em conta.\nTodos os bancos utilizam esse campo.",
             "type": "number",
             "multipleOf": 0.01,
             "minimum": 0,
@@ -310,25 +301,24 @@ export default {
           },
           "credito": {
             "title": "Data de crédito",
+            "description": "Data que o valor será creditado em conta.\nTodos os bancos utilizam esse campo.",
             "type": "string",
             "format": "date",
             "default": hoje()
           },
           "erro": {
             "title": "Código do Erro",
+            "description": "Código dos erros apresentados no processamento da remessa.\nApenas caixa ignora esse campo.",
             "type": "string",
             "default": "",
-            "maxLength": 4
+            "maxLength": 11 
           },
           "mensagem": {
-            "title": "Mensagem/Erros",
+            "title": "Mensagem do banco.\nNo itaú o início da mensagem pode ser eventuais erros e o final é o código do meio de pagamento.\nNa caixa a mensagem se refere ao código do meio de pagamento.\nOs demais bancos não utilizam esse campo.",
+            "description": "",
             "type": "string",
-            "default": ""
-          },
-          "cartorio": {
-            "title": "Cartorio e Protocolo",
-            "type": "string",
-            "default": ""
+            "default": "",
+            "maxLength": 17
           }
         }
       }

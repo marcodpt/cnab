@@ -30,8 +30,11 @@ export default ({
     fixo('10')
     fixo(tipo(X, 'cnpjcpf'), 1)
     numero(X, 'cnpjcpf', 14)
-    fixo('0', 3)
-    numero(R, 'carteira', 4)
+    fixo('0', 5)
+    mapa(R, 'carteira', {
+      '09': 'Simples',
+      '28': 'Descontada'
+    })
     numero(X, 'agencia', 5)
     numero(X, 'conta', 8)
     fixo(() => R.documento, 25)
@@ -39,7 +42,7 @@ export default ({
     texto(R, 'id', 12)
     fixo('0', 22)
     fixo('000')
-    fixo([R.carteira, 0], 1)
+    fixo(() => R.carteira == "Simples" ? 9 : 0, 1)
     numero(R, 'op', 2)
     if (R.op == 2) {
       R.operacao = "Entrada"
@@ -63,23 +66,20 @@ export default ({
     numero(R, 'agencia', 5)
     fixo('  ')
     numero(R, 'tarifa', 13, 2)
-    fixo('0', 39)
+    fixo('0', 26)
+    numero(R, 'iof', 13, 2)
     numero(R, 'abatimento', 13, 2)
     fixo('0', 13)
     numero(R, 'saldo', 13, 2)
     numero(R, 'juros', 13, 2)
-    //numero(R, 'outros', 13, 2)
     fixo('0', 13)
     fixo(' ', 3)
     data(R, 'credito', 6)
-    texto(R, 'pagamento', 3)
-    console.log(R.operacao)
+    fixo(' ', 3)
     fixo(' ', 10)
-    fixo(() => R.operacao == "Pagamento" ? '0' : '', 4)
-    texto(R, 'mensagem', 10)
-    fixo(' ', 40)
-    texto(R, 'cartorio', 12)
-    fixo(' ', 14)
+    texto(R, 'erro', 6)
+    fixo('0', 8)
+    fixo(' ', 66)
     fixo(index + 2, 6, true)
     fixo('\r\n')
   })
@@ -93,13 +93,17 @@ export default ({
   const qtde = codigo => X.registros.reduce(
     (total, {op}) => total + (op == codigo ? 1 : 0)
   , 0)
-  const total = codigo => Math.round(100 * X.registros.reduce(
-    (total, {valor, op}) => total + (op == codigo ? valor : 0)
-  , 0))
+  const total = (codigo, real) => Math.round(
+    100 * X.registros.reduce((total, {
+      valor,
+      saldo,
+      op
+    }) => total + (op == codigo ? real ? saldo : valor : 0), 0)
+  )
 
   fixo(qtde(2), 5, true)
   fixo(total(2), 12, true)
-  fixo(total(6), 12, true)
+  fixo(total(6, true), 12, true)
   fixo(qtde(6), 5, true)
   fixo(total(6), 12, true)
   fixo(qtde(9)+qtde(10), 5, true)

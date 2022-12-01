@@ -29,7 +29,11 @@ export default ({
     fixo(' ', 25)
     texto(R, 'id', 11)
     fixo(' ', 8)
-    numero(X, 'carteira', 1)
+    mapa(X, 'carteira', {
+      '1': 'Simples',
+      '2': 'Vinculada',
+      '4': 'Descontada'
+    })
     numero(R, 'op', 2)
     if (R.op == 1 || R.op == 2) {
       R.operacao = "Entrada"
@@ -62,7 +66,7 @@ export default ({
     fixo('0', 13)
     fixo(' ', 84)
     fixo(['1', '0'])
-    texto(R, 'mensagem', 8)
+    texto(R, 'erro', 8)
     data(R, 'credito', 6)
     fixo('0', 5)
     fixo(index + 2, 6, true)

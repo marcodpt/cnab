@@ -56,7 +56,7 @@ export default ({
     numero(R, 'agencia', 5)
     fixo('01')
     numero(R, 'tarifa', 13, 2)
-    texto(R, 'pagamento', 6)
+    texto(R, 'mensagem', 6)
     fixo(() => R.credito || X.geracao, 6)
     fixo(' ', 14)
     numero(R, 'iof', 13, 2)
