@@ -15,7 +15,7 @@ export default ({
   texto(X, 'nome', 30)
   fixo('707BANCO DAYCOVAL ')
   data(X, 'geracao', 6)
-  fixo(['01600', '06250'])
+  fixo('01600')
   fixo('BPI')
   numero(X, 'sequencia', 5)
   fixo(' ', 281)
@@ -28,8 +28,8 @@ export default ({
     fixo(X.codigo, 20)
     fixo(' ', 25)
     texto(R, 'id', 11)
-    fixo(' ', 8)
-    mapa(X, 'carteira', {
+    fixo(' ', 34)
+    mapa(R, 'carteira', {
       '1': 'Simples',
       '2': 'Vinculada',
       '4': 'Descontada'
@@ -60,15 +60,15 @@ export default ({
     fixo(' ', 26)
     numero(R, 'iof', 13, 2)
     numero(R, 'abatimento', 13, 2)
-    numero(R, 'descontos', 13, 2)
+    fixo('0', 13)
     numero(R, 'saldo', 13, 2)
     numero(R, 'juros', 13, 2)
     fixo('0', 13)
     fixo(' ', 84)
-    fixo(['1', '0'])
+    fixo('1')
     texto(R, 'erro', 8)
     data(R, 'credito', 6)
-    fixo('0', 5)
+    fixo('0', 3)
     fixo(index + 2, 6, true)
     fixo('\n')
   })

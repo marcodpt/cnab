@@ -1,8 +1,20 @@
 import remessa_cobranca from './remessa_cobranca/dados.js'
+import retorno_cobranca from './retorno_cobranca/dados.js'
 
 const Testes = {
   remessa_cobranca: {
     dados: remessa_cobranca,
+    bancos: {
+      itau: null,
+      bradesco: null,
+      santander: null,
+      caixa: null,
+      bb: null,
+      daycoval: null
+    }
+  },
+  retorno_cobranca: {
+    dados: retorno_cobranca,
     bancos: {
       itau: null,
       bradesco: null,

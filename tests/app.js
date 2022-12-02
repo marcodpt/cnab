@@ -1,6 +1,6 @@
 import cnab from '../index.js'
 import tests from  './tests.js'
-import {linhas} from '../lib.js'
+import {linhas, copiar} from '../lib.js'
 
 QUnit.config.autostart = false
 const Testes = await tests()
@@ -15,7 +15,7 @@ Object.keys(Testes).forEach(tipo => {
         const Esperado = linhas(esperado)
         const a = Esperado.length
         const resultado = cnab({
-          ...Testes[tipo].dados,
+          ...copiar(Testes[tipo].dados),
           banco: banco
         })
         const Resultado = linhas(resultado)

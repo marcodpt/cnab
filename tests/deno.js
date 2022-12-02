@@ -1,7 +1,8 @@
 import {assertEquals} from "https://deno.land/std@0.166.0/testing/asserts.ts"
 import cnab from '../index.js'
-import {linhas} from '../lib.js'
+import {linhas, copiar} from '../lib.js'
 import remessa_cobranca from './remessa_cobranca/dados.js'
+import retorno_cobranca from './retorno_cobranca/dados.js'
 
 const Testes = {
   remessa_cobranca: {
@@ -14,6 +15,17 @@ const Testes = {
       bb: await Deno.readTextFile("./remessa_cobranca/bb.txt"),
       daycoval: await Deno.readTextFile("./remessa_cobranca/daycoval.txt")
     }
+  },
+  retorno_cobranca: {
+    dados: retorno_cobranca,
+    bancos: {
+      itau: await Deno.readTextFile("./retorno_cobranca/itau.txt"),
+      bradesco: await Deno.readTextFile("./retorno_cobranca/bradesco.txt"),
+      santander: await Deno.readTextFile("./retorno_cobranca/santander.txt"),
+      caixa: await Deno.readTextFile("./retorno_cobranca/caixa.txt"),
+      bb: await Deno.readTextFile("./retorno_cobranca/bb.txt"),
+      daycoval: await Deno.readTextFile("./retorno_cobranca/daycoval.txt")
+    }
   }
 }
 
@@ -25,7 +37,7 @@ Object.keys(Testes).forEach(tipo => {
       const Esperado = linhas(esperado)
       const a = Esperado.length
       const resultado = cnab({
-        ...Testes[tipo].dados,
+        ...copiar(Testes[tipo].dados),
         banco: banco
       })
       const Resultado = linhas(resultado)

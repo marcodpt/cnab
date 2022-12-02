@@ -26,7 +26,7 @@ export default ({
     numero(X, 'cnpjcpf', 14)
     fixo(X.codigo, 20)
     fixo(' ', 25)
-    numero(R, 'id', 8)
+    texto(R, 'id', 8)
     fixo(' ', 37)
     mapa(R, 'carteira', {
       '2': 'Simples',
