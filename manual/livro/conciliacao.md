@@ -215,7 +215,7 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Planner Corretora de Valores S.A."`
    - `"RENASCENCA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA"`
    - `"XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A"`
-   - `"CAIXA"`
+   - `"caixa"`
    - `"Lecca Crédito, Financiamento e Investimento S/A"`
    - `"Banco BOCOM BBM S.A"`
    - `"PORTOCRED S.A. – CREDITO, FINANCIAMENTO E INVESTIMENTO"`
@@ -273,7 +273,7 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco Credit Agricole Brasil S.A"`
    - `"Banco Fibra S.A"`
    - `"Banco Cifra S.A"`
-   - `"BRADESCO"`
+   - `"bradesco"`
    - `"Banco Clássico S.A"`
    - `"Banco Máxima S.A"`
    - `"Banco ABC Brasil S.A"`
@@ -330,7 +330,7 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco Digio S.A."`
    - `"Banco C6 S.A."`
    - `"Super Pagamentos e Administração de Meios Eletrônicos S.A."`
-   - `"BANCO ITAU S.A."`
+   - `"itau"`
    - `"Creditas Sociedade de Crédito Direto S.A."`
    - `"FFA SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA."`
    - `"Banco XP S.A."`
@@ -378,7 +378,7 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco Indusval S.A"`
    - `"Banco A.J.Renner S.A"`
    - `"Banco Votorantim S.A"`
-   - `"Banco Daycoval S.A"`
+   - `"daycoval"`
    - `"Banco Ourinvest S.A"`
    - `"Banco Cetelem S.A"`
    - `"Banco Ribeirão Preto S.A"`
@@ -396,6 +396,8 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco KEB HANA do Brasil S.A"`
    - `"Indefinido"`
    - `"Nenhum"`
+   - `"santander"`
+   - `"bb"`
    - `"B&T CORRETORA DE CAMBIO LTDA."`
    - `"Banco ABN AMRO S.A"`
    - `"Banco Alfa S.A"`
@@ -408,7 +410,6 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco Crefisa S.A"`
    - `"Banco da Amazônia S.A"`
    - `"Banco da China Brasil S.A"`
-   - `"Banco do Brasil S.A"`
    - `"Banco do Estado de Sergipe S.A"`
    - `"Banco do Estado do Pará S.A"`
    - `"Banco do Estado do Rio Grande do Sul S.A"`
@@ -422,7 +423,6 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Banco Morgan Stanley S.A"`
    - `"Banco Nacional de Desenvolvimento Econômico e Social – BNDE"`
    - `"Banco Original do Agronegócio S.A"`
-   - `"SANTANDER"`
    - `"Banco Topázio S.A"`
    - `"Banco Tricury S.A"`
    - `"BancoSeguro S.A"`

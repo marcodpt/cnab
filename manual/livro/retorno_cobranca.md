@@ -8,11 +8,17 @@ Objeto JSON para leitura de arquivo CNAB de Retorno de Cobrança
 
 #### Tipo
 
+Tipo do objeto.
+
+Necessário preencher para identificar o tipo do layout ao gerar o arquivo.
+
  - Fixo: `retorno_cobranca`
 
 ### nome: `string`
 
 #### Nome da Empresa
+
+Todos os bancos utilizam esse campo.
 
  - Comprimento máximo: `30`
  - Valor padrão: `""`
@@ -21,33 +27,25 @@ Objeto JSON para leitura de arquivo CNAB de Retorno de Cobrança
 
 #### CNPJ/CPF da Empresa
 
+Todos os bancos utilizam esse campo.
+
  - Comprimento máximo: `14`
- - Expressão Regular: `^(|d{11}|d{14})$`
+ - Expressão Regular: `^(|\d{11}|\d{14})$`
  - Valor padrão: `""`
 
-### id: `string`
+### geracao: `string`
 
-#### Id da Empresa no banco
+#### Data de geração do Arquivo
 
- - Comprimento máximo: `20`
- - Valor padrão: `""`
-
-### criacao: `string`
-
-#### Data de geração
+Todos os bancos utilizam esse campo.
 
  - Valor padrão: `Dia atual`
-
-### hora: `string`
-
-#### Hora de geração
-
- - Comprimento máximo: `6`
- - Valor padrão: `"000000"`
 
 ### banco: `string`
 
 #### Banco
+
+Layout do arquivo.
 
  - Valor padrão: `""`
  - Opções: 
@@ -58,141 +56,179 @@ Objeto JSON para leitura de arquivo CNAB de Retorno de Cobrança
    - `"bb"`
    - `"daycoval"`
 
+### codigo: `string`
+
+#### Código da Empresa
+
+Identificador da empresa no banco.
+
+Itaú e Caixa ignoram esse campo.
+
+ - Comprimento máximo: `20`
+ - Valor padrão: `""`
+
 ### agencia: `integer`
 
 #### Agência
 
+Agência da empresa.
+
+Daycoval e Santander ignoram esse campo.
+
+ - Valor mínimo: `0`
+ - Valor máximo: `99999`
  - Valor padrão: `0`
 
 ### conta: `integer`
 
 #### Conta
 
- - Valor padrão: `0`
+Conta da empresa.
 
-### carteira: `integer`
+No Santander é preenchido com o código do cedente.
 
-#### Carteira
+Daycoval ignora esse campo.
 
- - Valor padrão: `0`
-
-### credito: `string`
-
-#### Data de crédito
-
- - Valor padrão: `Dia atual`
-
-### versao: `integer`
-
-#### Versão
-
- - Valor mínimo: `1`
- - Valor máximo: `999`
+ - Valor mínimo: `0`
+ - Valor máximo: `99999999`
  - Valor padrão: `0`
 
 ### sequencia: `integer`
 
 #### Numero Sequencial
 
+Número sequencial do arquivo começando de 1.
+
+Todos os bancos utilizam esse campo.
+
  - Valor mínimo: `1`
  - Valor máximo: `999999`
  - Valor padrão: `1`
 
-### mensagem: `string`
+### quantidade: `integer`
 
-#### Mensagem
+#### Quantidade
+
+No Santander e no Itaú se refere a quantidade de títulos em cobrança simples.
+
+No Bradesco se refere a quantidade total dos títulos em cobrança.
+
+No Banco do Brasil essa valor está presente mas não documentado.
+
+Os demais bancos ignoram esse campo.
+
+ - Valor mínimo: `0`
+ - Valor máximo: `99999999`
+ - Valor padrão: `0`
+
+### total: `number`
+
+#### Total (R$)
+
+No Santander e no Itaú se refere ao valor total dos títulos em cobrança simples.
+
+No Bradesco se refere ao valor total dos títulos em cobrança.
+
+No Banco do Brasil essa total está presente mas não documentado.
+
+Os demais bancos ignoram esse campo.
+
+ - Precisão: `0.01`
+ - Valor mínimo: `0`
+ - Valor máximo: `999999999999.99`
+ - Valor padrão: `0`
+
+### info: `string`
+
+#### Aviso
+
+No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança simples.
+
+No Bradesco se refere ao aviso bancário dos títulos em cobrança.
+
+No Banco do Brasil se refere ao número do convênio de cobrança.
+
+Os demais bancos ignoram esse campo.
 
  - Comprimento máximo: `20`
  - Valor padrão: `""`
 
-### simples_qtde: `integer`
+### quantidade2: `integer`
 
-#### Quantidade simples
+#### Quantidade
 
-Quantidade de títulos em cobrança simples
+No Santander e no Itaú se refere a quantidade de títulos em cobrança vinculada.
+
+No Banco do Brasil essa valor está presente mas não documentado.
+
+Os demais bancos ignoram esse campo.
 
  - Valor mínimo: `0`
  - Valor máximo: `99999999`
  - Valor padrão: `0`
 
-### simples_total: `number`
+### total2: `number`
 
-#### Total simples (R$)
+#### Total (R$)
 
-Valor total dos títulos em cobrança simples
+No Santander e no Itaú se refere ao valor total dos títulos em cobrança vinculada.
+
+No Banco do Brasil essa total está presente mas não documentado.
+
+Os demais bancos ignoram esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
  - Valor máximo: `999999999999.99`
  - Valor padrão: `0`
 
-### simples_aviso: `string`
+### info2: `string`
 
-#### Aviso simples
+#### Aviso bancário
 
-Referência do aviso bancário dos títulos em cobrança simples
+No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança vinculada.
 
- - Comprimento máximo: `8`
+No Banco do Brasil se refere a um código de retorno de uso do banco não documentado.
+
+Os demais bancos ignoram esse campo.
+
+ - Comprimento máximo: `20`
  - Valor padrão: `""`
 
-### vinculada_qtde: `integer`
+### quantidade3: `integer`
 
-#### Quantidade vinculada
+#### Quantidade de títulos
 
-Quantidade de títulos em cobrança vinculada
+No Santander e no Itaú se refere a quantidade de títulos em cobrança descontada.
+
+Os demais bancos ignoram esse campo.
 
  - Valor mínimo: `0`
  - Valor máximo: `99999999`
  - Valor padrão: `0`
 
-### vinculada_total: `number`
+### total3: `number`
 
-#### Total vinculada (R$)
+#### Total (R$)
 
-Valor total dos títulos em cobrança vinculada
+No Santander e no Itaú se refere ao valor total dos títulos em cobrança descontada.
+
+Os demais bancos ignoram esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
  - Valor máximo: `999999999999.99`
  - Valor padrão: `0`
 
-### vinculada_aviso: `string`
+### info3: `string`
 
-#### Aviso vinculada
+#### Aviso bancário
 
-Referência do aviso bancário dos títulos em cobrança vinculada
+No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança descontada.
 
- - Comprimento máximo: `8`
- - Valor padrão: `""`
+Os demais bancos ignoram esse campo.
 
-### escritural_qtde: `integer`
-
-#### Quantidade direta/escritural
-
-Quantidade de títulos em cobrança direta/escritural
-
- - Valor mínimo: `0`
- - Valor máximo: `99999999`
- - Valor padrão: `0`
-
-### escritural_total: `number`
-
-#### Total direta/escritural (R$)
-
-Valor total dos títulos em cobrança direta/escritural
-
- - Precisão: `0.01`
- - Valor mínimo: `0`
- - Valor máximo: `999999999999.99`
- - Valor padrão: `0`
-
-### escritural_aviso: `string`
-
-#### Aviso direta/escritural
-
-Referência do aviso bancário dos títulos em cobrança direta/escritural
-
- - Comprimento máximo: `8`
+ - Comprimento máximo: `20`
  - Valor padrão: `""`
 
 ## Registros
@@ -201,20 +237,16 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Nome do Cliente
 
+Apenas Itaú e Santander utilizam esse campo.
+
  - Comprimento máximo: `40`
  - Valor padrão: `""`
 
-### cnpjcpf: `string`
+### documento: `string`
 
-#### CNPJ/CPF do Cliente
+#### Id do documento na empresa (Duplicata)
 
- - Comprimento máximo: `14`
- - Expressão Regular: `^(|d{11}|d{14})$`
- - Valor padrão: `""`
-
-### duplicata: `string`
-
-#### Duplicata
+Todos os bancos utilizam esse campo.
 
  - Comprimento máximo: `10`
  - Valor padrão: `""`
@@ -223,30 +255,38 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Id do Título em Banco
 
+Todos os bancos utilizam esse campo.
+
  - Comprimento máximo: `10`
  - Valor padrão: `""`
 
-### carteira: `integer`
+### carteira: `string`
 
 #### Carteira
 
- - Valor padrão: `0`
+Carteira do título no banco.
 
-### emissao: `string`
+Apenas a Caixa ignora esse campo.
 
-#### Data de Emissão
-
- - Valor padrão: `Dia atual`
+ - Valor padrão: `"Simples"`
+ - Opções: 
+   - `"Simples"`
+   - `"Vinculada"`
+   - `"Descontada"`
 
 ### vencimento: `string`
 
 #### Data de Vencimento
+
+Todos os bancos utilizam esse campo.
 
  - Valor padrão: `Dia atual`
 
 ### valor: `number`
 
 #### Valor (R$)
+
+Todos os bancos utilizam esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
@@ -255,7 +295,9 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 ### op: `integer`
 
-#### Codigo da Operação
+#### Código da Operação
+
+Todos os bancos utilizam esse campo.
 
  - Valor mínimo: `0`
  - Valor máximo: `99`
@@ -264,6 +306,10 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 ### operacao: `string`
 
 #### Operação
+
+Categoria do código da operação.
+
+Aplicado em todos os bancos.
 
  - Valor padrão: `"Outro"`
  - Opções: 
@@ -279,24 +325,26 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Data da Ocorrência
 
+Data contabil da ocorrência.
+
+Todos os bancos utilizam esse campo.
+
  - Valor padrão: `Dia atual`
-
-### pagamento: `string`
-
-#### Meio de pagamento
-
- - Valor padrão: `""`
 
 ### banco: `string`
 
 #### Banco
+
+Banco onde foi efetuado o pagamento do título.
+
+Todos os bancos utilizam esse campo.
 
  - Valor padrão: `""`
  - Opções: 
    - `"Planner Corretora de Valores S.A."`
    - `"RENASCENCA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA"`
    - `"XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A"`
-   - `"CAIXA"`
+   - `"caixa"`
    - `"Lecca Crédito, Financiamento e Investimento S/A"`
    - `"Banco BOCOM BBM S.A"`
    - `"PORTOCRED S.A. – CREDITO, FINANCIAMENTO E INVESTIMENTO"`
@@ -354,7 +402,7 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco Credit Agricole Brasil S.A"`
    - `"Banco Fibra S.A"`
    - `"Banco Cifra S.A"`
-   - `"BRADESCO"`
+   - `"bradesco"`
    - `"Banco Clássico S.A"`
    - `"Banco Máxima S.A"`
    - `"Banco ABC Brasil S.A"`
@@ -411,7 +459,7 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco Digio S.A."`
    - `"Banco C6 S.A."`
    - `"Super Pagamentos e Administração de Meios Eletrônicos S.A."`
-   - `"BANCO ITAU S.A."`
+   - `"itau"`
    - `"Creditas Sociedade de Crédito Direto S.A."`
    - `"FFA SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA."`
    - `"Banco XP S.A."`
@@ -459,7 +507,7 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco Indusval S.A"`
    - `"Banco A.J.Renner S.A"`
    - `"Banco Votorantim S.A"`
-   - `"Banco Daycoval S.A"`
+   - `"daycoval"`
    - `"Banco Ourinvest S.A"`
    - `"Banco Cetelem S.A"`
    - `"Banco Ribeirão Preto S.A"`
@@ -477,6 +525,8 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco KEB HANA do Brasil S.A"`
    - `"Indefinido"`
    - `"Nenhum"`
+   - `"santander"`
+   - `"bb"`
    - `"B&T CORRETORA DE CAMBIO LTDA."`
    - `"Banco ABN AMRO S.A"`
    - `"Banco Alfa S.A"`
@@ -489,7 +539,6 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco Crefisa S.A"`
    - `"Banco da Amazônia S.A"`
    - `"Banco da China Brasil S.A"`
-   - `"Banco do Brasil S.A"`
    - `"Banco do Estado de Sergipe S.A"`
    - `"Banco do Estado do Pará S.A"`
    - `"Banco do Estado do Rio Grande do Sul S.A"`
@@ -503,7 +552,6 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
    - `"Banco Morgan Stanley S.A"`
    - `"Banco Nacional de Desenvolvimento Econômico e Social – BNDE"`
    - `"Banco Original do Agronegócio S.A"`
-   - `"SANTANDER"`
    - `"Banco Topázio S.A"`
    - `"Banco Tricury S.A"`
    - `"BancoSeguro S.A"`
@@ -535,19 +583,21 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Agência
 
+Agência onde foi efetuado o pagamento do título.
+
+Todos os bancos utilizam esse campo.
+
  - Valor mínimo: `0`
  - Valor máximo: `99999`
  - Valor padrão: `0`
 
-### especie: `string`
-
-#### Espécie
-
- - Valor padrão: `""`
-
 ### juros: `number`
 
 #### Juros (R$)
+
+Juros pago pelo cliente na baixa do título.
+
+Todos os bancos utilizam esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
@@ -558,6 +608,10 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Abatimento (R$)
 
+Abatimento concedido no título.
+
+Todos os bancos utilizam esse campo.
+
  - Precisão: `0.01`
  - Valor mínimo: `0`
  - Valor máximo: `99999999999.99`
@@ -566,6 +620,10 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 ### iof: `number`
 
 #### IOF (R$)
+
+Imposto sobre operação financeira, utilizado em títulos descontados.
+
+Todos os bancos utilizam esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
@@ -576,32 +634,9 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Tarifa (R$)
 
- - Precisão: `0.01`
- - Valor mínimo: `0`
- - Valor máximo: `99999999999.99`
- - Valor padrão: `0`
+Tarifa bancária ou custas de cartório associada a operação.
 
-### despesas: `number`
-
-#### Despesas (R$)
-
- - Precisão: `0.01`
- - Valor mínimo: `0`
- - Valor máximo: `99999999999.99`
- - Valor padrão: `0`
-
-### custas: `number`
-
-#### Custas (R$)
-
- - Precisão: `0.01`
- - Valor mínimo: `0`
- - Valor máximo: `99999999999.99`
- - Valor padrão: `0`
-
-### total: `number`
-
-#### Total (R$)
+Todos os bancos utilizam esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
@@ -612,14 +647,9 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Saldo (R$)
 
- - Precisão: `0.01`
- - Valor mínimo: `0`
- - Valor máximo: `99999999999.99`
- - Valor padrão: `0`
+Saldo creditado em conta.
 
-### outros: `number`
-
-#### Outros créditos (R$)
+Todos os bancos utilizam esse campo.
 
  - Precisão: `0.01`
  - Valor mínimo: `0`
@@ -630,16 +660,29 @@ Referência do aviso bancário dos títulos em cobrança direta/escritural
 
 #### Data de crédito
 
+Data que o valor será creditado em conta.
+
+Todos os bancos utilizam esse campo.
+
  - Valor padrão: `Dia atual`
+
+### erro: `string`
+
+#### Código do Erro
+
+Código dos erros apresentados no processamento da remessa.
+
+Apenas caixa ignora esse campo.
+
+ - Comprimento máximo: `11`
+ - Valor padrão: `""`
 
 ### mensagem: `string`
 
-#### Mensagem/Erros
+#### Mensagem do banco.
+No itaú o início da mensagem pode ser eventuais erros e o final é o código do meio de pagamento.
+Na caixa a mensagem se refere ao código do meio de pagamento.
+Os demais bancos não utilizam esse campo.
 
- - Valor padrão: `""`
-
-### cartorio: `string`
-
-#### Cartorio e Protocolo
-
+ - Comprimento máximo: `17`
  - Valor padrão: `""`

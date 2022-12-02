@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> Início</a></li><li class="chapter-item expanded "><a href="remessa_cobranca.html"><strong aria-hidden="true">2.</strong> Remessa Cobrança</a></li><li class="chapter-item expanded "><a href="retorno_cobranca.html" class="active"><strong aria-hidden="true">3.</strong> Retorno Cobrança</a></li><li class="chapter-item expanded "><a href="sispag.html"><strong aria-hidden="true">4.</strong> Sispag</a></li><li class="chapter-item expanded "><a href="conciliacao.html"><strong aria-hidden="true">5.</strong> Conciliação Bancária</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Início</a></li><li class="chapter-item expanded "><a href="remessa_cobranca.html"><strong aria-hidden="true">2.</strong> Remessa Cobrança</a></li><li class="chapter-item expanded "><a href="retorno_cobranca.html" class="active"><strong aria-hidden="true">3.</strong> Retorno Cobrança</a></li><li class="chapter-item expanded "><a href="sispag.html"><strong aria-hidden="true">4.</strong> Sispag</a></li><li class="chapter-item expanded "><a href="conciliacao.html"><strong aria-hidden="true">5.</strong> Conciliação Bancária</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,41 +139,35 @@
 <h2 id="propriedades"><a class="header" href="#propriedades">Propriedades</a></h2>
 <h3 id="tipo-string"><a class="header" href="#tipo-string">tipo: <code>string</code></a></h3>
 <h4 id="tipo"><a class="header" href="#tipo">Tipo</a></h4>
+<p>Tipo do objeto.</p>
+<p>Necessário preencher para identificar o tipo do layout ao gerar o arquivo.</p>
 <ul>
 <li>Fixo: <code>retorno_cobranca</code></li>
 </ul>
 <h3 id="nome-string"><a class="header" href="#nome-string">nome: <code>string</code></a></h3>
 <h4 id="nome-da-empresa"><a class="header" href="#nome-da-empresa">Nome da Empresa</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>30</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 <h3 id="cnpjcpf-string"><a class="header" href="#cnpjcpf-string">cnpjcpf: <code>string</code></a></h3>
 <h4 id="cnpjcpf-da-empresa"><a class="header" href="#cnpjcpf-da-empresa">CNPJ/CPF da Empresa</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>14</code></li>
-<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
+<li>Expressão Regular: <code>^(|\d{11}|\d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string"><a class="header" href="#id-string">id: <code>string</code></a></h3>
-<h4 id="id-da-empresa-no-banco"><a class="header" href="#id-da-empresa-no-banco">Id da Empresa no banco</a></h4>
-<ul>
-<li>Comprimento máximo: <code>20</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="criacao-string"><a class="header" href="#criacao-string">criacao: <code>string</code></a></h3>
-<h4 id="data-de-geração"><a class="header" href="#data-de-geração">Data de geração</a></h4>
+<h3 id="geracao-string"><a class="header" href="#geracao-string">geracao: <code>string</code></a></h3>
+<h4 id="data-de-geração-do-arquivo"><a class="header" href="#data-de-geração-do-arquivo">Data de geração do Arquivo</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="hora-string"><a class="header" href="#hora-string">hora: <code>string</code></a></h3>
-<h4 id="hora-de-geração"><a class="header" href="#hora-de-geração">Hora de geração</a></h4>
-<ul>
-<li>Comprimento máximo: <code>6</code></li>
-<li>Valor padrão: <code>&quot;000000&quot;</code></li>
-</ul>
 <h3 id="banco-string"><a class="header" href="#banco-string">banco: <code>string</code></a></h3>
 <h4 id="banco"><a class="header" href="#banco">Banco</a></h4>
+<p>Layout do arquivo.</p>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
@@ -187,161 +181,177 @@
 </ul>
 </li>
 </ul>
+<h3 id="codigo-string"><a class="header" href="#codigo-string">codigo: <code>string</code></a></h3>
+<h4 id="código-da-empresa"><a class="header" href="#código-da-empresa">Código da Empresa</a></h4>
+<p>Identificador da empresa no banco.</p>
+<p>Itaú e Caixa ignoram esse campo.</p>
+<ul>
+<li>Comprimento máximo: <code>20</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+</ul>
 <h3 id="agencia-integer"><a class="header" href="#agencia-integer">agencia: <code>integer</code></a></h3>
 <h4 id="agência"><a class="header" href="#agência">Agência</a></h4>
+<p>Agência da empresa.</p>
+<p>Daycoval e Santander ignoram esse campo.</p>
 <ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="conta-integer"><a class="header" href="#conta-integer">conta: <code>integer</code></a></h3>
 <h4 id="conta"><a class="header" href="#conta">Conta</a></h4>
+<p>Conta da empresa.</p>
+<p>No Santander é preenchido com o código do cedente.</p>
+<p>Daycoval ignora esse campo.</p>
 <ul>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="carteira-integer"><a class="header" href="#carteira-integer">carteira: <code>integer</code></a></h3>
-<h4 id="carteira"><a class="header" href="#carteira">Carteira</a></h4>
-<ul>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="credito-string"><a class="header" href="#credito-string">credito: <code>string</code></a></h3>
-<h4 id="data-de-crédito"><a class="header" href="#data-de-crédito">Data de crédito</a></h4>
-<ul>
-<li>Valor padrão: <code>Dia atual</code></li>
-</ul>
-<h3 id="versao-integer"><a class="header" href="#versao-integer">versao: <code>integer</code></a></h3>
-<h4 id="versão"><a class="header" href="#versão">Versão</a></h4>
-<ul>
-<li>Valor mínimo: <code>1</code></li>
-<li>Valor máximo: <code>999</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="sequencia-integer"><a class="header" href="#sequencia-integer">sequencia: <code>integer</code></a></h3>
 <h4 id="numero-sequencial"><a class="header" href="#numero-sequencial">Numero Sequencial</a></h4>
+<p>Número sequencial do arquivo começando de 1.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor mínimo: <code>1</code></li>
 <li>Valor máximo: <code>999999</code></li>
 <li>Valor padrão: <code>1</code></li>
 </ul>
-<h3 id="mensagem-string"><a class="header" href="#mensagem-string">mensagem: <code>string</code></a></h3>
-<h4 id="mensagem"><a class="header" href="#mensagem">Mensagem</a></h4>
+<h3 id="quantidade-integer"><a class="header" href="#quantidade-integer">quantidade: <code>integer</code></a></h3>
+<h4 id="quantidade"><a class="header" href="#quantidade">Quantidade</a></h4>
+<p>No Santander e no Itaú se refere a quantidade de títulos em cobrança simples.</p>
+<p>No Bradesco se refere a quantidade total dos títulos em cobrança.</p>
+<p>No Banco do Brasil essa valor está presente mas não documentado.</p>
+<p>Os demais bancos ignoram esse campo.</p>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>99999999</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="total-number"><a class="header" href="#total-number">total: <code>number</code></a></h3>
+<h4 id="total-r"><a class="header" href="#total-r">Total (R$)</a></h4>
+<p>No Santander e no Itaú se refere ao valor total dos títulos em cobrança simples.</p>
+<p>No Bradesco se refere ao valor total dos títulos em cobrança.</p>
+<p>No Banco do Brasil essa total está presente mas não documentado.</p>
+<p>Os demais bancos ignoram esse campo.</p>
+<ul>
+<li>Precisão: <code>0.01</code></li>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>999999999999.99</code></li>
+<li>Valor padrão: <code>0</code></li>
+</ul>
+<h3 id="info-string"><a class="header" href="#info-string">info: <code>string</code></a></h3>
+<h4 id="aviso"><a class="header" href="#aviso">Aviso</a></h4>
+<p>No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança simples.</p>
+<p>No Bradesco se refere ao aviso bancário dos títulos em cobrança.</p>
+<p>No Banco do Brasil se refere ao número do convênio de cobrança.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="simples_qtde-integer"><a class="header" href="#simples_qtde-integer">simples_qtde: <code>integer</code></a></h3>
-<h4 id="quantidade-simples"><a class="header" href="#quantidade-simples">Quantidade simples</a></h4>
-<p>Quantidade de títulos em cobrança simples</p>
+<h3 id="quantidade2-integer"><a class="header" href="#quantidade2-integer">quantidade2: <code>integer</code></a></h3>
+<h4 id="quantidade-1"><a class="header" href="#quantidade-1">Quantidade</a></h4>
+<p>No Santander e no Itaú se refere a quantidade de títulos em cobrança vinculada.</p>
+<p>No Banco do Brasil essa valor está presente mas não documentado.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>99999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="simples_total-number"><a class="header" href="#simples_total-number">simples_total: <code>number</code></a></h3>
-<h4 id="total-simples-r"><a class="header" href="#total-simples-r">Total simples (R$)</a></h4>
-<p>Valor total dos títulos em cobrança simples</p>
+<h3 id="total2-number"><a class="header" href="#total2-number">total2: <code>number</code></a></h3>
+<h4 id="total-r-1"><a class="header" href="#total-r-1">Total (R$)</a></h4>
+<p>No Santander e no Itaú se refere ao valor total dos títulos em cobrança vinculada.</p>
+<p>No Banco do Brasil essa total está presente mas não documentado.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>999999999999.99</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="simples_aviso-string"><a class="header" href="#simples_aviso-string">simples_aviso: <code>string</code></a></h3>
-<h4 id="aviso-simples"><a class="header" href="#aviso-simples">Aviso simples</a></h4>
-<p>Referência do aviso bancário dos títulos em cobrança simples</p>
+<h3 id="info2-string"><a class="header" href="#info2-string">info2: <code>string</code></a></h3>
+<h4 id="aviso-bancário"><a class="header" href="#aviso-bancário">Aviso bancário</a></h4>
+<p>No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança vinculada.</p>
+<p>No Banco do Brasil se refere a um código de retorno de uso do banco não documentado.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
-<li>Comprimento máximo: <code>8</code></li>
+<li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="vinculada_qtde-integer"><a class="header" href="#vinculada_qtde-integer">vinculada_qtde: <code>integer</code></a></h3>
-<h4 id="quantidade-vinculada"><a class="header" href="#quantidade-vinculada">Quantidade vinculada</a></h4>
-<p>Quantidade de títulos em cobrança vinculada</p>
+<h3 id="quantidade3-integer"><a class="header" href="#quantidade3-integer">quantidade3: <code>integer</code></a></h3>
+<h4 id="quantidade-de-títulos"><a class="header" href="#quantidade-de-títulos">Quantidade de títulos</a></h4>
+<p>No Santander e no Itaú se refere a quantidade de títulos em cobrança descontada.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>99999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="vinculada_total-number"><a class="header" href="#vinculada_total-number">vinculada_total: <code>number</code></a></h3>
-<h4 id="total-vinculada-r"><a class="header" href="#total-vinculada-r">Total vinculada (R$)</a></h4>
-<p>Valor total dos títulos em cobrança vinculada</p>
+<h3 id="total3-number"><a class="header" href="#total3-number">total3: <code>number</code></a></h3>
+<h4 id="total-r-2"><a class="header" href="#total-r-2">Total (R$)</a></h4>
+<p>No Santander e no Itaú se refere ao valor total dos títulos em cobrança descontada.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>999999999999.99</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="vinculada_aviso-string"><a class="header" href="#vinculada_aviso-string">vinculada_aviso: <code>string</code></a></h3>
-<h4 id="aviso-vinculada"><a class="header" href="#aviso-vinculada">Aviso vinculada</a></h4>
-<p>Referência do aviso bancário dos títulos em cobrança vinculada</p>
+<h3 id="info3-string"><a class="header" href="#info3-string">info3: <code>string</code></a></h3>
+<h4 id="aviso-bancário-1"><a class="header" href="#aviso-bancário-1">Aviso bancário</a></h4>
+<p>No Santander e no Itaú se refere ao aviso bancário dos títulos em cobrança descontada.</p>
+<p>Os demais bancos ignoram esse campo.</p>
 <ul>
-<li>Comprimento máximo: <code>8</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="escritural_qtde-integer"><a class="header" href="#escritural_qtde-integer">escritural_qtde: <code>integer</code></a></h3>
-<h4 id="quantidade-diretaescritural"><a class="header" href="#quantidade-diretaescritural">Quantidade direta/escritural</a></h4>
-<p>Quantidade de títulos em cobrança direta/escritural</p>
-<ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>99999999</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="escritural_total-number"><a class="header" href="#escritural_total-number">escritural_total: <code>number</code></a></h3>
-<h4 id="total-diretaescritural-r"><a class="header" href="#total-diretaescritural-r">Total direta/escritural (R$)</a></h4>
-<p>Valor total dos títulos em cobrança direta/escritural</p>
-<ul>
-<li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>999999999999.99</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="escritural_aviso-string"><a class="header" href="#escritural_aviso-string">escritural_aviso: <code>string</code></a></h3>
-<h4 id="aviso-diretaescritural"><a class="header" href="#aviso-diretaescritural">Aviso direta/escritural</a></h4>
-<p>Referência do aviso bancário dos títulos em cobrança direta/escritural</p>
-<ul>
-<li>Comprimento máximo: <code>8</code></li>
+<li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 <h2 id="registros"><a class="header" href="#registros">Registros</a></h2>
 <h3 id="nome-string-1"><a class="header" href="#nome-string-1">nome: <code>string</code></a></h3>
 <h4 id="nome-do-cliente"><a class="header" href="#nome-do-cliente">Nome do Cliente</a></h4>
+<p>Apenas Itaú e Santander utilizam esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>40</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="cnpjcpf-string-1"><a class="header" href="#cnpjcpf-string-1">cnpjcpf: <code>string</code></a></h3>
-<h4 id="cnpjcpf-do-cliente"><a class="header" href="#cnpjcpf-do-cliente">CNPJ/CPF do Cliente</a></h4>
-<ul>
-<li>Comprimento máximo: <code>14</code></li>
-<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="duplicata-string"><a class="header" href="#duplicata-string">duplicata: <code>string</code></a></h3>
-<h4 id="duplicata"><a class="header" href="#duplicata">Duplicata</a></h4>
+<h3 id="documento-string"><a class="header" href="#documento-string">documento: <code>string</code></a></h3>
+<h4 id="id-do-documento-na-empresa-duplicata"><a class="header" href="#id-do-documento-na-empresa-duplicata">Id do documento na empresa (Duplicata)</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>10</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string-1"><a class="header" href="#id-string-1">id: <code>string</code></a></h3>
+<h3 id="id-string"><a class="header" href="#id-string">id: <code>string</code></a></h3>
 <h4 id="id-do-título-em-banco"><a class="header" href="#id-do-título-em-banco">Id do Título em Banco</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Comprimento máximo: <code>10</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="carteira-integer-1"><a class="header" href="#carteira-integer-1">carteira: <code>integer</code></a></h3>
-<h4 id="carteira-1"><a class="header" href="#carteira-1">Carteira</a></h4>
+<h3 id="carteira-string"><a class="header" href="#carteira-string">carteira: <code>string</code></a></h3>
+<h4 id="carteira"><a class="header" href="#carteira">Carteira</a></h4>
+<p>Carteira do título no banco.</p>
+<p>Apenas a Caixa ignora esse campo.</p>
 <ul>
-<li>Valor padrão: <code>0</code></li>
+<li>Valor padrão: <code>&quot;Simples&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Simples&quot;</code></li>
+<li><code>&quot;Vinculada&quot;</code></li>
+<li><code>&quot;Descontada&quot;</code></li>
 </ul>
-<h3 id="emissao-string"><a class="header" href="#emissao-string">emissao: <code>string</code></a></h3>
-<h4 id="data-de-emissão"><a class="header" href="#data-de-emissão">Data de Emissão</a></h4>
-<ul>
-<li>Valor padrão: <code>Dia atual</code></li>
+</li>
 </ul>
 <h3 id="vencimento-string"><a class="header" href="#vencimento-string">vencimento: <code>string</code></a></h3>
 <h4 id="data-de-vencimento"><a class="header" href="#data-de-vencimento">Data de Vencimento</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
 <h3 id="valor-number"><a class="header" href="#valor-number">valor: <code>number</code></a></h3>
 <h4 id="valor-r"><a class="header" href="#valor-r">Valor (R$)</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
@@ -349,7 +359,8 @@
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="op-integer"><a class="header" href="#op-integer">op: <code>integer</code></a></h3>
-<h4 id="codigo-da-operação"><a class="header" href="#codigo-da-operação">Codigo da Operação</a></h4>
+<h4 id="código-da-operação"><a class="header" href="#código-da-operação">Código da Operação</a></h4>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>99</code></li>
@@ -357,6 +368,8 @@
 </ul>
 <h3 id="operacao-string"><a class="header" href="#operacao-string">operacao: <code>string</code></a></h3>
 <h4 id="operação"><a class="header" href="#operação">Operação</a></h4>
+<p>Categoria do código da operação.</p>
+<p>Aplicado em todos os bancos.</p>
 <ul>
 <li>Valor padrão: <code>&quot;Outro&quot;</code></li>
 <li>Opções: 
@@ -373,16 +386,15 @@
 </ul>
 <h3 id="ocorrencia-string"><a class="header" href="#ocorrencia-string">ocorrencia: <code>string</code></a></h3>
 <h4 id="data-da-ocorrência"><a class="header" href="#data-da-ocorrência">Data da Ocorrência</a></h4>
+<p>Data contabil da ocorrência.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="pagamento-string"><a class="header" href="#pagamento-string">pagamento: <code>string</code></a></h3>
-<h4 id="meio-de-pagamento"><a class="header" href="#meio-de-pagamento">Meio de pagamento</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="banco-string-1"><a class="header" href="#banco-string-1">banco: <code>string</code></a></h3>
 <h4 id="banco-1"><a class="header" href="#banco-1">Banco</a></h4>
+<p>Banco onde foi efetuado o pagamento do título.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
@@ -390,7 +402,7 @@
 <li><code>&quot;Planner Corretora de Valores S.A.&quot;</code></li>
 <li><code>&quot;RENASCENCA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
 <li><code>&quot;XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A&quot;</code></li>
-<li><code>&quot;CAIXA&quot;</code></li>
+<li><code>&quot;caixa&quot;</code></li>
 <li><code>&quot;Lecca Crédito, Financiamento e Investimento S/A&quot;</code></li>
 <li><code>&quot;Banco BOCOM BBM S.A&quot;</code></li>
 <li><code>&quot;PORTOCRED S.A. – CREDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
@@ -448,7 +460,7 @@
 <li><code>&quot;Banco Credit Agricole Brasil S.A&quot;</code></li>
 <li><code>&quot;Banco Fibra S.A&quot;</code></li>
 <li><code>&quot;Banco Cifra S.A&quot;</code></li>
-<li><code>&quot;BRADESCO&quot;</code></li>
+<li><code>&quot;bradesco&quot;</code></li>
 <li><code>&quot;Banco Clássico S.A&quot;</code></li>
 <li><code>&quot;Banco Máxima S.A&quot;</code></li>
 <li><code>&quot;Banco ABC Brasil S.A&quot;</code></li>
@@ -505,7 +517,7 @@
 <li><code>&quot;Banco Digio S.A.&quot;</code></li>
 <li><code>&quot;Banco C6 S.A.&quot;</code></li>
 <li><code>&quot;Super Pagamentos e Administração de Meios Eletrônicos S.A.&quot;</code></li>
-<li><code>&quot;BANCO ITAU S.A.&quot;</code></li>
+<li><code>&quot;itau&quot;</code></li>
 <li><code>&quot;Creditas Sociedade de Crédito Direto S.A.&quot;</code></li>
 <li><code>&quot;FFA SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA.&quot;</code></li>
 <li><code>&quot;Banco XP S.A.&quot;</code></li>
@@ -553,7 +565,7 @@
 <li><code>&quot;Banco Indusval S.A&quot;</code></li>
 <li><code>&quot;Banco A.J.Renner S.A&quot;</code></li>
 <li><code>&quot;Banco Votorantim S.A&quot;</code></li>
-<li><code>&quot;Banco Daycoval S.A&quot;</code></li>
+<li><code>&quot;daycoval&quot;</code></li>
 <li><code>&quot;Banco Ourinvest S.A&quot;</code></li>
 <li><code>&quot;Banco Cetelem S.A&quot;</code></li>
 <li><code>&quot;Banco Ribeirão Preto S.A&quot;</code></li>
@@ -571,6 +583,8 @@
 <li><code>&quot;Banco KEB HANA do Brasil S.A&quot;</code></li>
 <li><code>&quot;Indefinido&quot;</code></li>
 <li><code>&quot;Nenhum&quot;</code></li>
+<li><code>&quot;santander&quot;</code></li>
+<li><code>&quot;bb&quot;</code></li>
 <li><code>&quot;B&amp;T CORRETORA DE CAMBIO LTDA.&quot;</code></li>
 <li><code>&quot;Banco ABN AMRO S.A&quot;</code></li>
 <li><code>&quot;Banco Alfa S.A&quot;</code></li>
@@ -583,7 +597,6 @@
 <li><code>&quot;Banco Crefisa S.A&quot;</code></li>
 <li><code>&quot;Banco da Amazônia S.A&quot;</code></li>
 <li><code>&quot;Banco da China Brasil S.A&quot;</code></li>
-<li><code>&quot;Banco do Brasil S.A&quot;</code></li>
 <li><code>&quot;Banco do Estado de Sergipe S.A&quot;</code></li>
 <li><code>&quot;Banco do Estado do Pará S.A&quot;</code></li>
 <li><code>&quot;Banco do Estado do Rio Grande do Sul S.A&quot;</code></li>
@@ -597,7 +610,6 @@
 <li><code>&quot;Banco Morgan Stanley S.A&quot;</code></li>
 <li><code>&quot;Banco Nacional de Desenvolvimento Econômico e Social – BNDE&quot;</code></li>
 <li><code>&quot;Banco Original do Agronegócio S.A&quot;</code></li>
-<li><code>&quot;SANTANDER&quot;</code></li>
 <li><code>&quot;Banco Topázio S.A&quot;</code></li>
 <li><code>&quot;Banco Tricury S.A&quot;</code></li>
 <li><code>&quot;BancoSeguro S.A&quot;</code></li>
@@ -629,18 +641,17 @@
 </ul>
 <h3 id="agencia-integer-1"><a class="header" href="#agencia-integer-1">agencia: <code>integer</code></a></h3>
 <h4 id="agência-1"><a class="header" href="#agência-1">Agência</a></h4>
+<p>Agência onde foi efetuado o pagamento do título.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>99999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="especie-string"><a class="header" href="#especie-string">especie: <code>string</code></a></h3>
-<h4 id="espécie"><a class="header" href="#espécie">Espécie</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="juros-number"><a class="header" href="#juros-number">juros: <code>number</code></a></h3>
 <h4 id="juros-r"><a class="header" href="#juros-r">Juros (R$)</a></h4>
+<p>Juros pago pelo cliente na baixa do título.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
@@ -649,6 +660,8 @@
 </ul>
 <h3 id="abatimento-number"><a class="header" href="#abatimento-number">abatimento: <code>number</code></a></h3>
 <h4 id="abatimento-r"><a class="header" href="#abatimento-r">Abatimento (R$)</a></h4>
+<p>Abatimento concedido no título.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
@@ -657,6 +670,8 @@
 </ul>
 <h3 id="iof-number"><a class="header" href="#iof-number">iof: <code>number</code></a></h3>
 <h4 id="iof-r"><a class="header" href="#iof-r">IOF (R$)</a></h4>
+<p>Imposto sobre operação financeira, utilizado em títulos descontados.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
@@ -665,30 +680,8 @@
 </ul>
 <h3 id="tarifa-number"><a class="header" href="#tarifa-number">tarifa: <code>number</code></a></h3>
 <h4 id="tarifa-r"><a class="header" href="#tarifa-r">Tarifa (R$)</a></h4>
-<ul>
-<li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>99999999999.99</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="despesas-number"><a class="header" href="#despesas-number">despesas: <code>number</code></a></h3>
-<h4 id="despesas-r"><a class="header" href="#despesas-r">Despesas (R$)</a></h4>
-<ul>
-<li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>99999999999.99</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="custas-number"><a class="header" href="#custas-number">custas: <code>number</code></a></h3>
-<h4 id="custas-r"><a class="header" href="#custas-r">Custas (R$)</a></h4>
-<ul>
-<li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>99999999999.99</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="total-number"><a class="header" href="#total-number">total: <code>number</code></a></h3>
-<h4 id="total-r"><a class="header" href="#total-r">Total (R$)</a></h4>
+<p>Tarifa bancária ou custas de cartório associada a operação.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
@@ -697,33 +690,36 @@
 </ul>
 <h3 id="saldo-number"><a class="header" href="#saldo-number">saldo: <code>number</code></a></h3>
 <h4 id="saldo-r"><a class="header" href="#saldo-r">Saldo (R$)</a></h4>
+<p>Saldo creditado em conta.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Precisão: <code>0.01</code></li>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>99999999999.99</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="outros-number"><a class="header" href="#outros-number">outros: <code>number</code></a></h3>
-<h4 id="outros-créditos-r"><a class="header" href="#outros-créditos-r">Outros créditos (R$)</a></h4>
-<ul>
-<li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>99999999999.99</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="credito-string-1"><a class="header" href="#credito-string-1">credito: <code>string</code></a></h3>
-<h4 id="data-de-crédito-1"><a class="header" href="#data-de-crédito-1">Data de crédito</a></h4>
+<h3 id="credito-string"><a class="header" href="#credito-string">credito: <code>string</code></a></h3>
+<h4 id="data-de-crédito"><a class="header" href="#data-de-crédito">Data de crédito</a></h4>
+<p>Data que o valor será creditado em conta.</p>
+<p>Todos os bancos utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="mensagem-string-1"><a class="header" href="#mensagem-string-1">mensagem: <code>string</code></a></h3>
-<h4 id="mensagemerros"><a class="header" href="#mensagemerros">Mensagem/Erros</a></h4>
+<h3 id="erro-string"><a class="header" href="#erro-string">erro: <code>string</code></a></h3>
+<h4 id="código-do-erro"><a class="header" href="#código-do-erro">Código do Erro</a></h4>
+<p>Código dos erros apresentados no processamento da remessa.</p>
+<p>Apenas caixa ignora esse campo.</p>
 <ul>
+<li>Comprimento máximo: <code>11</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="cartorio-string"><a class="header" href="#cartorio-string">cartorio: <code>string</code></a></h3>
-<h4 id="cartorio-e-protocolo"><a class="header" href="#cartorio-e-protocolo">Cartorio e Protocolo</a></h4>
+<h3 id="mensagem-string"><a class="header" href="#mensagem-string">mensagem: <code>string</code></a></h3>
+<h4 id="mensagem-do-banco"><a class="header" href="#mensagem-do-banco">Mensagem do banco.</a></h4>
+<p>No itaú o início da mensagem pode ser eventuais erros e o final é o código do meio de pagamento.
+Na caixa a mensagem se refere ao código do meio de pagamento.
+Os demais bancos não utilizam esse campo.</p>
 <ul>
+<li>Comprimento máximo: <code>17</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 
