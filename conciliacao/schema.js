@@ -51,6 +51,13 @@ export default {
       ],
       "default": ""
     },
+    "codigo": {
+      "title": "Código da Empresa",
+      "description": "Identificador da empresa fornecido pelo banco.",
+      "type": "string",
+      "maxLength": 10,
+      "default": ""
+    },
     "agencia": {
       "title": "Agência",
       "type": "integer",
