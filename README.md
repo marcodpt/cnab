@@ -10,6 +10,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Itaú conciliação bancária 240](https://download.itau.com.br/bankline/conciliacao_bancaria_%20240.pdf)
  - [Bradesco remessa cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
  - [Bradesco retorno cobrança 400](https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
+ - [Bradesco conciliação bancária 240](https://banco.bradesco/assets/pessoajuridica/pdf/solucoes-integradas/outros/layout-de-arquivo/conciliacao_bancaria_240_posicoes_v_5.pdf)
  - [Santander remessa cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
  - [Santander retorno cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
@@ -24,12 +25,11 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
 ## Layouts
  - BB conciliação bancária 240
  - Santander conciliação bancária 240
- - Bradesco conciliação bancária 240
  - Daycoval conciliação bancária 240
  - Caixa sispag
- - Santander 
- - Bradesco conciliação bancária 240
- - Daycoval conciliação bancária 240
+ - Santander sispag 
+ - Bradesco sispag
+ - Daycoval sispag
 
 ## Melhorias a serem feitas
  - Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação
