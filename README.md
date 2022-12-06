@@ -16,6 +16,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [BB retorno cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [BB remessa sispag 240](https://www.bb.com.br/docs/portal/disem/PgtVer03BB.pdf?pk_vid=f0d809ef68fd163c16692020076af852)
+ - [BB conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
  - [Caixa remessa cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Caixa retorno cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Caixa conciliação bancária 240](https://www.caixa.gov.br/Downloads/extrato-eletronico-conciliacao-bancaria/Manual_de_Leiaute_CNAB_240_Extrato_Eletronico_Para_Conciliacao_Bancaria.pdf)
@@ -23,7 +24,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
 
 ## Layouts
- - BB conciliação bancária 240
  - Santander conciliação bancária 240
  - Daycoval conciliação bancária 240
  - Caixa sispag
