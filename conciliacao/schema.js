@@ -1,5 +1,8 @@
 import bancos from '../bancos.js'
 import {hoje} from '../lib.js'
+import categorias from './notas/categorias.js'
+import situacoes from './notas/situacoes.js'
+import status from './notas/status.js'
 
 export default {
   "title": "Conciliação Bancária",
@@ -25,8 +28,8 @@ export default {
       "default": "",
       "format": "cnpjcpf"
     },
-    "id": {
-      "title": "Identificador da Empresa",
+    "codigo": {
+      "title": "Código da Empresa no Banco",
       "type": "string",
       "maxLength": 20,
       "default": ""
@@ -49,13 +52,6 @@ export default {
         "bb",
         "daycoval"
       ],
-      "default": ""
-    },
-    "codigo": {
-      "title": "Código da Empresa",
-      "description": "Identificador da empresa fornecido pelo banco.",
-      "type": "string",
-      "maxLength": 10,
       "default": ""
     },
     "agencia": {
@@ -85,12 +81,6 @@ export default {
       "format": "date",
       "default": hoje()
     },
-    "hora": {
-      "title": "Hora de geração",
-      "type": "string",
-      "default": "000000",
-      "maxLength": 6
-    },
     "data_inicial": {
       "title": "Data Inicial",
       "type": "string",
@@ -101,21 +91,15 @@ export default {
       "title": "Valor Inicial (R$)",
       "type": "number",
       "multipleOf": 0.01,
-      "minimum": 0,
+      "minimum": -9999999999999999.99,
       "maximum": 9999999999999999.99,
       "default": 0
-    },
-    "situacao_inicial": {
-      "title": "Situação Inicial",
-      "type": "string",
-      "default": "",
-      "enum": ["Devedor", "Credor"]
     },
     "status_inicial": {
       "title": "Status Inicial",
       "type": "string",
       "default": "",
-      "enum": ["Parcial", "Final"]
+      "enum": Object.values(status)
     },
     "bloqueado": {
       "title": "Bloqueado (>24h) (R$)",
@@ -151,21 +135,15 @@ export default {
       "title": "Valor Final (R$)",
       "type": "number",
       "multipleOf": 0.01,
-      "minimum": 0,
+      "minimum": -9999999999999999.99,
       "maximum": 9999999999999999.99,
       "default": 0
-    },
-    "situacao_final": {
-      "title": "Situação Final",
-      "type": "string",
-      "default": "",
-      "enum": ["Devedor", "Credor"]
     },
     "status_final": {
       "title": "Status Final",
       "type": "string",
       "default": "",
-      "enum": ["Parcial", "Final"]
+      "enum": Object.values(status)
     },
     "registros": {
       "title": "Registros",
@@ -175,51 +153,23 @@ export default {
       "items": {
         "type": "object",
         "properties": {
-          "nome": {
-            "title": "Nome do Recebedor",
-            "type": "string",
-            "maxLength": 40,
-            "default": ""
-          },
-          "cnpjcpf": {
-            "title": "CNPJ/CPF do Recebedor",
-            "type": "string",
-            "pattern": "^(|\d{11}|\d{14})$",
-            "maxLength": 14,
-            "default": "",
-            "format": "cnpjcpf"
-          },
-          "indicador": {
-            "title": "Indicador",
-            "type": "string",
-            "default": ""
-          },
           "banco": {
-            "title": "Banco",
+            "title": "Banco de Origem",
             "type": "string",
             "enum": Object.values(bancos),
             "default": ""
           },
           "agencia": {
-            "title": "Agência",
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 999999
+            "title": "Agência de origem",
+            "type": "string",
+            "default": "",
+            "maxLength": 5
           },
           "conta": {
-            "title": "Conta",
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 9999999999999
-          },
-          "dac": {
-            "title": "Digito Verificador",
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 9
+            "title": "Conta de origem",
+            "type": "string",
+            "default": "",
+            "maxLength": 12
           },
           "id": {
             "title": "Id da transação",
@@ -242,40 +192,34 @@ export default {
             "title": "Valor (R$)",
             "type": "number",
             "multipleOf": 0.01,
-            "minimum": 0,
+            "minimum": -99999999999.99,
             "maximum": 99999999999.99,
             "default": 0
           },
-          "lancamento": {
-            "title": "Lançamento",
-            "type": "string",
-            "default": ""
-          },
-          "status": {
-            "title": "Status",
-            "type": "string",
-            "default": ""
-          },
           "situacao": {
-            "title": "Situação",
+            "title": "Situação do Lançamento",
             "type": "string",
             "default": "",
-            "enum": ["Devedor", "Credor"]
+            "enum": Object.values(situacoes)
           },
           "categoria": {
             "title": "Categoria",
             "type": "string",
-            "default": ""
+            "default": "",
+            "enum": Object.values(categorias)
           },
-          "tipo": {
-            "title": "Tipo",
-            "type": "string",
-            "default": ""
+          "info": {
+            "title": "Info da Descrição",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 9999
           },
           "descricao": {
             "title": "Descrição",
             "type": "string",
-            "default": ""
+            "default": "",
+            "maxLength": 25
           }
         }
       }

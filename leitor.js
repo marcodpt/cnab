@@ -58,11 +58,12 @@ const texto = Escopo => (X, chave, tamanho) => {
   X[chave] = ler(Escopo, tamanho).trimEnd()
 }
 
-const numero = Escopo => (X, chave, tamanho, precisao) => {
+const numero = Escopo => (X, chave, tamanho, precisao, sinal) => {
   const d = ler(Escopo, tamanho)
+  const s = sinal && ler(Escopo, 1) == 'D' ? -1 : 1
   const n = parseInt(d)
   if (!isNaN(n)) {
-    X[chave] = n / 10 ** (precisao || 0)
+    X[chave] = s * n / 10 ** (precisao || 0)
   } else {
     throw `Não é um número: ${d}`
   }
@@ -101,17 +102,16 @@ const mapa = Escopo => (X, chave, mapa) => {
     if (i >= 0) {
       X[chave] = '*'
     } else {
-      console.log(imprimir(mapa))
-      throw `Não é uma chave possível: ${k}`
+      throw `Não é uma chave possível: ${k}\n\n${imprimir(mapa)}`
     }
   }
 }
 
 const leitor = (Escopo, Dados, layout) => {
-  const embrulho = nome => (X, Y, A, B) => {
+  const embrulho = nome => (X, Y, A, B, C) => {
     try {
       if (nome == 'fixo') {
-        fixo(Escopo)(X, Y, A, B)
+        fixo(Escopo)(X, Y, A, B, C)
       } else {
         if (!X || typeof X != "object") {
           throw "Deve ser passado um objeto por referência"
@@ -119,13 +119,13 @@ const leitor = (Escopo, Dados, layout) => {
           throw `Campo desconhecido: ${Y}`
         }
         if (nome == 'texto') {
-          texto(Escopo)(X, Y, A, B)
+          texto(Escopo)(X, Y, A, B, C)
         } else if (nome == 'numero') {
-          numero(Escopo)(X, Y, A, B)
+          numero(Escopo)(X, Y, A, B, C)
         } else if (nome == 'data') {
-          data(Escopo)(X, Y, A, B)
+          data(Escopo)(X, Y, A, B, C)
         } else if (nome == 'mapa') {
-          mapa(Escopo)(X, Y, A, B)
+          mapa(Escopo)(X, Y, A, B, C)
         } else {
           throw 'Nome desconhecido!'
         }

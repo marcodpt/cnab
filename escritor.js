@@ -36,9 +36,11 @@ const fixo = arquivo => (dados, tamanho, numerico) => escrever(arquivo,
 const texto = arquivo => (X, campo, tamanho) =>
   escrever(arquivo, constante(X[campo], tamanho))
 
-const numero = arquivo => (X, campo, tamanho, precisao) => escrever(arquivo,
-  constante(Math.round(X[campo] * 10 ** (precisao || 0)), tamanho, true)
-)
+const numero = arquivo => (X, campo, tamanho, precisao, sinal) => {
+  const n = Math.round(X[campo] * 10 ** (precisao || 0))
+  const s = X[campo] < 0 ? 'D' : 'C'
+  return escrever(arquivo, constante(n, tamanho, true)+(sinal ? s : ''))
+}
 
 const data = arquivo => (X, campo, tamanho, texto) => {
   var dados = formatoData(X[campo], tamanho)
