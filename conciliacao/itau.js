@@ -101,10 +101,10 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   numero(X, 'valor_final', 18, 2, true)
   mapa(X, 'status_final', status)
   fixo(X.registros.length + 2, 6, true)
-  fixo(Math.round(100 * X.registros.reduce(
+  fixo(() => Math.round(100 * X.registros.reduce(
     (total, {valor}) => total + (valor < 0 ? -valor : 0)
   , 0)), 18, true)
-  fixo(Math.round(100 * X.registros.reduce(
+  fixo(() => Math.round(100 * X.registros.reduce(
     (total, {valor}) => total + (valor > 0 ? valor : 0)
   , 0)), 18, true)
   fixo('0', 28)

@@ -3,6 +3,7 @@ import cnab from '../index.js'
 import {linhas, copiar} from '../lib.js'
 import remessa_cobranca from './remessa_cobranca/dados.js'
 import retorno_cobranca from './retorno_cobranca/dados.js'
+import conciliacao from './conciliacao/dados.js'
 
 const Testes = {
   remessa_cobranca: {
@@ -25,6 +26,17 @@ const Testes = {
       caixa: await Deno.readTextFile("./retorno_cobranca/caixa.txt"),
       bb: await Deno.readTextFile("./retorno_cobranca/bb.txt"),
       daycoval: await Deno.readTextFile("./retorno_cobranca/daycoval.txt")
+    }
+  },
+  conciliacao: {
+    dados: conciliacao,
+    bancos: {
+      itau: await Deno.readTextFile("./conciliacao/itau.txt"),
+      bradesco: await Deno.readTextFile("./conciliacao/bradesco.txt"),
+      santander: await Deno.readTextFile("./conciliacao/santander.txt"),
+      caixa: await Deno.readTextFile("./conciliacao/caixa.txt"),
+      bb: await Deno.readTextFile("./conciliacao/bb.txt"),
+      daycoval: await Deno.readTextFile("./conciliacao/daycoval.txt")
     }
   }
 }

@@ -56,7 +56,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('00')
     fixo(' ', 20)
     fixo(Object.keys(cpmf), 1)
-    fixo(R, 'ocorrencia', 8)
+    data(R, 'ocorrencia', 8)
     data(R, 'movimento', 8)
     numero(R, 'valor', 18, 2, true)
     mapa(R, 'categoria', categorias)
