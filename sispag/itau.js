@@ -1,5 +1,7 @@
 import bancos from '../bancos.js'
 import {tipo} from '../lib.js'
+import servicos from './notas/servicos.js'
+import pagamentos from './notas/pagamentos.js'
 
 export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('34100000')
@@ -23,46 +25,8 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('SISPAGWITV2018', 69)
   fixo('\r\n')
   fixo('34100011C')
-  mapa(X, 'servico', {
-    '10': 'DIVIDENDOS',
-    '15': 'DEBÊNTURES',
-    '20': 'FORNECEDORES',
-    '22': 'TRIBUTOS',
-    '30': 'SALÁRIOS',
-    '40': 'FUNDOS DE INVESTIMENTOS',
-    '50': 'SINISTROS DE SEGUROS',
-    '60': 'DESPESAS VIAJANTE EM TRÂNSITO',
-    '80': 'REPRESENTANTES AUTORIZADOS',
-    '90': 'BENEFÍCIOS',
-    '98': 'DIVERSOS'
-  })
-  mapa(X, 'pagamento', {
-    '01': 'CRÉDITO EM CONTA CORRENTE NO ITAÚ',
-    '02': 'CHEQUE PAGAMENTO/ADMINISTRATIVO',
-    '03': 'DOC “C”',
-    '05': 'CRÉDITO EM CONTA POUPANÇA NO ITAÚ',
-    '06': 'CRÉDITO EM CONTA CORRENTE DE MESMA TITULARIDADE',
-    '07': 'DOC “D”',
-    '10': 'ORDEM DE PAGAMENTO À DISPOSIÇÃO',
-    '13': 'PAGAMENTO DE CONCESSIONÁRIAS',
-    '16': 'DARF NORMAL',
-    '17': 'GPS - GUIA DA PREVIDÊNCIA SOCIAL',
-    '18': 'DARF SIMPLES',
-    '19': 'IPTU/ISS/OUTROS TRIBUTOS MUNICIPAIS',
-    '22': 'GARE – SP ICMS',
-    '25': 'IPVA',
-    '27': 'DPVAT',
-    '30': 'PAGAMENTO DE TÍTULOS EM COBRANÇA NO ITAÚ',
-    '31': 'PAGAMENTO DE TÍTULOS EM COBRANÇA EM OUTROS BANCOS',
-    '32': 'NOTA FISCAL – LIQUIDAÇÃO ELETRÔNICA',
-    '35': 'FGTS',
-    '41': 'TED – OUTRO TITULAR',
-    '43': 'TED – MESMO TITULAR',
-    '45': 'PIX TRANSFERÊNCIA',
-    '47': 'PIX QR-CODE',
-    '60': 'CARTÃO SALÁRIO',
-    '91': 'GNRE E TRIBUTOS COM CÓDIGO DE BARRAS'
-  })
+  mapa(X, 'servico', servicos)
+  mapa(X, 'pagamento', pagamentos)
   fixo('040', 4)
   fixo(tipo(X, 'cnpjcpf'), 1)
   fixo(X.cnpjcpf, 14)
@@ -86,7 +50,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('34100013')
     fixo(index + 1, 5, true)
     fixo('A000000')
-    fixo('341')
+    mapa(R, 'banco', bancos)
     numero(R, 'agencia', 5)
     fixo(' ')
     numero(R, 'conta', 12)

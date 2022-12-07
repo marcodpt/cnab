@@ -26,8 +26,8 @@ export default {
       "default": "",
       "format": "cnpjcpf"
     },
-    "id": {
-      "title": "Identificador da Empresa",
+    "codigo": {
+      "title": "Código da Empresa",
       "type": "string",
       "maxLength": 20,
       "default": ""
@@ -53,21 +53,21 @@ export default {
       "default": ""
     },
     "agencia": {
-      "title": "Agência",
+      "title": "Agência da Empresa",
       "type": "integer",
       "default": 0,
       "minimum": 0,
       "maximum": 999999
     },
     "conta": {
-      "title": "Conta",
+      "title": "Conta da Empresa",
       "type": "integer",
       "default": 0,
       "minimum": 0,
       "maximum": 9999999999999
     },
     "dac": {
-      "title": "Digito Verificador",
+      "title": "Digito Verificador da Empresa",
       "type": "integer",
       "default": 0,
       "minimum": 0,
@@ -155,22 +155,28 @@ export default {
             "default": "",
             "format": "cnpjcpf"
           },
+          "banco": {
+            "title": "Banco do Recebedor",
+            "type": "string",
+            "enum": Object.values(bancos),
+            "default": ""
+          },
           "agencia": {
-            "title": "Agência",
+            "title": "Agência do Recebedor",
             "type": "integer",
             "default": 0,
             "minimum": 0,
             "maximum": 999999
           },
           "conta": {
-            "title": "Conta",
+            "title": "Conta do Recebedor",
             "type": "integer",
             "default": 0,
             "minimum": 0,
             "maximum": 9999999999999
           },
           "dac": {
-            "title": "Digito Verificador",
+            "title": "Digito Verificador do Recebedor",
             "type": "integer",
             "default": 0,
             "minimum": 0,

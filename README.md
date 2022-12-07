@@ -20,13 +20,13 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [BB conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
  - [Caixa remessa cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
  - [Caixa retorno cobrança 400](https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf)
+ - [Caixa sispag 240](https://www.caixa.gov.br/Downloads/pagamentos-de-salarios-fornecedores-e-auto-pagamento/Leiaute_CNAB_240_Pagamentos.pdf)
  - [Caixa conciliação bancária 240](https://www.caixa.gov.br/Downloads/extrato-eletronico-conciliacao-bancaria/Manual_de_Leiaute_CNAB_240_Extrato_Eletronico_Para_Conciliacao_Bancaria.pdf)
  - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
  - [Daycoval conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
 
 ## Layouts
- - Caixa sispag
  - Santander sispag 
  - Bradesco sispag
  - Daycoval sispag
