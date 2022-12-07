@@ -155,8 +155,8 @@
 <li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string"><a class="header" href="#id-string">id: <code>string</code></a></h3>
-<h4 id="identificador-da-empresa"><a class="header" href="#identificador-da-empresa">Identificador da Empresa</a></h4>
+<h3 id="codigo-string"><a class="header" href="#codigo-string">codigo: <code>string</code></a></h3>
+<h4 id="código-da-empresa-no-banco"><a class="header" href="#código-da-empresa-no-banco">Código da Empresa no Banco</a></h4>
 <ul>
 <li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -209,12 +209,6 @@
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="hora-string"><a class="header" href="#hora-string">hora: <code>string</code></a></h3>
-<h4 id="hora-de-geração"><a class="header" href="#hora-de-geração">Hora de geração</a></h4>
-<ul>
-<li>Comprimento máximo: <code>6</code></li>
-<li>Valor padrão: <code>&quot;000000&quot;</code></li>
-</ul>
 <h3 id="data_inicial-string"><a class="header" href="#data_inicial-string">data_inicial: <code>string</code></a></h3>
 <h4 id="data-inicial"><a class="header" href="#data-inicial">Data Inicial</a></h4>
 <ul>
@@ -224,20 +218,9 @@
 <h4 id="valor-inicial-r"><a class="header" href="#valor-inicial-r">Valor Inicial (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-10000000000000000</code></li>
 <li>Valor máximo: <code>10000000000000000</code></li>
 <li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="situacao_inicial-string"><a class="header" href="#situacao_inicial-string">situacao_inicial: <code>string</code></a></h3>
-<h4 id="situação-inicial"><a class="header" href="#situação-inicial">Situação Inicial</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-<li>Opções: 
-<ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
-</ul>
-</li>
 </ul>
 <h3 id="status_inicial-string"><a class="header" href="#status_inicial-string">status_inicial: <code>string</code></a></h3>
 <h4 id="status-inicial"><a class="header" href="#status-inicial">Status Inicial</a></h4>
@@ -247,6 +230,7 @@
 <ul>
 <li><code>&quot;Parcial&quot;</code></li>
 <li><code>&quot;Final&quot;</code></li>
+<li><code>&quot;Intra-Dia&quot;</code></li>
 </ul>
 </li>
 </ul>
@@ -283,20 +267,9 @@
 <h4 id="valor-final-r"><a class="header" href="#valor-final-r">Valor Final (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-10000000000000000</code></li>
 <li>Valor máximo: <code>10000000000000000</code></li>
 <li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="situacao_final-string"><a class="header" href="#situacao_final-string">situacao_final: <code>string</code></a></h3>
-<h4 id="situação-final"><a class="header" href="#situação-final">Situação Final</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-<li>Opções: 
-<ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
-</ul>
-</li>
 </ul>
 <h3 id="status_final-string"><a class="header" href="#status_final-string">status_final: <code>string</code></a></h3>
 <h4 id="status-final"><a class="header" href="#status-final">Status Final</a></h4>
@@ -306,30 +279,13 @@
 <ul>
 <li><code>&quot;Parcial&quot;</code></li>
 <li><code>&quot;Final&quot;</code></li>
+<li><code>&quot;Intra-Dia&quot;</code></li>
 </ul>
 </li>
 </ul>
 <h2 id="registros"><a class="header" href="#registros">Registros</a></h2>
-<h3 id="nome-string-1"><a class="header" href="#nome-string-1">nome: <code>string</code></a></h3>
-<h4 id="nome-do-recebedor"><a class="header" href="#nome-do-recebedor">Nome do Recebedor</a></h4>
-<ul>
-<li>Comprimento máximo: <code>40</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="cnpjcpf-string-1"><a class="header" href="#cnpjcpf-string-1">cnpjcpf: <code>string</code></a></h3>
-<h4 id="cnpjcpf-do-recebedor"><a class="header" href="#cnpjcpf-do-recebedor">CNPJ/CPF do Recebedor</a></h4>
-<ul>
-<li>Comprimento máximo: <code>14</code></li>
-<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="indicador-string"><a class="header" href="#indicador-string">indicador: <code>string</code></a></h3>
-<h4 id="indicador"><a class="header" href="#indicador">Indicador</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="banco-string-1"><a class="header" href="#banco-string-1">banco: <code>string</code></a></h3>
-<h4 id="banco-1"><a class="header" href="#banco-1">Banco</a></h4>
+<h4 id="banco-de-origem"><a class="header" href="#banco-de-origem">Banco de Origem</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
@@ -574,28 +530,19 @@
 </ul>
 </li>
 </ul>
-<h3 id="agencia-integer-1"><a class="header" href="#agencia-integer-1">agencia: <code>integer</code></a></h3>
-<h4 id="agência-1"><a class="header" href="#agência-1">Agência</a></h4>
+<h3 id="agencia-string"><a class="header" href="#agencia-string">agencia: <code>string</code></a></h3>
+<h4 id="agência-de-origem"><a class="header" href="#agência-de-origem">Agência de origem</a></h4>
 <ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>999999</code></li>
-<li>Valor padrão: <code>0</code></li>
+<li>Comprimento máximo: <code>5</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="conta-integer-1"><a class="header" href="#conta-integer-1">conta: <code>integer</code></a></h3>
-<h4 id="conta-1"><a class="header" href="#conta-1">Conta</a></h4>
+<h3 id="conta-string"><a class="header" href="#conta-string">conta: <code>string</code></a></h3>
+<h4 id="conta-de-origem"><a class="header" href="#conta-de-origem">Conta de origem</a></h4>
 <ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>9999999999999</code></li>
-<li>Valor padrão: <code>0</code></li>
+<li>Comprimento máximo: <code>12</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="dac-integer-1"><a class="header" href="#dac-integer-1">dac: <code>integer</code></a></h3>
-<h4 id="digito-verificador-1"><a class="header" href="#digito-verificador-1">Digito Verificador</a></h4>
-<ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>9</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="id-string-1"><a class="header" href="#id-string-1">id: <code>string</code></a></h3>
+<h3 id="id-string"><a class="header" href="#id-string">id: <code>string</code></a></h3>
 <h4 id="id-da-transação"><a class="header" href="#id-da-transação">Id da transação</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -614,28 +561,20 @@
 <h4 id="valor-r"><a class="header" href="#valor-r">Valor (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-99999999999.99</code></li>
 <li>Valor máximo: <code>99999999999.99</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="lancamento-string"><a class="header" href="#lancamento-string">lancamento: <code>string</code></a></h3>
-<h4 id="lançamento"><a class="header" href="#lançamento">Lançamento</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="status-string"><a class="header" href="#status-string">status: <code>string</code></a></h3>
-<h4 id="status"><a class="header" href="#status">Status</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="situacao-string"><a class="header" href="#situacao-string">situacao: <code>string</code></a></h3>
-<h4 id="situação"><a class="header" href="#situação">Situação</a></h4>
+<h4 id="situação-do-lançamento"><a class="header" href="#situação-do-lançamento">Situação do Lançamento</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
 <ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
+<li><code>&quot;Disponível&quot;</code></li>
+<li><code>&quot;Vinculado&quot;</code></li>
+<li><code>&quot;Bloqueado&quot;</code></li>
+<li><code>&quot;Diversos&quot;</code></li>
 </ul>
 </li>
 </ul>
@@ -643,15 +582,71 @@
 <h4 id="categoria"><a class="header" href="#categoria">Categoria</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="tipo-string-1"><a class="header" href="#tipo-string-1">tipo: <code>string</code></a></h3>
-<h4 id="tipo-1"><a class="header" href="#tipo-1">Tipo</a></h4>
+<li>Opções: 
 <ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
+<li><code>&quot;Cheques&quot;</code></li>
+<li><code>&quot;Encargos&quot;</code></li>
+<li><code>&quot;Estornos débito&quot;</code></li>
+<li><code>&quot;Lançamentos avisados débito&quot;</code></li>
+<li><code>&quot;Tarifas&quot;</code></li>
+<li><code>&quot;Aplicação&quot;</code></li>
+<li><code>&quot;Empréstimo / financiamento débito&quot;</code></li>
+<li><code>&quot;Câmbio débito&quot;</code></li>
+<li><code>&quot;Cpmf&quot;</code></li>
+<li><code>&quot;Iof&quot;</code></li>
+<li><code>&quot;Imposto de renda&quot;</code></li>
+<li><code>&quot;Pagamento fornecedores débito&quot;</code></li>
+<li><code>&quot;Pagamento funcionários&quot;</code></li>
+<li><code>&quot;Saque eletrônico&quot;</code></li>
+<li><code>&quot;Ações débito&quot;</code></li>
+<li><code>&quot;Seguro débito&quot;</code></li>
+<li><code>&quot;Transferência entre contas débito&quot;</code></li>
+<li><code>&quot;Devolução da compensação débito&quot;</code></li>
+<li><code>&quot;Devolução de cheques débito&quot;</code></li>
+<li><code>&quot;Transferência interbancárias (doc/ted) débito&quot;</code></li>
+<li><code>&quot;Antecipação a fornecedores&quot;</code></li>
+<li><code>&quot;Oc / aerops&quot;</code></li>
+<li><code>&quot;Saque em espécie&quot;</code></li>
+<li><code>&quot;Cheque pago&quot;</code></li>
+<li><code>&quot;Pagamentos diversos débito&quot;</code></li>
+<li><code>&quot;Pagamento de tributos débito&quot;</code></li>
+<li><code>&quot;Cartão de crédito – pagamento fatura de cartão de crédito da própria if&quot;</code></li>
+<li><code>&quot;Depósitos&quot;</code></li>
+<li><code>&quot;Líquido de cobrança&quot;</code></li>
+<li><code>&quot;Devolução de cheques crédito&quot;</code></li>
+<li><code>&quot;Estornos crédito&quot;</code></li>
+<li><code>&quot;Lançamentos avisados crédito&quot;</code></li>
+<li><code>&quot;Resgate de aplicações&quot;</code></li>
+<li><code>&quot;Empréstimo / financiamento crédito&quot;</code></li>
+<li><code>&quot;Câmbio crédito&quot;</code></li>
+<li><code>&quot;Transferência interbancárias (doc/ted) crédito&quot;</code></li>
+<li><code>&quot;Ações crédito&quot;</code></li>
+<li><code>&quot;Dividendos&quot;</code></li>
+<li><code>&quot;Seguro crédito&quot;</code></li>
+<li><code>&quot;Transferência entre contas crédito&quot;</code></li>
+<li><code>&quot;Depósitos especiais&quot;</code></li>
+<li><code>&quot;Devolução de compensação crédito&quot;</code></li>
+<li><code>&quot;Oct&quot;</code></li>
+<li><code>&quot;Pagamentos fornecedores crédito&quot;</code></li>
+<li><code>&quot;Pagamentos diversos crédito&quot;</code></li>
+<li><code>&quot;Pagamentos salários&quot;</code></li>
+<li><code>&quot;Depósito em espécie&quot;</code></li>
+<li><code>&quot;Pagamento de tributos crédito&quot;</code></li>
+<li><code>&quot;Cartão de crédito – recebíveis de cartão de crédito&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="info-integer"><a class="header" href="#info-integer">info: <code>integer</code></a></h3>
+<h4 id="info-da-descrição"><a class="header" href="#info-da-descrição">Info da Descrição</a></h4>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>9999</code></li>
+<li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="descricao-string"><a class="header" href="#descricao-string">descricao: <code>string</code></a></h3>
 <h4 id="descrição"><a class="header" href="#descrição">Descrição</a></h4>
 <ul>
+<li>Comprimento máximo: <code>25</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 

@@ -146,20 +146,31 @@
 <li><a href="https://download.itau.com.br/bankline/conciliacao_bancaria_%20240.pdf">Itaú conciliação bancária 240</a></li>
 <li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco remessa cobrança 400</a></li>
 <li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco retorno cobrança 400</a></li>
+<li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/solucoes-integradas/outros/layout-de-arquivo/conciliacao_bancaria_240_posicoes_v_5.pdf">Bradesco conciliação bancária 240</a></li>
 <li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander remessa cobrança 400</a></li>
 <li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander retorno cobrança 400</a></li>
+<li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">Santander conciliação bancária 240</a></li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB remessa cobrança 240</a></li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB retorno cobrança 240</a></li>
 <li><a href="https://www.bb.com.br/docs/portal/disem/PgtVer03BB.pdf?pk_vid=f0d809ef68fd163c16692020076af852">BB remessa sispag 240</a></li>
+<li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">BB conciliação bancária 240</a></li>
 <li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa remessa cobrança 400</a></li>
 <li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa retorno cobrança 400</a></li>
+<li><a href="https://www.caixa.gov.br/Downloads/extrato-eletronico-conciliacao-bancaria/Manual_de_Leiaute_CNAB_240_Extrato_Eletronico_Para_Conciliacao_Bancaria.pdf">Caixa conciliação bancária 240</a></li>
 <li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval remessa cobrança 400</a></li>
 <li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval retorno cobrança 400</a></li>
+<li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">Daycoval conciliação bancária 240</a></li>
+</ul>
+<h2 id="layouts"><a class="header" href="#layouts">Layouts</a></h2>
+<ul>
+<li>Caixa sispag</li>
+<li>Santander sispag </li>
+<li>Bradesco sispag</li>
+<li>Daycoval sispag</li>
 </ul>
 <h2 id="melhorias-a-serem-feitas"><a class="header" href="#melhorias-a-serem-feitas">Melhorias a serem feitas</a></h2>
 <ul>
 <li>Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação</li>
-<li>Adicionar especificação para valores negativos</li>
 <li>Campos formadores de lote</li>
 <li>Identificador de registro com regex</li>
 <li>Tamanho da linha, checar arquivo e gerar erro</li>
@@ -172,7 +183,6 @@
 <li>campos fixos saber tratar mapas</li>
 <li>adicionar testes ao objeto</li>
 <li>Implementar sispag</li>
-<li>Implementar conciliação bancária</li>
 </ul>
 <h2 id="testes"><a class="header" href="#testes">Testes</a></h2>
 <h3 id="deno"><a class="header" href="#deno">deno</a></h3>
@@ -1306,8 +1316,8 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string-2"><a class="header" href="#id-string-2">id: <code>string</code></a></h3>
-<h4 id="identificador-da-empresa-1"><a class="header" href="#identificador-da-empresa-1">Identificador da Empresa</a></h4>
+<h3 id="codigo-string-2"><a class="header" href="#codigo-string-2">codigo: <code>string</code></a></h3>
+<h4 id="código-da-empresa-no-banco"><a class="header" href="#código-da-empresa-no-banco">Código da Empresa no Banco</a></h4>
 <ul>
 <li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -1360,12 +1370,6 @@ Os demais bancos não utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="hora-string-1"><a class="header" href="#hora-string-1">hora: <code>string</code></a></h3>
-<h4 id="hora-de-geração-1"><a class="header" href="#hora-de-geração-1">Hora de geração</a></h4>
-<ul>
-<li>Comprimento máximo: <code>6</code></li>
-<li>Valor padrão: <code>&quot;000000&quot;</code></li>
-</ul>
 <h3 id="data_inicial-string"><a class="header" href="#data_inicial-string">data_inicial: <code>string</code></a></h3>
 <h4 id="data-inicial"><a class="header" href="#data-inicial">Data Inicial</a></h4>
 <ul>
@@ -1375,20 +1379,9 @@ Os demais bancos não utilizam esse campo.</p>
 <h4 id="valor-inicial-r"><a class="header" href="#valor-inicial-r">Valor Inicial (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-10000000000000000</code></li>
 <li>Valor máximo: <code>10000000000000000</code></li>
 <li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="situacao_inicial-string"><a class="header" href="#situacao_inicial-string">situacao_inicial: <code>string</code></a></h3>
-<h4 id="situação-inicial"><a class="header" href="#situação-inicial">Situação Inicial</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-<li>Opções: 
-<ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
-</ul>
-</li>
 </ul>
 <h3 id="status_inicial-string"><a class="header" href="#status_inicial-string">status_inicial: <code>string</code></a></h3>
 <h4 id="status-inicial"><a class="header" href="#status-inicial">Status Inicial</a></h4>
@@ -1398,6 +1391,7 @@ Os demais bancos não utilizam esse campo.</p>
 <ul>
 <li><code>&quot;Parcial&quot;</code></li>
 <li><code>&quot;Final&quot;</code></li>
+<li><code>&quot;Intra-Dia&quot;</code></li>
 </ul>
 </li>
 </ul>
@@ -1434,20 +1428,9 @@ Os demais bancos não utilizam esse campo.</p>
 <h4 id="valor-final-r"><a class="header" href="#valor-final-r">Valor Final (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-10000000000000000</code></li>
 <li>Valor máximo: <code>10000000000000000</code></li>
 <li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="situacao_final-string"><a class="header" href="#situacao_final-string">situacao_final: <code>string</code></a></h3>
-<h4 id="situação-final"><a class="header" href="#situação-final">Situação Final</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-<li>Opções: 
-<ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
-</ul>
-</li>
 </ul>
 <h3 id="status_final-string"><a class="header" href="#status_final-string">status_final: <code>string</code></a></h3>
 <h4 id="status-final"><a class="header" href="#status-final">Status Final</a></h4>
@@ -1457,30 +1440,13 @@ Os demais bancos não utilizam esse campo.</p>
 <ul>
 <li><code>&quot;Parcial&quot;</code></li>
 <li><code>&quot;Final&quot;</code></li>
+<li><code>&quot;Intra-Dia&quot;</code></li>
 </ul>
 </li>
 </ul>
 <h2 id="registros-3"><a class="header" href="#registros-3">Registros</a></h2>
-<h3 id="nome-string-7"><a class="header" href="#nome-string-7">nome: <code>string</code></a></h3>
-<h4 id="nome-do-recebedor-1"><a class="header" href="#nome-do-recebedor-1">Nome do Recebedor</a></h4>
-<ul>
-<li>Comprimento máximo: <code>40</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="cnpjcpf-string-6"><a class="header" href="#cnpjcpf-string-6">cnpjcpf: <code>string</code></a></h3>
-<h4 id="cnpjcpf-do-recebedor-1"><a class="header" href="#cnpjcpf-do-recebedor-1">CNPJ/CPF do Recebedor</a></h4>
-<ul>
-<li>Comprimento máximo: <code>14</code></li>
-<li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="indicador-string"><a class="header" href="#indicador-string">indicador: <code>string</code></a></h3>
-<h4 id="indicador"><a class="header" href="#indicador">Indicador</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="banco-string-5"><a class="header" href="#banco-string-5">banco: <code>string</code></a></h3>
-<h4 id="banco-5"><a class="header" href="#banco-5">Banco</a></h4>
+<h4 id="banco-de-origem"><a class="header" href="#banco-de-origem">Banco de Origem</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
@@ -1725,28 +1691,19 @@ Os demais bancos não utilizam esse campo.</p>
 </ul>
 </li>
 </ul>
-<h3 id="agencia-integer-6"><a class="header" href="#agencia-integer-6">agencia: <code>integer</code></a></h3>
-<h4 id="agência-6"><a class="header" href="#agência-6">Agência</a></h4>
+<h3 id="agencia-string"><a class="header" href="#agencia-string">agencia: <code>string</code></a></h3>
+<h4 id="agência-de-origem"><a class="header" href="#agência-de-origem">Agência de origem</a></h4>
 <ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>999999</code></li>
-<li>Valor padrão: <code>0</code></li>
+<li>Comprimento máximo: <code>5</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="conta-integer-5"><a class="header" href="#conta-integer-5">conta: <code>integer</code></a></h3>
-<h4 id="conta-4"><a class="header" href="#conta-4">Conta</a></h4>
+<h3 id="conta-string"><a class="header" href="#conta-string">conta: <code>string</code></a></h3>
+<h4 id="conta-de-origem"><a class="header" href="#conta-de-origem">Conta de origem</a></h4>
 <ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>9999999999999</code></li>
-<li>Valor padrão: <code>0</code></li>
+<li>Comprimento máximo: <code>12</code></li>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="dac-integer-3"><a class="header" href="#dac-integer-3">dac: <code>integer</code></a></h3>
-<h4 id="digito-verificador-3"><a class="header" href="#digito-verificador-3">Digito Verificador</a></h4>
-<ul>
-<li>Valor mínimo: <code>0</code></li>
-<li>Valor máximo: <code>9</code></li>
-<li>Valor padrão: <code>0</code></li>
-</ul>
-<h3 id="id-string-3"><a class="header" href="#id-string-3">id: <code>string</code></a></h3>
+<h3 id="id-string-2"><a class="header" href="#id-string-2">id: <code>string</code></a></h3>
 <h4 id="id-da-transação"><a class="header" href="#id-da-transação">Id da transação</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -1765,28 +1722,20 @@ Os demais bancos não utilizam esse campo.</p>
 <h4 id="valor-r-3"><a class="header" href="#valor-r-3">Valor (R$)</a></h4>
 <ul>
 <li>Precisão: <code>0.01</code></li>
-<li>Valor mínimo: <code>0</code></li>
+<li>Valor mínimo: <code>-99999999999.99</code></li>
 <li>Valor máximo: <code>99999999999.99</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
-<h3 id="lancamento-string"><a class="header" href="#lancamento-string">lancamento: <code>string</code></a></h3>
-<h4 id="lançamento"><a class="header" href="#lançamento">Lançamento</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="status-string"><a class="header" href="#status-string">status: <code>string</code></a></h3>
-<h4 id="status"><a class="header" href="#status">Status</a></h4>
-<ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
 <h3 id="situacao-string"><a class="header" href="#situacao-string">situacao: <code>string</code></a></h3>
-<h4 id="situação"><a class="header" href="#situação">Situação</a></h4>
+<h4 id="situação-do-lançamento"><a class="header" href="#situação-do-lançamento">Situação do Lançamento</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 <li>Opções: 
 <ul>
-<li><code>&quot;Devedor&quot;</code></li>
-<li><code>&quot;Credor&quot;</code></li>
+<li><code>&quot;Disponível&quot;</code></li>
+<li><code>&quot;Vinculado&quot;</code></li>
+<li><code>&quot;Bloqueado&quot;</code></li>
+<li><code>&quot;Diversos&quot;</code></li>
 </ul>
 </li>
 </ul>
@@ -1794,15 +1743,71 @@ Os demais bancos não utilizam esse campo.</p>
 <h4 id="categoria"><a class="header" href="#categoria">Categoria</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
-</ul>
-<h3 id="tipo-string-4"><a class="header" href="#tipo-string-4">tipo: <code>string</code></a></h3>
-<h4 id="tipo-4"><a class="header" href="#tipo-4">Tipo</a></h4>
+<li>Opções: 
 <ul>
-<li>Valor padrão: <code>&quot;&quot;</code></li>
+<li><code>&quot;Cheques&quot;</code></li>
+<li><code>&quot;Encargos&quot;</code></li>
+<li><code>&quot;Estornos débito&quot;</code></li>
+<li><code>&quot;Lançamentos avisados débito&quot;</code></li>
+<li><code>&quot;Tarifas&quot;</code></li>
+<li><code>&quot;Aplicação&quot;</code></li>
+<li><code>&quot;Empréstimo / financiamento débito&quot;</code></li>
+<li><code>&quot;Câmbio débito&quot;</code></li>
+<li><code>&quot;Cpmf&quot;</code></li>
+<li><code>&quot;Iof&quot;</code></li>
+<li><code>&quot;Imposto de renda&quot;</code></li>
+<li><code>&quot;Pagamento fornecedores débito&quot;</code></li>
+<li><code>&quot;Pagamento funcionários&quot;</code></li>
+<li><code>&quot;Saque eletrônico&quot;</code></li>
+<li><code>&quot;Ações débito&quot;</code></li>
+<li><code>&quot;Seguro débito&quot;</code></li>
+<li><code>&quot;Transferência entre contas débito&quot;</code></li>
+<li><code>&quot;Devolução da compensação débito&quot;</code></li>
+<li><code>&quot;Devolução de cheques débito&quot;</code></li>
+<li><code>&quot;Transferência interbancárias (doc/ted) débito&quot;</code></li>
+<li><code>&quot;Antecipação a fornecedores&quot;</code></li>
+<li><code>&quot;Oc / aerops&quot;</code></li>
+<li><code>&quot;Saque em espécie&quot;</code></li>
+<li><code>&quot;Cheque pago&quot;</code></li>
+<li><code>&quot;Pagamentos diversos débito&quot;</code></li>
+<li><code>&quot;Pagamento de tributos débito&quot;</code></li>
+<li><code>&quot;Cartão de crédito – pagamento fatura de cartão de crédito da própria if&quot;</code></li>
+<li><code>&quot;Depósitos&quot;</code></li>
+<li><code>&quot;Líquido de cobrança&quot;</code></li>
+<li><code>&quot;Devolução de cheques crédito&quot;</code></li>
+<li><code>&quot;Estornos crédito&quot;</code></li>
+<li><code>&quot;Lançamentos avisados crédito&quot;</code></li>
+<li><code>&quot;Resgate de aplicações&quot;</code></li>
+<li><code>&quot;Empréstimo / financiamento crédito&quot;</code></li>
+<li><code>&quot;Câmbio crédito&quot;</code></li>
+<li><code>&quot;Transferência interbancárias (doc/ted) crédito&quot;</code></li>
+<li><code>&quot;Ações crédito&quot;</code></li>
+<li><code>&quot;Dividendos&quot;</code></li>
+<li><code>&quot;Seguro crédito&quot;</code></li>
+<li><code>&quot;Transferência entre contas crédito&quot;</code></li>
+<li><code>&quot;Depósitos especiais&quot;</code></li>
+<li><code>&quot;Devolução de compensação crédito&quot;</code></li>
+<li><code>&quot;Oct&quot;</code></li>
+<li><code>&quot;Pagamentos fornecedores crédito&quot;</code></li>
+<li><code>&quot;Pagamentos diversos crédito&quot;</code></li>
+<li><code>&quot;Pagamentos salários&quot;</code></li>
+<li><code>&quot;Depósito em espécie&quot;</code></li>
+<li><code>&quot;Pagamento de tributos crédito&quot;</code></li>
+<li><code>&quot;Cartão de crédito – recebíveis de cartão de crédito&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="info-integer"><a class="header" href="#info-integer">info: <code>integer</code></a></h3>
+<h4 id="info-da-descrição"><a class="header" href="#info-da-descrição">Info da Descrição</a></h4>
+<ul>
+<li>Valor mínimo: <code>0</code></li>
+<li>Valor máximo: <code>9999</code></li>
+<li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="descricao-string"><a class="header" href="#descricao-string">descricao: <code>string</code></a></h3>
 <h4 id="descrição"><a class="header" href="#descrição">Descrição</a></h4>
 <ul>
+<li>Comprimento máximo: <code>25</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 

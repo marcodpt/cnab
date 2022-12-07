@@ -63,7 +63,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     data(R, 'movimento', 8)
     numero(R, 'valor', 18, 2, true)
     mapa(R, 'categoria', categorias)
-    texto(R, 'info', 4)
+    numero(R, 'info', 4)
     texto(R, 'descricao', 25)
     texto(R, 'id', 39)
     fixo('\r\n')

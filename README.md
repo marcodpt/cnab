@@ -32,7 +32,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Daycoval sispag
 
 ## Melhorias a serem feitas
- - Implementar conciliação bancária
  - Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação
  - Campos formadores de lote
  - Identificador de registro com regex

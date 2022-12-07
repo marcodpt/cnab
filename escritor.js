@@ -37,7 +37,7 @@ const texto = arquivo => (X, campo, tamanho) =>
   escrever(arquivo, constante(X[campo], tamanho))
 
 const numero = arquivo => (X, campo, tamanho, precisao, sinal) => {
-  const n = Math.round(X[campo] * 10 ** (precisao || 0))
+  const n = Math.round(Math.abs(X[campo]) * 10 ** (precisao || 0))
   const s = X[campo] < 0 ? 'D' : 'C'
   return escrever(arquivo, constante(n, tamanho, true)+(sinal ? s : ''))
 }

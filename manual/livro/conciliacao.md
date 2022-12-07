@@ -25,9 +25,9 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
  - Expressão Regular: `^(|d{11}|d{14})$`
  - Valor padrão: `""`
 
-### id: `string`
+### codigo: `string`
 
-#### Identificador da Empresa
+#### Código da Empresa no Banco
 
  - Comprimento máximo: `20`
  - Valor padrão: `""`
@@ -83,13 +83,6 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
 
  - Valor padrão: `Dia atual`
 
-### hora: `string`
-
-#### Hora de geração
-
- - Comprimento máximo: `6`
- - Valor padrão: `"000000"`
-
 ### data_inicial: `string`
 
 #### Data Inicial
@@ -101,18 +94,9 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
 #### Valor Inicial (R$)
 
  - Precisão: `0.01`
- - Valor mínimo: `0`
+ - Valor mínimo: `-10000000000000000`
  - Valor máximo: `10000000000000000`
  - Valor padrão: `0`
-
-### situacao_inicial: `string`
-
-#### Situação Inicial
-
- - Valor padrão: `""`
- - Opções: 
-   - `"Devedor"`
-   - `"Credor"`
 
 ### status_inicial: `string`
 
@@ -122,6 +106,7 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
  - Opções: 
    - `"Parcial"`
    - `"Final"`
+   - `"Intra-Dia"`
 
 ### bloqueado: `number`
 
@@ -161,18 +146,9 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
 #### Valor Final (R$)
 
  - Precisão: `0.01`
- - Valor mínimo: `0`
+ - Valor mínimo: `-10000000000000000`
  - Valor máximo: `10000000000000000`
  - Valor padrão: `0`
-
-### situacao_final: `string`
-
-#### Situação Final
-
- - Valor padrão: `""`
- - Opções: 
-   - `"Devedor"`
-   - `"Credor"`
 
 ### status_final: `string`
 
@@ -182,33 +158,13 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
  - Opções: 
    - `"Parcial"`
    - `"Final"`
+   - `"Intra-Dia"`
 
 ## Registros
 
-### nome: `string`
-
-#### Nome do Recebedor
-
- - Comprimento máximo: `40`
- - Valor padrão: `""`
-
-### cnpjcpf: `string`
-
-#### CNPJ/CPF do Recebedor
-
- - Comprimento máximo: `14`
- - Expressão Regular: `^(|d{11}|d{14})$`
- - Valor padrão: `""`
-
-### indicador: `string`
-
-#### Indicador
-
- - Valor padrão: `""`
-
 ### banco: `string`
 
-#### Banco
+#### Banco de Origem
 
  - Valor padrão: `""`
  - Opções: 
@@ -450,29 +406,19 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
    - `"Uniprime Norte do Paraná – Coop de Economia e Crédito Mútuo dos Médicos"`
    - `"Desconhecido"`
 
-### agencia: `integer`
+### agencia: `string`
 
-#### Agência
+#### Agência de origem
 
- - Valor mínimo: `0`
- - Valor máximo: `999999`
- - Valor padrão: `0`
+ - Comprimento máximo: `5`
+ - Valor padrão: `""`
 
-### conta: `integer`
+### conta: `string`
 
-#### Conta
+#### Conta de origem
 
- - Valor mínimo: `0`
- - Valor máximo: `9999999999999`
- - Valor padrão: `0`
-
-### dac: `integer`
-
-#### Digito Verificador
-
- - Valor mínimo: `0`
- - Valor máximo: `9`
- - Valor padrão: `0`
+ - Comprimento máximo: `12`
+ - Valor padrão: `""`
 
 ### id: `string`
 
@@ -497,45 +443,88 @@ Objeto JSON para leitura de arquivo CNAB de Conciliação Bancária
 #### Valor (R$)
 
  - Precisão: `0.01`
- - Valor mínimo: `0`
+ - Valor mínimo: `-99999999999.99`
  - Valor máximo: `99999999999.99`
  - Valor padrão: `0`
 
-### lancamento: `string`
-
-#### Lançamento
-
- - Valor padrão: `""`
-
-### status: `string`
-
-#### Status
-
- - Valor padrão: `""`
-
 ### situacao: `string`
 
-#### Situação
+#### Situação do Lançamento
 
  - Valor padrão: `""`
  - Opções: 
-   - `"Devedor"`
-   - `"Credor"`
+   - `"Disponível"`
+   - `"Vinculado"`
+   - `"Bloqueado"`
+   - `"Diversos"`
 
 ### categoria: `string`
 
 #### Categoria
 
  - Valor padrão: `""`
+ - Opções: 
+   - `"Cheques"`
+   - `"Encargos"`
+   - `"Estornos débito"`
+   - `"Lançamentos avisados débito"`
+   - `"Tarifas"`
+   - `"Aplicação"`
+   - `"Empréstimo / financiamento débito"`
+   - `"Câmbio débito"`
+   - `"Cpmf"`
+   - `"Iof"`
+   - `"Imposto de renda"`
+   - `"Pagamento fornecedores débito"`
+   - `"Pagamento funcionários"`
+   - `"Saque eletrônico"`
+   - `"Ações débito"`
+   - `"Seguro débito"`
+   - `"Transferência entre contas débito"`
+   - `"Devolução da compensação débito"`
+   - `"Devolução de cheques débito"`
+   - `"Transferência interbancárias (doc/ted) débito"`
+   - `"Antecipação a fornecedores"`
+   - `"Oc / aerops"`
+   - `"Saque em espécie"`
+   - `"Cheque pago"`
+   - `"Pagamentos diversos débito"`
+   - `"Pagamento de tributos débito"`
+   - `"Cartão de crédito – pagamento fatura de cartão de crédito da própria if"`
+   - `"Depósitos"`
+   - `"Líquido de cobrança"`
+   - `"Devolução de cheques crédito"`
+   - `"Estornos crédito"`
+   - `"Lançamentos avisados crédito"`
+   - `"Resgate de aplicações"`
+   - `"Empréstimo / financiamento crédito"`
+   - `"Câmbio crédito"`
+   - `"Transferência interbancárias (doc/ted) crédito"`
+   - `"Ações crédito"`
+   - `"Dividendos"`
+   - `"Seguro crédito"`
+   - `"Transferência entre contas crédito"`
+   - `"Depósitos especiais"`
+   - `"Devolução de compensação crédito"`
+   - `"Oct"`
+   - `"Pagamentos fornecedores crédito"`
+   - `"Pagamentos diversos crédito"`
+   - `"Pagamentos salários"`
+   - `"Depósito em espécie"`
+   - `"Pagamento de tributos crédito"`
+   - `"Cartão de crédito – recebíveis de cartão de crédito"`
 
-### tipo: `string`
+### info: `integer`
 
-#### Tipo
+#### Info da Descrição
 
- - Valor padrão: `""`
+ - Valor mínimo: `0`
+ - Valor máximo: `9999`
+ - Valor padrão: `0`
 
 ### descricao: `string`
 
 #### Descrição
 
+ - Comprimento máximo: `25`
  - Valor padrão: `""`
