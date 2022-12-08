@@ -13,6 +13,7 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Bradesco conciliação bancária 240](https://banco.bradesco/assets/pessoajuridica/pdf/solucoes-integradas/outros/layout-de-arquivo/conciliacao_bancaria_240_posicoes_v_5.pdf)
  - [Santander remessa cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
  - [Santander retorno cobrança 400](http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf)
+ - [Santander sispag 240](https://cms.santander.com.br/sites/WPS/documentos/arq-layout-de-arquivos-1/17-10-26_171722_258-37-pagamento+a+fornecedores+layout+cnab+240+-+v10.pdf)
  - [Santander conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
  - [BB remessa cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
  - [BB retorno cobrança 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
@@ -27,7 +28,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Daycoval conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
 
 ## Layouts
- - Santander sispag 
  - Bradesco sispag
  - Daycoval sispag
 

@@ -1,17 +1,21 @@
 export default {
   '00': 'Optantes',
+  '03': 'Bloqueto Eletrônico',
   '05': 'Débitos/recebimento',
   '10': 'Pagamento dividendos',
+  '14': 'Consulta de Tributos a Pagar DETRAN (SP, RS e MG) com RENAVAM',
   '15': 'Debêntures',
   '20': 'Pagamento fornecedor',
   '22': 'Pagamento de tributos',
+  '29': 'Alegação do Sacado',
   '30': 'Pagamento salários',
   '40': 'Fundos de investimentos',
   '50': 'Pagamento sinistros segurados',
+  '55': 'Consulta e Agenda Boletos de Cobrança',
   '60': 'Pagamento despesas viajante em trânsito',
   '70': 'Pagamento autorizado',
   '75': 'Pagamento credenciados',
-  '80': 'Pagamento vendedores autorizados',
+  '80': 'Pagamento representantes / vendedores autorizados',
   '90': 'Pagamento benefícios',
   '98': 'Pagamentos diversos'
 }

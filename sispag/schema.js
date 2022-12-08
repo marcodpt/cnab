@@ -185,7 +185,7 @@ export default {
           "documento": {
             "title": "Numero do documento",
             "type": "string",
-            "maxLength": 10,
+            "maxLength": 20,
             "default": ""
           },
           "vencimento": {
