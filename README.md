@@ -26,10 +26,8 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - [Caixa conciliação bancária 240](https://www.caixa.gov.br/Downloads/extrato-eletronico-conciliacao-bancaria/Manual_de_Leiaute_CNAB_240_Extrato_Eletronico_Para_Conciliacao_Bancaria.pdf)
  - [Daycoval remessa cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
  - [Daycoval retorno cobrança 400](https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb)
+ - Daycoval sispag 240
  - [Daycoval conciliação bancária 240](https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf)
-
-## Layouts
- - Daycoval sispag
 
 ## Melhorias a serem feitas
  - Rever estrutura dos diretorios e separar o diretorio de codigo e automatizar o maximo adicionar um novo schema em relação aos testes e documentação

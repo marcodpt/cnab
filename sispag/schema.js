@@ -1,5 +1,7 @@
 import uf from '../uf.js'
 import bancos from '../bancos.js'
+import servicos from './notas/servicos.js'
+import pagamentos from './notas/pagamentos.js'
 import {hoje} from '../lib.js'
 
 export default {
@@ -79,20 +81,16 @@ export default {
       "format": "date",
       "default": hoje()
     },
-    "hora": {
-      "title": "Hora de geração",
-      "type": "string",
-      "default": "000000",
-      "maxLength": 6
-    },
     "servico": {
       "title": "Serviço",
       "type": "string",
+      "enum": Object.values(servicos),
       "default": ""
     },
     "pagamento": {
       "title": "Forma de Pagamento",
       "type": "string",
+      "enum": Object.values(pagamentos),
       "default": ""
     },
     "endereco": {
