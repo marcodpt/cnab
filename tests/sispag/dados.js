@@ -9,8 +9,8 @@ export default {
   "conta": 27267110,
   "dac": 9,
   "sequencia": 647,
-  "servico": "",
-  "pagamento": "",
+  "servico": "Pagamento salários",
+  "pagamento": "Crédito em conta corrente",
   "endereco": "Praça das Mães",
   "numero": 556,
   "complemento": "",
@@ -27,7 +27,7 @@ export default {
       "dac": 6,
       "documento": "OCRJN6Z90W",
       "vencimento": "2022-12-14",
-      "valor": 1793.71,
+      "valor": 1793.71
     }, {
       "nome": "Maria e Elisa Publicidade e Propaganda ME",
       "cnpjcpf": "25844688000117",

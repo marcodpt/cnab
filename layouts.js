@@ -8,9 +8,11 @@ import sispag_itau from './sispag/itau.js'
 import conciliacao_itau from './conciliacao/itau.js'
 import remessa_cobranca_bradesco from './remessa_cobranca/bradesco.js'
 import retorno_cobranca_bradesco from './retorno_cobranca/bradesco.js'
+import sispag_bradesco from './sispag/bradesco.js'
 import conciliacao_bradesco from './conciliacao/bradesco.js'
 import remessa_cobranca_santander from './remessa_cobranca/santander.js'
 import retorno_cobranca_santander from './retorno_cobranca/santander.js'
+import sispag_santander from './sispag/santander.js'
 import conciliacao_santander from './conciliacao/santander.js'
 import remessa_cobranca_bb from './remessa_cobranca/bb.js'
 import retorno_cobranca_bb from './retorno_cobranca/bb.js'
@@ -18,9 +20,11 @@ import sispag_bb from './sispag/bb.js'
 import conciliacao_bb from './conciliacao/bb.js'
 import remessa_cobranca_caixa from './remessa_cobranca/caixa.js'
 import retorno_cobranca_caixa from './retorno_cobranca/caixa.js'
+import sispag_caixa from './sispag/caixa.js'
 import conciliacao_caixa from './conciliacao/caixa.js'
 import remessa_cobranca_daycoval from './remessa_cobranca/daycoval.js'
 import retorno_cobranca_daycoval from './retorno_cobranca/daycoval.js'
+import sispag_daycoval from './sispag/daycoval.js'
 import conciliacao_daycoval from './conciliacao/daycoval.js'
 
 export default {
@@ -45,7 +49,11 @@ export default {
   sispag: {
     schema: sispag,
     itau: sispag_itau,
-    bb: sispag_bb
+    bradesco: sispag_bradesco,
+    santander: sispag_santander,
+    bb: sispag_bb,
+    caixa: sispag_caixa,
+    daycoval: sispag_daycoval
   },
   conciliacao: {
     schema: conciliacao,

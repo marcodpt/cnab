@@ -146,9 +146,11 @@
 <li><a href="https://download.itau.com.br/bankline/conciliacao_bancaria_%20240.pdf">Itaú conciliação bancária 240</a></li>
 <li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco remessa cobrança 400</a></li>
 <li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf">Bradesco retorno cobrança 400</a></li>
+<li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/4008-523-0687-layout-multipag.pdf">Bradesco sispag 240</a></li>
 <li><a href="https://banco.bradesco/assets/pessoajuridica/pdf/solucoes-integradas/outros/layout-de-arquivo/conciliacao_bancaria_240_posicoes_v_5.pdf">Bradesco conciliação bancária 240</a></li>
 <li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander remessa cobrança 400</a></li>
 <li><a href="http://suporte.basesoft.com.br/Download/Updates/Layout_CNAB_400_posicoes_Ver20_Out2009.pdf">Santander retorno cobrança 400</a></li>
+<li><a href="https://cms.santander.com.br/sites/WPS/documentos/arq-layout-de-arquivos-1/17-10-26_171722_258-37-pagamento+a+fornecedores+layout+cnab+240+-+v10.pdf">Santander sispag 240</a></li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">Santander conciliação bancária 240</a></li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB remessa cobrança 240</a></li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf">BB retorno cobrança 240</a></li>
@@ -156,17 +158,12 @@
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">BB conciliação bancária 240</a></li>
 <li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa remessa cobrança 400</a></li>
 <li><a href="https://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_400.pdf">Caixa retorno cobrança 400</a></li>
+<li><a href="https://www.caixa.gov.br/Downloads/pagamentos-de-salarios-fornecedores-e-auto-pagamento/Leiaute_CNAB_240_Pagamentos.pdf">Caixa sispag 240</a></li>
 <li><a href="https://www.caixa.gov.br/Downloads/extrato-eletronico-conciliacao-bancaria/Manual_de_Leiaute_CNAB_240_Extrato_Eletronico_Para_Conciliacao_Bancaria.pdf">Caixa conciliação bancária 240</a></li>
 <li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval remessa cobrança 400</a></li>
 <li><a href="https://www.bib.com.br/Download.aspx?Arquivo=uSSnjvYUyTt0wTSkhJ2HtQ==&amp;usg=AOvVaw2eT39jsaJdSwCPHZBc5fYb">Daycoval retorno cobrança 400</a></li>
+<li>Daycoval sispag 240</li>
 <li><a href="https://www.bb.com.br/docs/pub/emp/empl/dwn/Doc3526SegtoE.pdf">Daycoval conciliação bancária 240</a></li>
-</ul>
-<h2 id="layouts"><a class="header" href="#layouts">Layouts</a></h2>
-<ul>
-<li>Caixa sispag</li>
-<li>Santander sispag </li>
-<li>Bradesco sispag</li>
-<li>Daycoval sispag</li>
 </ul>
 <h2 id="melhorias-a-serem-feitas"><a class="header" href="#melhorias-a-serem-feitas">Melhorias a serem feitas</a></h2>
 <ul>
@@ -1103,8 +1100,8 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string-1"><a class="header" href="#id-string-1">id: <code>string</code></a></h3>
-<h4 id="identificador-da-empresa"><a class="header" href="#identificador-da-empresa">Identificador da Empresa</a></h4>
+<h3 id="codigo-string-2"><a class="header" href="#codigo-string-2">codigo: <code>string</code></a></h3>
+<h4 id="código-da-empresa-2"><a class="header" href="#código-da-empresa-2">Código da Empresa</a></h4>
 <ul>
 <li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -1132,21 +1129,21 @@ Os demais bancos não utilizam esse campo.</p>
 </li>
 </ul>
 <h3 id="agencia-integer-3"><a class="header" href="#agencia-integer-3">agencia: <code>integer</code></a></h3>
-<h4 id="agência-3"><a class="header" href="#agência-3">Agência</a></h4>
+<h4 id="agência-da-empresa"><a class="header" href="#agência-da-empresa">Agência da Empresa</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="conta-integer-2"><a class="header" href="#conta-integer-2">conta: <code>integer</code></a></h3>
-<h4 id="conta-1"><a class="header" href="#conta-1">Conta</a></h4>
+<h4 id="conta-da-empresa"><a class="header" href="#conta-da-empresa">Conta da Empresa</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9999999999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="dac-integer"><a class="header" href="#dac-integer">dac: <code>integer</code></a></h3>
-<h4 id="digito-verificador"><a class="header" href="#digito-verificador">Digito Verificador</a></h4>
+<h4 id="digito-verificador-da-empresa"><a class="header" href="#digito-verificador-da-empresa">Digito Verificador da Empresa</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9</code></li>
@@ -1157,21 +1154,99 @@ Os demais bancos não utilizam esse campo.</p>
 <ul>
 <li>Valor padrão: <code>Dia atual</code></li>
 </ul>
-<h3 id="hora-string"><a class="header" href="#hora-string">hora: <code>string</code></a></h3>
-<h4 id="hora-de-geração"><a class="header" href="#hora-de-geração">Hora de geração</a></h4>
-<ul>
-<li>Comprimento máximo: <code>6</code></li>
-<li>Valor padrão: <code>&quot;000000&quot;</code></li>
-</ul>
 <h3 id="servico-string"><a class="header" href="#servico-string">servico: <code>string</code></a></h3>
 <h4 id="serviço"><a class="header" href="#serviço">Serviço</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Pagamento dividendos&quot;</code></li>
+<li><code>&quot;Manutenção da Consignação&quot;</code></li>
+<li><code>&quot;Consignação de Parcelas&quot;</code></li>
+<li><code>&quot;Glosa da Consignação (INSS)&quot;</code></li>
+<li><code>&quot;Consulta de Tributos a Pagar DETRAN (SP, RS e MG) com RENAVAM&quot;</code></li>
+<li><code>&quot;Debêntures&quot;</code></li>
+<li><code>&quot;Pagamento fornecedor&quot;</code></li>
+<li><code>&quot;Pagamento de contas, tributos e impostos&quot;</code></li>
+<li><code>&quot;Compror&quot;</code></li>
+<li><code>&quot;Compror Rotativo&quot;</code></li>
+<li><code>&quot;Alegação do Sacado&quot;</code></li>
+<li><code>&quot;Pagamento salários&quot;</code></li>
+<li><code>&quot;Pagamento de honorários&quot;</code></li>
+<li><code>&quot;Pagamento de bolsa auxílio&quot;</code></li>
+<li><code>&quot;Pagamento de prebenda (remuneração a padres e sacerdotes)&quot;</code></li>
+<li><code>&quot;Fundos de investimentos ou vendor&quot;</code></li>
+<li><code>&quot;Vendor a Termo&quot;</code></li>
+<li><code>&quot;Pagamento sinistros segurados&quot;</code></li>
+<li><code>&quot;Consulta e Agenda Boletos de Cobrança&quot;</code></li>
+<li><code>&quot;Pagamento despesas viajante em trânsito&quot;</code></li>
+<li><code>&quot;Pagamento autorizado&quot;</code></li>
+<li><code>&quot;Pagamento credenciados&quot;</code></li>
+<li><code>&quot;Pagamento de Remuneração&quot;</code></li>
+<li><code>&quot;Pagamento representantes / vendedores autorizados&quot;</code></li>
+<li><code>&quot;Pagamento benefícios&quot;</code></li>
+<li><code>&quot;Pagamentos diversos&quot;</code></li>
+<li><code>&quot;Exclusivo Banco&quot;</code></li>
+<li><code>&quot;Optantes&quot;</code></li>
+<li><code>&quot;Cobrança&quot;</code></li>
+<li><code>&quot;Bloqueto Eletrônico&quot;</code></li>
+<li><code>&quot;Conciliação Bancária&quot;</code></li>
+<li><code>&quot;Débitos/recebimento&quot;</code></li>
+<li><code>&quot;Custódia de Cheques&quot;</code></li>
+<li><code>&quot;Gestão de Caixa&quot;</code></li>
+<li><code>&quot;Consulta/Informação Margem&quot;</code></li>
+<li><code>&quot;Averbação da Consignação/Retenção&quot;</code></li>
+</ul>
+</li>
 </ul>
 <h3 id="pagamento-string"><a class="header" href="#pagamento-string">pagamento: <code>string</code></a></h3>
 <h4 id="forma-de-pagamento"><a class="header" href="#forma-de-pagamento">Forma de Pagamento</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Ordem de pagamento à disposição&quot;</code></li>
+<li><code>&quot;Pagamento de contas e Tributos com código de barras&quot;</code></li>
+<li><code>&quot;Pagamento de concessionárias&quot;</code></li>
+<li><code>&quot;DARF normal&quot;</code></li>
+<li><code>&quot;GPS - guia da previdência social&quot;</code></li>
+<li><code>&quot;DARF simples&quot;</code></li>
+<li><code>&quot;IPTU/ISS/outros tributos municipais&quot;</code></li>
+<li><code>&quot;Caixa autenticação&quot;</code></li>
+<li><code>&quot;DARJ&quot;</code></li>
+<li><code>&quot;GARE – SP ICMS&quot;</code></li>
+<li><code>&quot;GARE SP DR&quot;</code></li>
+<li><code>&quot;GARE SP ITCMD&quot;</code></li>
+<li><code>&quot;IPVA&quot;</code></li>
+<li><code>&quot;Licenciamento SP, RS e MG – Pagamento com o RENAVAM&quot;</code></li>
+<li><code>&quot;DPVAT&quot;</code></li>
+<li><code>&quot;Pagamento de títulos em cobrança do próprio banco&quot;</code></li>
+<li><code>&quot;Pagamento de títulos em cobrança em outros bancos&quot;</code></li>
+<li><code>&quot;Nota fiscal – liquidação eletrônica&quot;</code></li>
+<li><code>&quot;FGTS&quot;</code></li>
+<li><code>&quot;Extrato de Conta Corrente&quot;</code></li>
+<li><code>&quot;TED – outro titular&quot;</code></li>
+<li><code>&quot;TED – mesmo titular&quot;</code></li>
+<li><code>&quot;TED para Transferência de Conta Investimento&quot;</code></li>
+<li><code>&quot;Pix transferência&quot;</code></li>
+<li><code>&quot;Pix qr-code&quot;</code></li>
+<li><code>&quot;Débito em conta corrente – recebimento&quot;</code></li>
+<li><code>&quot;Cartão salário&quot;</code></li>
+<li><code>&quot;Extrato para Gestão de Caixa&quot;</code></li>
+<li><code>&quot;Pagamento de Guia de Depósito Judicial&quot;</code></li>
+<li><code>&quot;Depósito Judicial em Poupança&quot;</code></li>
+<li><code>&quot;Extrato de Conta Investimento&quot;</code></li>
+<li><code>&quot;GNRE e tributos com código de barras&quot;</code></li>
+<li><code>&quot;Pagamento de Concessionárias ou Cadastro de favorecidos&quot;</code></li>
+<li><code>&quot;Crédito em conta corrente&quot;</code></li>
+<li><code>&quot;Cheque pagamento/administrativo&quot;</code></li>
+<li><code>&quot;DOC C&quot;</code></li>
+<li><code>&quot;Cartão Salário&quot;</code></li>
+<li><code>&quot;Crédito em conta poupança&quot;</code></li>
+<li><code>&quot;Crédito em conta corrente de mesma titularidade&quot;</code></li>
+<li><code>&quot;DOC D&quot;</code></li>
+</ul>
+</li>
 </ul>
 <h3 id="endereco-string-1"><a class="header" href="#endereco-string-1">endereco: <code>string</code></a></h3>
 <h4 id="endereço-1"><a class="header" href="#endereço-1">Endereço</a></h4>
@@ -1255,22 +1330,268 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
+<h3 id="banco-string-4"><a class="header" href="#banco-string-4">banco: <code>string</code></a></h3>
+<h4 id="banco-do-recebedor"><a class="header" href="#banco-do-recebedor">Banco do Recebedor</a></h4>
+<ul>
+<li>Valor padrão: <code>&quot;&quot;</code></li>
+<li>Opções: 
+<ul>
+<li><code>&quot;Planner Corretora de Valores S.A.&quot;</code></li>
+<li><code>&quot;RENASCENCA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;XP INVESTIMENTOS CORRETORA DE CÂMBIO,TÍTULOS E VALORES MOBILIÁRIOS S/A&quot;</code></li>
+<li><code>&quot;caixa&quot;</code></li>
+<li><code>&quot;Lecca Crédito, Financiamento e Investimento S/A&quot;</code></li>
+<li><code>&quot;Banco BOCOM BBM S.A&quot;</code></li>
+<li><code>&quot;PORTOCRED S.A. – CREDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;OLIVEIRA TRUST DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIARIOS S.A.&quot;</code></li>
+<li><code>&quot;Magliano S.A. Corretora de Cambio e Valores Mobiliarios&quot;</code></li>
+<li><code>&quot;Central Cooperativa de Crédito no Estado do Espírito Santo – CECOOP&quot;</code></li>
+<li><code>&quot;ADVANCED CORRETORA DE CÂMBIO LTDA&quot;</code></li>
+<li><code>&quot;Banco Western Union do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Rodobens S.A&quot;</code></li>
+<li><code>&quot;Banco Agibank S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco BERJ S.A.&quot;</code></li>
+<li><code>&quot;Banco Woori Bank do Brasil S.A&quot;</code></li>
+<li><code>&quot;Plural S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;BR Partners Banco de Investimento S.A&quot;</code></li>
+<li><code>&quot;Codepe Corretora de Valores e Câmbio S.A.&quot;</code></li>
+<li><code>&quot;MS Bank S.A. Banco de Câmbi&quot;</code></li>
+<li><code>&quot;UBS Brasil Banco de Investimento S.A&quot;</code></li>
+<li><code>&quot;CARUANA S.A. – SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;TULLETT PREBON BRASIL CORRETORA DE VALORES E CÂMBIO LTDA&quot;</code></li>
+<li><code>&quot;ICBC do Brasil Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS DE CRÉDITO E ECONOMIA FAMILIAR E&quot;</code></li>
+<li><code>&quot;BGC LIQUIDEZ DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS UNICRED LTDA. – UNICRED DO BRASI&quot;</code></li>
+<li><code>&quot;Get Money Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;Intesa Sanpaolo Brasil S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Easynvest – Título Corretora de Valores SA&quot;</code></li>
+<li><code>&quot;Broker Brasil Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;Treviso Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;BEXS Banco de Câmbio S.A&quot;</code></li>
+<li><code>&quot;LEVYCAM – CORRETORA DE CAMBIO E VALORES LTDA.&quot;</code></li>
+<li><code>&quot;GUITTA CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Facta Financeira S.A. – Crédito Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;ICAP do Brasil Corretora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;Casa do Crédito S.A. Sociedade de Crédito ao Microempreendedor&quot;</code></li>
+<li><code>&quot;Commerzbank Brasil S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco Olé Bonsucesso Consignado S.A&quot;</code></li>
+<li><code>&quot;BRL Trust Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;PERNAMBUCANAS FINANCIADORA S.A. – CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;Guide Investimentos S.A. Corretora de Valores&quot;</code></li>
+<li><code>&quot;CM CAPITAL MARKETS CORRETORA DE CÂMBIO, TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;SOCRED S.A. – SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO P&quot;</code></li>
+<li><code>&quot;Banco Itaú BBA S.A&quot;</code></li>
+<li><code>&quot;ATIVA INVESTIMENTOS S.A. CORRETORA DE TÍTULOS, CÂMBIO E VALORES&quot;</code></li>
+<li><code>&quot;HS FINANCEIRA S/A CREDITO, FINANCIAMENTO E INVESTIMENTOS&quot;</code></li>
+<li><code>&quot;SERVICOOP – COOPERATIVA DE CRÉDITO DOS SERVIDORES PÚBLICOS ESTADUAIS DO RIO GRAN&quot;</code></li>
+<li><code>&quot;Nova Futura Corretora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;PARMETAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;FAIR CORRETORA DE CAMBIO S.A.&quot;</code></li>
+<li><code>&quot;Stone Pagamentos S.A.&quot;</code></li>
+<li><code>&quot;Banco BTG Pactual S.A&quot;</code></li>
+<li><code>&quot;Banco Original S.A&quot;</code></li>
+<li><code>&quot;Banco Arbi S.A&quot;</code></li>
+<li><code>&quot;Banco John Deere S.A&quot;</code></li>
+<li><code>&quot;Banco BS2 S.A&quot;</code></li>
+<li><code>&quot;Banco Credit Agricole Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Fibra S.A&quot;</code></li>
+<li><code>&quot;Banco Cifra S.A&quot;</code></li>
+<li><code>&quot;bradesco&quot;</code></li>
+<li><code>&quot;Banco Clássico S.A&quot;</code></li>
+<li><code>&quot;Banco Máxima S.A&quot;</code></li>
+<li><code>&quot;Banco ABC Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Investcred Unibanco S.A.&quot;</code></li>
+<li><code>&quot;BCV – Banco de Crédito e Varejo S.A&quot;</code></li>
+<li><code>&quot;Bexs Corretora de Câmbio S/A&quot;</code></li>
+<li><code>&quot;Paraná Banco S.A&quot;</code></li>
+<li><code>&quot;MONEYCORP BANCO DE CÂMBIO S.A.&quot;</code></li>
+<li><code>&quot;Nu Pagamentos S.A.&quot;</code></li>
+<li><code>&quot;Banco Fator S.A&quot;</code></li>
+<li><code>&quot;Banco Cédula S.A&quot;</code></li>
+<li><code>&quot;BARI COMPANHIA HIPOTECÁRIA&quot;</code></li>
+<li><code>&quot;HSBC Brasil S.A. – Banco de Investimento&quot;</code></li>
+<li><code>&quot;Sagitur Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;IB Corretora de Câmbio, Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;AGK CORRETORA DE CAMBIO S.A.&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural de São Miguel do Oeste – Sulcredi/São Miguel&quot;</code></li>
+<li><code>&quot;MONEY PLUS SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E A EMPRESA DE PEQUENO PORT&quot;</code></li>
+<li><code>&quot;Senff S.A. – Crédito, Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;Genial Investimentos Corretora de Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CREDITO RURAL DE PRIMAVERA DO LESTE&quot;</code></li>
+<li><code>&quot;Avista S.A. Crédito, Financiamento e Investimento&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural Coopavel&quot;</code></li>
+<li><code>&quot;RB CAPITAL INVESTIMENTOS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LIMITADA&quot;</code></li>
+<li><code>&quot;Frente Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CRÉDITO RURAL DE OURO SULCREDI/OURO&quot;</code></li>
+<li><code>&quot;CAROL DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;DECYSEO CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Pagseguro Internet S.A.&quot;</code></li>
+<li><code>&quot;BS2 Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Lastro RDV Distribuidora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;VISION S.A. CORRETORA DE CAMBIO&quot;</code></li>
+<li><code>&quot;Vip’s Corretora de Câmbio Ltda.&quot;</code></li>
+<li><code>&quot;SOROCRED CRÉDITO, FINANCIAMENTO E INVESTIMENTO S.A.&quot;</code></li>
+<li><code>&quot;Banco de La Nacion Argentin&quot;</code></li>
+<li><code>&quot;BPP Instituição de Pagamento S.A.&quot;</code></li>
+<li><code>&quot;PORTOPAR DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;Terra Investimentos Distribuidora de Títulos e Valores Mobiliários Ltda.&quot;</code></li>
+<li><code>&quot;CAMBIONET CORRETORA DE CÂMBIO LTDA.&quot;</code></li>
+<li><code>&quot;VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.&quot;</code></li>
+<li><code>&quot;PI Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Banco BMG S.A&quot;</code></li>
+<li><code>&quot;OM DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;China Construction Bank (Brasil) Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;CREFAZ SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E A EMPRESA DE PEQUENO PORTE LT&quot;</code></li>
+<li><code>&quot;Cooperativa de Crédito Rural de Abelardo Luz – Sulcredi/Crediluz&quot;</code></li>
+<li><code>&quot;MERCADOPAGO.COM REPRESENTACOES LTDA.&quot;</code></li>
+<li><code>&quot;Órama Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;PARATI – CREDITO, FINANCIAMENTO E INVESTIMENTO S.A.&quot;</code></li>
+<li><code>&quot;QI Sociedade de Crédito Direto S.A.&quot;</code></li>
+<li><code>&quot;Banco Bari de Investimentos e Financiamentos S/&quot;</code></li>
+<li><code>&quot;Fram Capital Distribuidora de Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;Acesso Soluções de Pagamento S.A.&quot;</code></li>
+<li><code>&quot;Banco Digio S.A.&quot;</code></li>
+<li><code>&quot;Banco C6 S.A.&quot;</code></li>
+<li><code>&quot;Super Pagamentos e Administração de Meios Eletrônicos S.A.&quot;</code></li>
+<li><code>&quot;itau&quot;</code></li>
+<li><code>&quot;Creditas Sociedade de Crédito Direto S.A.&quot;</code></li>
+<li><code>&quot;FFA SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA.&quot;</code></li>
+<li><code>&quot;Banco XP S.A.&quot;</code></li>
+<li><code>&quot;AMAGGI S.A. – CRÉDITO, FINANCIAMENTO E INVESTIMENTO&quot;</code></li>
+<li><code>&quot;TORO CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA&quot;</code></li>
+<li><code>&quot;NECTON INVESTIMENTOS S.A. CORRETORA DE VALORES MOBILIÁRIOS E COMMODITIES&quot;</code></li>
+<li><code>&quot;ÓTIMO SOCIEDADE DE CRÉDITO DIRETO S.A&quot;</code></li>
+<li><code>&quot;GERENCIANET PAGAMENTOS DO BRASIL LTDA&quot;</code></li>
+<li><code>&quot;SOLIDUS S.A. CORRETORA DE CAMBIO E VALORES MOBILIARIOS&quot;</code></li>
+<li><code>&quot;Banco Société Générale Brasil S.A&quot;</code></li>
+<li><code>&quot;VITREO DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.&quot;</code></li>
+<li><code>&quot;Banco Mizuho do Brasil S.A&quot;</code></li>
+<li><code>&quot;UP.P SOCIEDADE DE EMPRÉSTIMO ENTRE PESSOAS S.A.&quot;</code></li>
+<li><code>&quot;Banco J. P. Morgan S.A&quot;</code></li>
+<li><code>&quot;Banco Mercantil do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco Financiamentos S.A.&quot;</code></li>
+<li><code>&quot;Kirton Bank S.A. – Banco Múltiplo&quot;</code></li>
+<li><code>&quot;Banco Capital S.A&quot;</code></li>
+<li><code>&quot;Banco Safra S.A&quot;</code></li>
+<li><code>&quot;Banco MUFG Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Sumitomo Mitsui Brasileiro S.A&quot;</code></li>
+<li><code>&quot;Banco Caixa Geral – Brasil S.A&quot;</code></li>
+<li><code>&quot;Citibank N.A&quot;</code></li>
+<li><code>&quot;Banco ItauBank S.&quot;</code></li>
+<li><code>&quot;Deutsche Bank S.A. – Banco Alemã&quot;</code></li>
+<li><code>&quot;JPMorgan Chase Bank&quot;</code></li>
+<li><code>&quot;ING Bank N.V&quot;</code></li>
+<li><code>&quot;Banco de La Provincia de Buenos Aire&quot;</code></li>
+<li><code>&quot;Banco Credit Suisse (Brasil) S.A&quot;</code></li>
+<li><code>&quot;SENSO CORRETORA DE CAMBIO E VALORES MOBILIARIOS S.A&quot;</code></li>
+<li><code>&quot;Banco Luso Brasileiro S.A&quot;</code></li>
+<li><code>&quot;Banco Industrial do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco VR S.A&quot;</code></li>
+<li><code>&quot;Banco Paulista S.A&quot;</code></li>
+<li><code>&quot;Banco Guanabara S.A&quot;</code></li>
+<li><code>&quot;Omni Banco S.A&quot;</code></li>
+<li><code>&quot;Banco PAN S.A&quot;</code></li>
+<li><code>&quot;Banco Ficsa S.A&quot;</code></li>
+<li><code>&quot;Banco Smartbank S.A.&quot;</code></li>
+<li><code>&quot;Banco Rendimento S.A&quot;</code></li>
+<li><code>&quot;Banco Triângulo S.A&quot;</code></li>
+<li><code>&quot;Banco Sofisa S.A&quot;</code></li>
+<li><code>&quot;Banco Pine S.A&quot;</code></li>
+<li><code>&quot;Itaú Unibanco Holding S.A&quot;</code></li>
+<li><code>&quot;Banco Indusval S.A&quot;</code></li>
+<li><code>&quot;Banco A.J.Renner S.A&quot;</code></li>
+<li><code>&quot;Banco Votorantim S.A&quot;</code></li>
+<li><code>&quot;daycoval&quot;</code></li>
+<li><code>&quot;Banco Ourinvest S.A&quot;</code></li>
+<li><code>&quot;Banco Cetelem S.A&quot;</code></li>
+<li><code>&quot;Banco Ribeirão Preto S.A&quot;</code></li>
+<li><code>&quot;Banco Semear S.A&quot;</code></li>
+<li><code>&quot;Banco Citibank S.A&quot;</code></li>
+<li><code>&quot;Banco Modal S.A&quot;</code></li>
+<li><code>&quot;Banco Rabobank International Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Cooperativo Sicredi S.A&quot;</code></li>
+<li><code>&quot;Scotiabank Brasil S.A. Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco BNP Paribas Brasil S.A&quot;</code></li>
+<li><code>&quot;Novo Banco Continental S.A. – Banco Múltipl&quot;</code></li>
+<li><code>&quot;Banco Sistema S.A&quot;</code></li>
+<li><code>&quot;Bank of America Merrill Lynch Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;Banco Cooperativo do Brasil S.A. – BANCOO&quot;</code></li>
+<li><code>&quot;Banco KEB HANA do Brasil S.A&quot;</code></li>
+<li><code>&quot;Indefinido&quot;</code></li>
+<li><code>&quot;Nenhum&quot;</code></li>
+<li><code>&quot;santander&quot;</code></li>
+<li><code>&quot;bb&quot;</code></li>
+<li><code>&quot;B&amp;T CORRETORA DE CAMBIO LTDA.&quot;</code></li>
+<li><code>&quot;Banco ABN AMRO S.A&quot;</code></li>
+<li><code>&quot;Banco Alfa S.A&quot;</code></li>
+<li><code>&quot;Banco Andbank (Brasil) S.A&quot;</code></li>
+<li><code>&quot;Banco B3 S.A&quot;</code></li>
+<li><code>&quot;Banco BANDEPE S.A&quot;</code></li>
+<li><code>&quot;Banco Bradescard S.A&quot;</code></li>
+<li><code>&quot;Banco Bradesco BBI S.A.&quot;</code></li>
+<li><code>&quot;Banco Cargill S.A&quot;</code></li>
+<li><code>&quot;Banco Crefisa S.A&quot;</code></li>
+<li><code>&quot;Banco da Amazônia S.A&quot;</code></li>
+<li><code>&quot;Banco da China Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado de Sergipe S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado do Pará S.A&quot;</code></li>
+<li><code>&quot;Banco do Estado do Rio Grande do Sul S.A&quot;</code></li>
+<li><code>&quot;Banco do Nordeste do Brasil S.A&quot;</code></li>
+<li><code>&quot;Banco Finaxis S.A&quot;</code></li>
+<li><code>&quot;Banco Inbursa S.A&quot;</code></li>
+<li><code>&quot;Banco Inter S.A&quot;</code></li>
+<li><code>&quot;Banco Itaú Consignado S.A.&quot;</code></li>
+<li><code>&quot;Banco J. Safra S.A&quot;</code></li>
+<li><code>&quot;Banco KDB S.A&quot;</code></li>
+<li><code>&quot;Banco Morgan Stanley S.A&quot;</code></li>
+<li><code>&quot;Banco Nacional de Desenvolvimento Econômico e Social – BNDE&quot;</code></li>
+<li><code>&quot;Banco Original do Agronegócio S.A&quot;</code></li>
+<li><code>&quot;Banco Topázio S.A&quot;</code></li>
+<li><code>&quot;Banco Tricury S.A&quot;</code></li>
+<li><code>&quot;BancoSeguro S.A&quot;</code></li>
+<li><code>&quot;BANESTES S.A. Banco do Estado do Espírito Sant&quot;</code></li>
+<li><code>&quot;BNY Mellon Banco S.A&quot;</code></li>
+<li><code>&quot;BRB – Banco de Brasília S.A&quot;</code></li>
+<li><code>&quot;Brickell S.A. Crédito&quot;</code></li>
+<li><code>&quot;CENTRAL DE COOPERATIVAS DE ECONOMIA E CRÉDITO MÚTUO DO ESTADO DO RIO GRANDE DO S&quot;</code></li>
+<li><code>&quot;Confidence Corretora de Câmbio S.A.&quot;</code></li>
+<li><code>&quot;Cooperativa Central de Crédito Noroeste Brasileiro Ltda&quot;</code></li>
+<li><code>&quot;Cooperativa Central de Crédito – AILO&quot;</code></li>
+<li><code>&quot;COOPERATIVA DE CRÉDITO MÚTUO DOS DESPACHANTES DE TRÂNSITO DE SANTA CATARINA E RI&quot;</code></li>
+<li><code>&quot;Credialiança Cooperativa de Crédito Rural&quot;</code></li>
+<li><code>&quot;CREDICOAMO CREDITO RURAL COOPERATIVA&quot;</code></li>
+<li><code>&quot;CREDISAN COOPERATIVA DE CRÉDITO&quot;</code></li>
+<li><code>&quot;CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A&quot;</code></li>
+<li><code>&quot;Goldman Sachs do Brasil Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;Haitong Banco de Investimento do Brasil S.A&quot;</code></li>
+<li><code>&quot;Hipercard Banco Múltiplo S.A&quot;</code></li>
+<li><code>&quot;PÓLOCRED SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORT&quot;</code></li>
+<li><code>&quot;State Street Brasil S.A. – Banco Comercia&quot;</code></li>
+<li><code>&quot;Travelex Banco de Câmbio S.A&quot;</code></li>
+<li><code>&quot;UBS Brasil Corretora de Câmbio, Títulos e Valores Mobiliários S.A.&quot;</code></li>
+<li><code>&quot;UNIPRIME CENTRAL – CENTRAL INTERESTADUAL DE COOPERATIVAS DE CREDITO LTDA.&quot;</code></li>
+<li><code>&quot;Uniprime Norte do Paraná – Coop de Economia e Crédito Mútuo dos Médicos&quot;</code></li>
+<li><code>&quot;Desconhecido&quot;</code></li>
+</ul>
+</li>
+</ul>
 <h3 id="agencia-integer-4"><a class="header" href="#agencia-integer-4">agencia: <code>integer</code></a></h3>
-<h4 id="agência-4"><a class="header" href="#agência-4">Agência</a></h4>
+<h4 id="agência-do-recebedor"><a class="header" href="#agência-do-recebedor">Agência do Recebedor</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="conta-integer-3"><a class="header" href="#conta-integer-3">conta: <code>integer</code></a></h3>
-<h4 id="conta-2"><a class="header" href="#conta-2">Conta</a></h4>
+<h4 id="conta-do-recebedor"><a class="header" href="#conta-do-recebedor">Conta do Recebedor</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9999999999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="dac-integer-1"><a class="header" href="#dac-integer-1">dac: <code>integer</code></a></h3>
-<h4 id="digito-verificador-1"><a class="header" href="#digito-verificador-1">Digito Verificador</a></h4>
+<h4 id="digito-verificador-do-recebedor"><a class="header" href="#digito-verificador-do-recebedor">Digito Verificador do Recebedor</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9</code></li>
@@ -1279,7 +1600,7 @@ Os demais bancos não utilizam esse campo.</p>
 <h3 id="documento-string-2"><a class="header" href="#documento-string-2">documento: <code>string</code></a></h3>
 <h4 id="numero-do-documento"><a class="header" href="#numero-do-documento">Numero do documento</a></h4>
 <ul>
-<li>Comprimento máximo: <code>10</code></li>
+<li>Comprimento máximo: <code>20</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
 <h3 id="vencimento-string-2"><a class="header" href="#vencimento-string-2">vencimento: <code>string</code></a></h3>
@@ -1316,7 +1637,7 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Expressão Regular: <code>^(|d{11}|d{14})$</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="codigo-string-2"><a class="header" href="#codigo-string-2">codigo: <code>string</code></a></h3>
+<h3 id="codigo-string-3"><a class="header" href="#codigo-string-3">codigo: <code>string</code></a></h3>
 <h4 id="código-da-empresa-no-banco"><a class="header" href="#código-da-empresa-no-banco">Código da Empresa no Banco</a></h4>
 <ul>
 <li>Comprimento máximo: <code>20</code></li>
@@ -1329,7 +1650,7 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Valor máximo: <code>999999</code></li>
 <li>Valor padrão: <code>1</code></li>
 </ul>
-<h3 id="banco-string-4"><a class="header" href="#banco-string-4">banco: <code>string</code></a></h3>
+<h3 id="banco-string-5"><a class="header" href="#banco-string-5">banco: <code>string</code></a></h3>
 <h4 id="banco-4"><a class="header" href="#banco-4">Banco</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -1345,21 +1666,21 @@ Os demais bancos não utilizam esse campo.</p>
 </li>
 </ul>
 <h3 id="agencia-integer-5"><a class="header" href="#agencia-integer-5">agencia: <code>integer</code></a></h3>
-<h4 id="agência-5"><a class="header" href="#agência-5">Agência</a></h4>
+<h4 id="agência-3"><a class="header" href="#agência-3">Agência</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="conta-integer-4"><a class="header" href="#conta-integer-4">conta: <code>integer</code></a></h3>
-<h4 id="conta-3"><a class="header" href="#conta-3">Conta</a></h4>
+<h4 id="conta-1"><a class="header" href="#conta-1">Conta</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9999999999999</code></li>
 <li>Valor padrão: <code>0</code></li>
 </ul>
 <h3 id="dac-integer-2"><a class="header" href="#dac-integer-2">dac: <code>integer</code></a></h3>
-<h4 id="digito-verificador-2"><a class="header" href="#digito-verificador-2">Digito Verificador</a></h4>
+<h4 id="digito-verificador"><a class="header" href="#digito-verificador">Digito Verificador</a></h4>
 <ul>
 <li>Valor mínimo: <code>0</code></li>
 <li>Valor máximo: <code>9</code></li>
@@ -1445,7 +1766,7 @@ Os demais bancos não utilizam esse campo.</p>
 </li>
 </ul>
 <h2 id="registros-3"><a class="header" href="#registros-3">Registros</a></h2>
-<h3 id="banco-string-5"><a class="header" href="#banco-string-5">banco: <code>string</code></a></h3>
+<h3 id="banco-string-6"><a class="header" href="#banco-string-6">banco: <code>string</code></a></h3>
 <h4 id="banco-de-origem"><a class="header" href="#banco-de-origem">Banco de Origem</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
@@ -1703,7 +2024,7 @@ Os demais bancos não utilizam esse campo.</p>
 <li>Comprimento máximo: <code>12</code></li>
 <li>Valor padrão: <code>&quot;&quot;</code></li>
 </ul>
-<h3 id="id-string-2"><a class="header" href="#id-string-2">id: <code>string</code></a></h3>
+<h3 id="id-string-1"><a class="header" href="#id-string-1">id: <code>string</code></a></h3>
 <h4 id="id-da-transação"><a class="header" href="#id-da-transação">Id da transação</a></h4>
 <ul>
 <li>Valor padrão: <code>&quot;&quot;</code></li>

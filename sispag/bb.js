@@ -1,5 +1,4 @@
 import bancos from '../bancos.js'
-import uf from '../uf.js'
 import {tipo} from '../lib.js'
 import servicos from './notas/servicos.js'
 import pagamentos from './notas/pagamentos.js'
@@ -17,8 +16,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('BANCO DO BRASIL S/A', 30)
   fixo(' ', 10)
   fixo('1')
-  data(X, 'geracao', 8)
-  texto(X, 'hora', 6)
+  data(X, 'geracao', 14)
   numero(X, 'sequencia', 6)
   fixo('050')
   fixo(' ', 74)
@@ -40,7 +38,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   texto(X, 'complemento', 15)
   texto(X, 'cidade', 20)
   texto(X, 'cep', 8)
-  mapa(X, 'uf', uf)
+  texto(X, 'uf', 2)
   fixo(' ', 8)
   fixo('V.PAG10135', 10)
   fixo('\n')

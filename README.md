@@ -42,7 +42,6 @@ Um modulo javascript para criar e converter arquivos CNAB com JSON
  - Eliminar regra de 1 caracter repete ele nos campos fixos
  - campos fixos saber tratar mapas
  - adicionar testes ao objeto
- - Implementar sispag
 
 ## Testes
 ### deno

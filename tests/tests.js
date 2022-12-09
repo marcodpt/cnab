@@ -1,5 +1,6 @@
 import remessa_cobranca from './remessa_cobranca/dados.js'
 import retorno_cobranca from './retorno_cobranca/dados.js'
+import sispag from './sispag/dados.js'
 import conciliacao from './conciliacao/dados.js'
 
 const Testes = {
@@ -16,6 +17,17 @@ const Testes = {
   },
   retorno_cobranca: {
     dados: retorno_cobranca,
+    bancos: {
+      itau: null,
+      bradesco: null,
+      santander: null,
+      caixa: null,
+      bb: null,
+      daycoval: null
+    }
+  },
+  sispag: {
+    dados: sispag,
     bancos: {
       itau: null,
       bradesco: null,

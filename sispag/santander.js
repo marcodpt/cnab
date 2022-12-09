@@ -1,5 +1,4 @@
 import bancos from '../bancos.js'
-import uf from '../uf.js'
 import {tipo} from '../lib.js'
 import servicos from './notas/servicos.js'
 import pagamentos from './notas/pagamentos.js'
@@ -39,7 +38,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   texto(X, 'complemento', 15)
   texto(X, 'cidade', 20)
   texto(X, 'cep', 8)
-  mapa(X, 'uf', uf)
+  texto(X, 'uf', 2)
   fixo(' ', 18)
   fixo('\n')
   X.registros.forEach((R, index) => {
@@ -57,7 +56,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('0', 15)
     numero(R, 'valor', 15, 2)
     fixo(' ', 20)
-    fixo('0', 25)
+    fixo('0', 23)
     fixo(' ', 63)
     fixo('\n')
     fixo('03300013')

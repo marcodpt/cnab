@@ -1,5 +1,4 @@
 import bancos from '../bancos.js'
-import uf from '../uf.js'
 import {tipo} from '../lib.js'
 import servicos from './notas/servicos.js'
 import pagamentos from './notas/pagamentos.js'
@@ -9,7 +8,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo(' ', 9)
   fixo(tipo(X, 'cnpjcpf'), 1)
   numero(X, 'cnpjcpf', 14)
-  texto(X, 'codigo', 8)
+  fixo(() => X.codigo, 8)
   fixo('P', 5)
   fixo('0', 4)
   fixo(' ', 3)
@@ -33,7 +32,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('041', 4)
   fixo(tipo(X, 'cnpjcpf'), 1)
   fixo(X.cnpjcpf, 14)
-  fixo(X.codigo, 20)
+  texto(X, 'codigo', 20)
   fixo(X.agencia, 6, true)
   fixo(X.conta, 13, true)
   fixo(X.dac, 1, true)
@@ -44,7 +43,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   texto(X, 'complemento', 15)
   texto(X, 'cidade', 20)
   texto(X, 'cep', 8)
-  mapa(X, 'uf', uf)
+  texto(X, 'uf', 2)
   fixo(' ', 18)
   fixo('\n')
   X.registros.forEach((R, index) => {
@@ -63,12 +62,9 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
     fixo('BRL', 3)
     fixo('0', 15)
     numero(R, 'valor', 15, 2)
-    fixo(' ', 12)
-    fixo('01 0  ')
+    fixo(' ', 20)
     fixo('0', 23)
-    fixo(' ', 52)
-    fixo('0')
-    fixo(' ', 10)
+    fixo(' ', 63)
     fixo('\n')
     fixo('10400013')
     fixo(index * 2 + 2, 5, true)

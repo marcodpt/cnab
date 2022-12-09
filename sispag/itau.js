@@ -20,8 +20,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   fixo('BCO ITAU S/A', 30)
   fixo(' ', 10)
   fixo('1')
-  data(X, 'geracao', 8)
-  texto(X, 'hora', 6)
+  data(X, 'geracao', 14)
   fixo('0', 14)
   fixo('SISPAGWITV2018', 69)
   fixo('\r\n')
@@ -44,7 +43,7 @@ export default ({X, fixo, numero, texto, data, mapa}) => {
   texto(X, 'complemento', 15)
   texto(X, 'cidade', 20)
   texto(X, 'cep', 8)
-  mapa(X, 'uf', uf)
+  texto(X, 'uf', 2)
   fixo(' ', 18)
   fixo('\r\n')
   X.registros.forEach((R, index) => {
